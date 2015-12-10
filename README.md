@@ -1,2 +1,0 @@
-# ashummaapp
-mma copy
