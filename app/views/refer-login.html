@@ -1,0 +1,64 @@
+<div class="row-fluid login-row_style" ng-init="toTheTop(); checkloginurl()">
+  <div id ="" class="container-fluid text-center blue refer-lgin  login-container login-container_style student-login bg col-md-12 " style="padding:11% 20%;">
+
+    <form class="form-signin signup-regi" name="forma" ng-submit="login()" autocomplete="on">
+      
+      <div class="form-signin-div-tobeload" ng-show="modalShown">
+        <i class="fa fa-spinner fa-3x fa-spin"></i>
+      </div>
+
+      <div class="row" ng-show="yourstatus == 'old'">
+        <center style="font-size:1.5em;">
+          The invitation Link is not valid please contact to the below mail for any Enquiry
+          <div class="seperator"></div>
+          Support@mymissionadmissiom.com
+        </center>
+      </div>
+
+      <div class="form-signin-div-tobehaze" ng-class="{'form-signin-div-tobehaze show_M': modalShown, 'form-signin-div-tobehaze': !modalShown}" ng-hide="yourstatus == 'old'">
+
+        <h2 class="refer-heding" ng-hide=" checkloginuid == 'user doesnot exists' ">Welcome User you are invited By <br> {{ oldstudentname.$value }}.To claim your friend's referal Please Login</h2>
+        <h2 ng-show=" checkloginuid == 'user doesnot exists' ">Login Here</h2>
+
+        <div class="input-group-container">
+          <div class="input-group input-group-lg">
+            <span ng-class="{'login-inputgroup_style input-group-addon _glyphicon glyphicon glyphicon-user': student1IdFlag !== 'Done', 'login-inputgroup_style input-group-addon _glyphicon green glyphicon glyphicon-user': student1IdFlag == 'Done', 'login-inputgroup_style input-group-addon _glyphicon red glyphicon glyphicon-user': collegeIdFlag == 'Done'}"></span>
+            <input type="email" required oninvalid="this.setCustomValidity('Please enter your Email Address')" oninput="this.setCustomValidity('')" ng-change="showEmail()" ng-model="user.email" ng-keyup="doThisForStudent(user.email)"  placeholder="Email or Username" class="login-inputgroup_style form-control">
+          </div>
+        </div>
+
+        <h4><div class="animate-show" ng-if="student1IdFlag == 'Not Done'"><br>Hi <strong>You are not registered</strong>, Please <a href="http://www.mymissionadmission.com/#/register/:{{friendsemail}}">click here</a> to Register..</div></h4>
+
+        <h4><div class="animate-show" ng-if="referalstatus == 'old'"><br>Hi <strong>{{ student1Name.$value | titleCase }}</strong>, Mail at <a>Support@mymissionadmissiom.com</a> to be a part of referal system..</div></h4>
+
+        <h4><div class="animate-show" ng-if="referalstatus == 'Done'"><br>Hi <strong>{{ student1Name.$value | titleCase }}</strong>, You are already a part of referral system. Please <a href="http://www.mymissionadmission.com/#/login">click here</a> to login..</div></h4>
+
+        <h4><div class="animate-show" ng-if="referalstatus == 'same'"><br>Hi <strong>You can't refer yourself</strong>, Please <a href="http://www.mymissionadmission.com/#/login">click here</a> to login..</div></h4>
+
+        <h4><div class="animate-show" ng-if="referalstatus == 'else'"><br>Hi <strong>{{student1Name.$value | titleCase }}</strong>, You have some problem in the referal scheme. Our Admin team will look into this.</div></h4>
+
+        <div class="input-group-container" ng-hide="student1IdFlag == 'Not Done' || referalstatus == 'Done' || referalstatus == 'old' || referalstatus == 'same' || referalstatus == 'else'">
+          <div class="input-group input-group-lg">
+           <span class=" login-inputgroup_style input-group-addon _glyphicon glyphicon glyphicon-lock"></span>
+           <input type="password" required oninvalid="this.setCustomValidity('Password cannot be blank')" oninput="this.setCustomValidity('')" ng-change="showPass()" ng-model="user.password" placeholder="Password" class="login-inputgroup_style form-control">
+          </div>
+        </div>
+        <br/> <br/>
+        
+        <!-- <div class="checkbox" ng-if="collegeIdFlag !== 'Done'">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me <a>(Forgot Password?)</a>
+          </label>
+        </div> -->
+        
+        <button class="btn btn-lg btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" type="submit" ng-hide="student1IdFlag == 'Not Done' || referalstatus == 'else'  || referalstatus == 'Done' || referalstatus == 'old' || referalstatus == 'same' ">Log in</button>
+        <br>
+        <p ng-if="collegeIdFlag !== 'Done'">New to My Mission Admission? <a href="#/register"><strong>Sign  Up</strong></a></p>
+        <br>
+        <p ng-show="error" class="error-danger">{{error}}</p>
+
+      </div>
+
+    </form>
+  </div>
+</div>

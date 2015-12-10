@@ -1,0 +1,127 @@
+<div ng-include="'views/student-left-sidebar.html'" ng-init="toTheTop(); searchAllColleges();"></div>
+<div class="col-lg-2 col-md-2 col-sm-2"></div>
+
+<div class="col-lg-10 col-md-10 col-sm-10" id="mma_student_middlecol">
+  <h1>Search Your Dream College</h1>
+  <hr>
+  <!--Filters Starts Here-->
+  <div class="col-lg-12 col-md-12 col-sm-12"  style="background:White; padding:15px 0">
+    
+    <div class="col-sm-6" >
+      <p>Search by location</p>
+      <select ng-model="stateToView" ng-change="initializeStateToView(stateToView); searchCollegeByState()" class="form-control noborder" ng-options="k as v for (k, v) in states" >
+        <option value="">{{dropdownMessage}}</option>
+      </select>
+    </div>
+    
+    <div class="col-sm-6">
+      <p>Search by course</p>
+      <select ng-model="courseToView" ng-change="initializeCourseToView(courseToView); searchCollegeByCourse()" class="form-control noborder" ng-options="k as v for (k, v) in courses" > 
+        <option value="">{{dropdownMessageCourses}}</option>
+      </select>
+    </div>
+    <br clear="all"/>
+    <br/>
+    <div class="col-sm-6" >
+      <p>Search Colleges, courses, etc.</p>
+        <input type="text" class="form-control noborder" ng-model="subfilter" ng-keyup="updateSubfilter(subfilter)" placeholder="Enter College Name, City, Course etc.">
+    </div>
+  </div>
+  <br clear="all"/>
+  <br/>
+  <!--Filters Ends Here -->
+                    
+  <!--College Search Result Div Starts Here-->
+                    
+  <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px;">
+
+    <div class="col-sm-12 search-page-row-main-content-row-error" ng-show="collegeNotFound && currentState!='' && currentCourse!=''">
+          <center>
+            <strong>The college counsellors are unavailable at this moment.</strong>
+            <br />
+            <p>You may contact us to help you in searching your desired course and college.
+                  <br/>
+                          +91 8468099952
+                (support@mymissionadmission.com )</p>
+          </center>
+        </div>
+        <div class="col-sm-12 search-page-row-main-content-row-error" ng-show="collegeNotFound && currentCourse!='' && currentState==''">
+          <center>
+            <strong>The college counsellors are unavailable at this moment.</strong>
+            <br />
+            <p>You may contact us to help you in searching your desired course and college.
+                 <br/>
+                          +91 8468099952
+                (support@mymissionadmission.com )</p>
+          </center>
+         </div>
+
+    <div ng-hide="collegeNotFound" class="col-lg-6 col-md-6 col-sm-6" style="margin-bottom:20px;" ng-repeat="(collegeId,college) in searchColleges | filter:subfilter | filter:colltype | orderBy:'cId'  " >
+      <a ng-show="signedIn()" ng-href="#/college-profile/{{college.collegeId}}" ng-if="college.verifiedcollege=='verified'" ng-click="storeview(college.collegeId); trackEvent('Student DashBoard CollegeSearch', 'Selected college' + college.collegename, 'Student Dashboard collegeViewed')" id="college-search-link">
+        <div style="border:1px solid #ccc; padding:0px; border-radius:3px;">
+          <img class="college_img" style=" border-top-left-radius:3px; border-top-right-radius:3px;" lazy-src="{{college.collegephoto}}" alt="Photo of {{college.collegename}}" />
+          <div style="width:100%; background:#eff7fb; height:120px; padding:15px; color:#237dac;">
+            <strong>{{college.collegename}}</strong>
+            <p> {{college.collegestate}} </p>
+          </div>
+        </div>
+         <div class="search-page-row-main-content-result-block-view-overlay" style="position: absolute;
+    top: 9.28em;background-color: rgba(0,0,0,0.7);left:16px;color: white;padding: 1em;font-size: 1.1em;z-index: 99;">     <i class="fa fa-eye"></i>{{college.collegeView}} Views
+         </div>
+      </a> 
+
+      <a ng-hide="signedIn()"  id="college-search-link" ng-if="college.verifiedcollege=='verified'" ng-click="loginError(college.collegename,college.collegeaffiliation, college.collegestate, college.collegephoto); trackEvent('Student DashBoard CollegeSearch', 'Selected college' + college.collegename, 'Student Dashboard collegeViewed')" >
+        <div style="border:1px solid #ccc; padding:0px; border-radius:3px;">
+          <img class="college_img" style=" border-top-left-radius:3px; border-top-right-radius:3px;" lazy-src="{{college.collegephoto}}" alt="Photo of {{college.collegename}}" />
+          <div style="width:100%; background:#eff7fb; height:120px; padding:15px; color:#237dac;">
+            <strong>{{college.collegename}}</strong>
+            <p> {{college.collegestate}} </p>
+          </div>
+        </div>
+         <div class="search-page-row-main-content-result-block-view-overlay" style="position: absolute;
+    top: 9.28em;background-color: rgba(0,0,0,0.7);left:16px;color: white;padding: 1em;font-size: 1.1em; z-index: 99;">     <i class="fa fa-eye"></i>{{college.collegeView}} Views
+         </div>
+      </a>        
+    </div>   
+
+  </div> 
+  <!--College Search Result Div Ends Here-->
+</div>
+</div>
+
+<div ng-if="loginErrorModal" class="search-Page-loginErrorModal" style="z-index: 999999;">
+
+  <div class="modal-backdrop"></div>
+
+  <div class="modal-content" style="top:15%;">
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="myModalLabel">Please Log In!</h4>
+    </div>
+    <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+          <center><h3>Want to know more about this college?</h3></center>
+        </div>
+        <br /><br />
+        <div class="row">
+          <div class="col-xs-5">
+            <div class="result-block-image result-block-image-error-Popup">
+              <img lazy-src="{{collegeImage}}" alt="Photo of {{collegeName}}">
+            </div>
+          </div>
+          <div class="col-xs-7">
+            <h3>{{collegeName}}</h3>
+            <h6>{{collegeAff}}</h6>
+            <h6>{{collegeState}}</h6>
+            <div class="seperator"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a ng-href="#/login"><button type="button" class="btn btn-default">Login</button></a>
+      <a ng-href="#/register"><button type="button" class="btn btn-primary">New User? Register Now!</button></a>
+    </div>
+  </div>
+</div>

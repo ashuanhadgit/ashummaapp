@@ -1,0 +1,199 @@
+<style>
+.nav-pills li a{
+  color: #333;
+    background-color: #ccc;
+  font-weight:bold;
+}
+</style>      <div ng-include="'views/student-left-sidebar.html'" ng-init="toTheTop(); getBookedWebinarsByStudent(); getUpcommingWebinarsForStudent()" ></div>
+      <div class="col-lg-2 col-md-2 col-sm-2"></div>
+
+                                  <!--Middle Content Main Content Visible to Student -->
+              
+      <div class="col-lg-10 col-md-10 col-sm-10" style="margin-top:0px" id="mma_student_middlecol">
+        <h1 ng-if="signedIn()">Upcoming Webinars</h1>
+        <hr>
+                                    <!--Tabs For Booked and Upcomming Webinars Data-->
+        <ul class="nav nav-pills" style="padding-left:20px;">
+          <li class="active"><a data-toggle="pill" data-target="#upcomingWebinars">Upcoming Webinars</a></li>
+          <li ng-if="signedIn()"><a data-toggle="pill" data-target="#bookedwebinars">My Bookings</a></li>
+          <li ng-if="!signedIn()"><a data-toggle="pill" data-target="#bookedwebinarsforlogout">My Bookings</a></li>
+        </ul>
+                                    <!--Tabs For Booked and Upcomming Webinars Data Ends Here-->
+        <div class="tab-content">
+                                        <!--Div For Showing Upcoming Webinar Data-->
+          <div id="upcomingWebinars" class="tab-pane fade in active">
+            <h3 style="padding-left:20px;">Upcoming Webinars</h3>
+            <h4 style="color:green" ng-if="studentWebinar.length=== 0"><strong><center>No currently scheduled webinars.</center></strong></h4>
+            <div class="col-lg-6 col-md-6 col-sm-6 web{{webinarId}}" style="margin-bottom:20px;"  ng-repeat="(webinarId, webinar) in studentWebinar | orderBy:'webinarId' : true">
+              <div class="col-lg-12 "  id="upcoming_webinars_block">
+                  <h3>{{webinar.webinarTopic | titleCase}}</h3>
+                    <span class="tag">
+                      <img lazy-src="../images/upcoming-tag.png" alt="upcoming">
+                    </span>
+                    <p style="margin-bottom:0px; color:#444; font-size:12px; padding-left:10px;"><b>{{webinar.mentorName | titleCase}}</b></p>
+                    <div class="webinar-ur-pic" style="width:30%; padding:7px; float:left;" >
+                      <img class="img-circle" lazy-src="{{webinar.mentorPhoto}}" style="height:80px; width:80px;"/>
+                    </div>
+                    <div class="date-tym" style="width:70%; padding:7px; float:left;">
+                      <div style="text-align:center; width:100%; height:80px; border-radius:5px; color:white; background:#237dac;">
+                        <div style="width:40%; padding:5px; font-weight:bold; float:left; font-size:24px;"><p style=" font-size:20px;">{{webinar.webinarDate.split(" ")[2]}}</p><p style=" font-size:16px;">{{webinar.webinarDate.split(" ")[1]}} {{webinar.webinarDate.split(" ")[0]}}</p></div>
+                        <div style="width:55%; padding:5px; color:#fff; float:left;"><p style="font-size:20px;">{{webinar.webinarTime}}</p></div>
+                        <br clear="all"/>
+                      </div>
+                    </div>
+                    <br clear="all"/>
+                    <div style="width:100%; height:140px; overflow:auto;">
+                              {{webinar.webinarDescription}}
+                    </div>
+                     <br clear="all"/>
+                     <a ng-href="#/view-webinar/{{webinar.webinarTopic}}:{{webinar.webinarId}}"> <button type="button" class="btn btn-group btn-success btn-sm" style="width:100%;"  ng-click="trackEvent('Student DashBoard Webinar', 'Upcomming Webinar', 'view Webinar Page')">Book your seat</button>  </a>
+                </div>
+            </div>
+            <br clear="all"/>
+            <div id="loadmorebtn" style="text-align:center; width:100%; position:relative; padding:5px;">
+              <button type="button" class="btn btn-primary" ng-click="loadMoreWebinarsForStudent()">Load More Webinars</button>
+                
+            </div>
+          </div>
+                            
+                                    <!--Div For Showing Upcoming Webinar Data Ends here-->
+                           
+                                      <!--Div For Showing Booked Webinars Data--> 
+          <div id="bookedwebinars" ng-if="signedIn()" class="tab-pane fade">
+            <h3 style="padding-left:20px;">Booked Webinars</h3>
+            <hr>
+                                                  <!--Booked Webinar Block-->
+              <h4 style="color:green" ng-if="studentBookedWebinar.length==0"><strong><center>You have not booked any webinar yet.</center></strong></h4>
+              <div class="col-lg-6 col-md-6 col-sm-6" style="margin-bottom:20px;" ng-repeat="(webinarId, webinar) in studentBookedWebinar | orderBy:'webinarId' : true">
+                <div class="col-lg-12"  id="upcoming_webinars_block" ng-init="isThisBookedWebinarLive(webinar.webinarId); clearAll(webinarId)">
+                  <h3>{{webinar.webinarTopic | titleCase}}</h3>
+                    <span class="tag">
+                      <img lazy-src="../images/booked-tag.png" alt="booked">
+                    </span>
+                    <div class="webinar-ur-pic" style="width:30%; padding:7px; float:left;">
+                      <img class="img-circle" lazy-src="{{webinar.mentorPhoto}}" style="height:80px; width:80px;"/>
+                    </div>
+                    
+                    <div class="date-tym" style="width:70%; padding:7px; float:left;">
+                      <div style="text-align:center; width:100%; height:80px; border-radius:5px; color:white; background:#237dac;">
+                        <div style="width:40%; padding:5px; font-weight:bold; float:left; font-size:24px;"><p style=" font-size:20px;">{{webinar.webinarDate.split(" ")[2]}}</p><p style=" font-size:16px;">{{webinar.webinarDate.split(" ")[1]}} {{webinar.webinarDate.split(" ")[0]}}</p></div>
+                        <div style="width:55%; padding:5px; color:#fff; float:left;"><p style="font-size:20px;">{{webinar.webinarTime}}</p></div>
+                        <br clear="all"/>
+                      </div>
+                    </div>
+               
+                    <br clear="all"/>
+                    <div style="width:100%; height:140px; overflow:auto;">
+                              {{webinar.webinarDescription}}
+                    </div>
+                     <br clear="all"/>
+                     <!--<button type="button" class="btn btn-group btn-danger btn-sm" style="width:100%; font-size:14px;">Seats are Full</button>  -->
+                     <button ng-disabled="thisBookedWebinarLive[webinar.webinarId].length == 0" ng-click="attendWebinar(webinar)" data-toggle="modal" data-target="#liveModal" type="button" class="btn btn-group btn-success btn-sm" style="width:100%; font-size:14px;" ng-click="trackEvent('Student DashBoard Webinar', 'Booked Webinars', 'Start Webinar')">Start Webinar</button>
+                </div>
+            </div>
+            <br clear="all"/>
+          </div>
+                                   <!--Div For Showing Booked Webinars Data Ends HEre--> 
+                                   
+                      <!-- Div for prompting required for viewing my bookings -->
+              <div id="bookedwebinarsforlogout"  class="tab-pane fade">
+                <h3  style="padding-left:20px;">Booked Webinars</h3>
+                <div  ng-if="!signedIn()" class="col-lg-10 col-md-10 col-sm-10"  >
+                <!---LOGIN_SIGNUP -->
+                <div class="col-sm-10 warn-continer">
+                <div class="col-sm-4">
+                  <div class="col-sm-12">
+                    <img lazy-src="images/logo.png" style="width:100%;height:auto;">
+                  </div>
+                  <div class="col-sm-12" style="margin:15px 0;">
+                   <a href="#/login"> <button type="button" class="btn btn-primary" style="width:100%;">Log In</button></a>
+                  </div>
+                  <div class="col-sm-12">
+                    <a href="#/register"><button type="button" class="btn btn-primary" style="width:100%;">Sign Up</button></a>
+                  </div>
+
+                
+                </div>
+                <div class="sorry">
+                  <span>To view your booked webinars, Login or Signup now on<br> MY MISSION ADMISSION!</span>
+                                         
+                </div>
+                </div>
+
+              </div>   
+              
+              </div>        
+          <!-- End Div for prompting required for viewing my bookings -->
+
+        </div>
+                                                <!--Main Tab Div Ends here-->
+      </div>
+
+
+                                                        <!-- Modal -->
+      <div class="modal fade" id="BookSeatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" style=" text-transform: inherit;" id="myModalLabel">Aww snap, all seats are booked :(</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Sorry! It seems that all seats are booked. But don't worry your request has been registered and we will inform you as soon as we have seats available.</label>
+              </div>
+              <!-- <button type="button" ng-click="notifyAdminForStudentIntrestInWebinar(usera)" class="btn btn-primary">Notify Me</button> -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+                                                  <!--Attend Webinar Modal -->
+      <div class="modal fade" id="liveModal" tabindex="-1" role="dialog" aria-labelledby="liveModalLabel">
+        <div class="modal-dialog" role="document" style="width:80%;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="liveModalLabel">{{currentlyAttendingWebinar.webinarTopic}}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-7">
+                    <iframe style="width:100%" height="390" lazy-src="{{trustSrc(video.src)}}"  frameborder="0" allowfullscreen></iframe>
+                  </div>
+                  <div class="col-xs-5" style="padding: 0em 3em">
+                    <strong>Chats</strong>
+                    <div style="overflow-y:scroll; max-height:200px; min-height:200px; border:1px solid #ccc; scrollTop:200px">
+                      <div ng-repeat="(key,value) in QNADetails | orderBy: 'false'">
+                        <div>
+                          <div><strong>{{value.studentName}} :</strong> {{value.question}}</div>
+                          <div style="float:right" ng-if="value.replyByAdmin">{{value.replyByAdmin}} : <strong>Admin</strong> </div></br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" style="font-size: 1.2em; font-weight: bolder; padding-top:1em">
+                      Ask your query ?
+                    </div>
+                    <form ng-submit="askQuestion(question)">
+                        <div class="row" style="margin-top:1.2em;">
+                          <textarea  ng-model="question" style="resize:none; border-bottom: 1px solid; height: 5em !important;" maxlength=1024 placeholder="Your Query" class="login-inputgroup_style form-control"></textarea>
+                        </div>
+                        <div class="row" style="margin-top:1em;">
+                          <input type="submit" class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" value="send"/>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>

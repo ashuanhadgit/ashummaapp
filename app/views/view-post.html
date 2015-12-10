@@ -1,0 +1,175 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<style type="text/css"> #twitter-widget-0 {position: relative !important; margin-bottom: -6px;} #___plus_0 { margin-bottom: -5px; !important;}
+.half{width: 49%; float: left;}
+.noborder {border-radius:0px;}
+</style>
+
+  <div ng-hide="userd.profile.profiletype === 'Mentor'" ng-include="'views/student-left-sidebar.html'" ng-init="toTheTop()"></div>
+  
+
+	<!--including mentor dashboard-->
+	 	<div ng-if="userd.profile.profiletype === 'Mentor'" ng-include="'views/mentor-menu.html'" ng-controller="MentorCtrl"></div>
+
+	<!--including mentor dashboard ends here-->
+
+        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+        <div class="col-lg-10 col-md-10 v-post" ng-init="posts=getPostDetail()">
+        
+
+        <ol class="breadcrumb" ng-if="signedIn() && user.profile.profiletype==='student'">
+          <li><a href="#/main">Home</a></li>
+          <li><a href="#/house/{{posts.postCatagory}}">{{posts.postCatagory | titleCase}}</a></li>
+          <li class="active">{{posts.postTitle | titleCase}}</li>
+        </ol>
+        
+        <ol class="breadcrumb" ng-if="(signedIn() && user.profile.profiletype!=='student') || !signedIn()">
+          <li><a href="#/main">Home</a></li>
+          <li><a href="#/category/{{posts.postCatagory}}">{{posts.postCatagory | titleCase}}</a></li>
+          <li class="active">{{posts.postTitle | titleCase}}</li>
+        </ol>
+        
+        <div style="border:1px solid #e9e9e9; width:100%; height:auto;">
+
+        		<div class="col-lg-8" style="border-right:1px solid #e9e9e9;">
+        		<header style="margin-bottom:20px;">
+        			<h3>{{posts.postTitle}}</h3>
+        			<p style="background:#f7f7f7; color:#a2a2a2;padding: 3px 15px;margin: 0px -15px;">
+        				<span style="float:left;">By <a href="#/author-profile/{{posts.mentoruid}}" title="View Mentor's Detail" style="cursor:pointer">{{posts.mentorname | titleCase}}</a> | <a href="#/view-monthly-post/{{posts.postDate}}" title="View posts of this month">{{posts.postDate | convert}}</a></span>
+        				<span style="float:right;">{{posts.comments}} Comments</span>
+        				<br clear="all">
+
+        			</p>
+                                                    <!--social sharer buttons-->
+                <div style="background:#f7f7f7; color:#a2a2a2;padding: 8px 15px;margin: 0px -15px; width:104.5%;">
+                  <div class="fb-share-button" data-href="" data-layout="button_count"></div>
+                  <a href="https://twitter.com/share" class="twitter-share-button" data-via="My Mission Admission">Tweet</a>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                              <!-- Place this tag where you want the share button to render. -->
+                  <div style="width:95px; float:left;"><div class="g-plus"  data-action="share" data-annotation="bubble" data-height="24"></div></div>
+                </div>
+                                               <!--social sharer buttons ends here-->
+        		</header>
+
+        		<div style="width:100%;height:auto;" ta-bind ng-model="posts.postData" id="img-res">
+				</div>
+
+				<!--social sharer buttons-->
+
+					<div style="background:#f7f7f7; color:#a2a2a2;padding: 8px 15px;margin: 0px -15px; width:104.5%;">
+	        			<div class="fb-share-button" data-href="" data-layout="button_count"></div>
+	        			<a href="https://twitter.com/share" class="twitter-share-button" data-via="My Mission Admission">Tweet</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+							<!-- Place this tag where you want the share button to render. -->
+							<div style="width:95px; float:left;"><div class="g-plus"  data-action="share" data-annotation="bubble" data-height="24"></div></div>
+	        		</div>
+				<!--social sharer buttons ends here-->
+
+				
+				<!--comment system-->
+					<!-- <h4 ng-hide="blogCommentList.length == 0">Previous Comment</h4>
+					<div ng-repeat="(id,commentDetails) in blogCommentList">
+							<h4 ng-if="commentDetails.email === user.password.email" align="right">
+								<strong>{{commentDetails.name}}</strong> : <span><i>{{commentDetails.comment}}</i></span> 
+							</h4>
+
+							<h4 ng-if="commentDetails.email !== user.password.email" align="left">
+							<strong>{{commentDetails.name}}</strong> : <span><i>{{commentDetails.comment}}</i></span> 
+							</h4>
+					</div>
+					<hr>
+					<h4>Leave a reply</h4>
+					<div ng-show="!signedIn();">
+					<input type="text" ng-model="name" name="name" id="name" class="form-control noborder half " placeholder="Your Name" style="margin-right:1.8%" />
+					<input type="text" ng-model="email" name="email" id="email" class="form-control noborder half" placeholder="Your Email"/>
+					<br clear="all">
+					<br/>
+					<textarea ng-model="comment" name="comment" id="comment" class="form-control noborder full" placeholder="Your Comment here"></textarea>
+					<br clear="all">
+					<button class="btn btn-grp btn-primary noborder" ng-click="saveComment(posts.postId,comment,name,email);">Submit</button>
+					</div>
+
+					<div ng-show="signedIn() && userd.profile.profiletype === 'Mentor'">
+						<br clear="all">
+						<br/>
+						<textarea name="comment" ng-model="comment" id="comment" class="form-control noborder full" placeholder="Your Comment here"></textarea>
+						<br clear="all">
+						<button ng-click="saveComment(posts.postId,comment,userd.profile.mentorname,userd.profile.mentoremail);" class="btn btn-grp btn-primary noborder">Submit</button>	
+					</div>
+
+					<div ng-show="signedIn() && usera.profile.profiletype == 'admin'">
+						<br clear="all">
+						<br/>
+					<textarea name="comment" ng-model="comment" id="comment" class="form-control noborder full" placeholder="Your Comment here"></textarea>
+						<br clear="all">
+						<button ng-click="saveComment(posts.postId,comment,usera.profile.adminname,usera.profile.adminemail);" class="btn btn-grp btn-primary noborder">Submit</button>	
+					</div>
+
+
+					<div ng-show="signedIn() && user.profile.profiletype == 'student'">
+						<br clear="all">
+						<br/>
+						<textarea name="comment" ng-model="comment" id="comment" class="form-control noborder full" placeholder="Your Comment here"></textarea>
+						<br clear="all">
+						<button ng-click="saveComment(posts.postId,comment,user.profile.studentname,user.profile.email);" class="btn btn-grp btn-primary noborder">Submit</button>	
+					</div>
+
+
+					<div ng-show="signedIn() && userc.profile.profiletype == 'college'">
+						<br clear="all">
+						<br/>
+						<textarea name="comment" ng-model="comment" id="comment" class="form-control noborder full" placeholder="Your Comment here"></textarea>
+						<br clear="all">
+						<button ng-click="saveComment(posts.postId,comment,userc.profile.collegename,userc.profile.counselloremail);" class="btn btn-grp btn-primary noborder">Submit</button>	
+					</div>
+
+
+					<div ng-show="signedIn() && usern.profile.profiletype == 'nodal'">
+						<br clear="all">
+						<br/>
+						<textarea name="comment" ng-model="comment" id="comment" class="form-control noborder full" placeholder="Your Comment here"></textarea>
+						<br clear="all">
+						<button ng-click="saveComment(posts.postId,comment,usern.profile.nodalAdminName,usern.profile.nodalAdminEmail);" class="btn btn-grp btn-primary noborder">Submit</button>	
+					</div>
+
+					<div ng-show="signedIn() && users.profile.profiletype == 'School'">
+						<br clear="all">
+						<br/>
+						<textarea name="comment" ng-model="comment" id="comment" class="form-control noborder full" placeholder="Your Comment here"></textarea>
+						<br clear="all">
+						<button ng-click="saveComment(posts.postId,comment,users.profile.schoolAdminname,users.profile.schooladminemail);" class="btn btn-grp btn-primary noborder">Submit</button>	
+					</div> -->
+
+
+
+
+
+
+				<!--comment system ends here-->
+				<br clear="all">
+        		</div>
+
+        		<div class="col-lg-4">
+
+        		</div>
+        <br clear="all">
+
+        </div>
+
+        <br clear="all">
+        </div>
+
+
+    
+	<!--div for viewing post -->
+<!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+

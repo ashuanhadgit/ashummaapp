@@ -1,0 +1,24 @@
+<div class="verify-blue-strip blue vvv" ng-init="go(); toTheTop();"></div> <div class="row verify-content-row adjct-margn"> <div class="col-sm-12 verify-main-content ssssss" id="verify-content"> <div class="verify-main-content-div" id="missionContent"> <div class="row acc-verified-sec" ng-if="verStatus == 'verified'"> <div class="col-sm-4 img-sec"> <img src="/images/tick-blue-large.png" class="img-responsive"> </div> <div class="col-sm-8"> <div class="row"> <center><h1>Congratulations!</h1><br></center> <center><h1>Your account has been <span style="color:green">verified</span>!</h1><br></center> </div> <div class="row" ng-if="signedIn()"> <center><a href="#/dashboard"><button type="button" class="btn btn-lg btn-primary btn-block btn-continue">Click to continue</button></a></center> </div> <div class="row" ng-if="!signedIn()"> <center><a href="#/login"><button type="button" class="btn btn-lg btn-primary btn-block btn-continue">Click to continue</button></a></center> </div> </div> </div> <div class="row bad-req-sec" ng-if="verStatus == 'not verified'"> <div class="col-sm-4 img-sec"> <img src="/images/cross-red.png" class="img-responsive"> </div> <div class="col-sm-8"> <div class="row"> <center><h1>Sorry</h1><br></center> <center><h1 style="color:red">Bad Request!</h1><br></center> </div> </div> </div> <div class="row bad-req-sec" ng-if="verStatus == 'already verified'"> <div class="col-sm-4 img-sec"> <img src="/images/tick-blue-large.png" style="width=20px" class="img-circle"> </div> <div class="col-sm-8"> <div class="row"> <center><h1>&nbsp;</h1><br></center> <center><h1>Your account is already verified with us</h1><br></center> </div> <div class="row" ng-if="signedIn()"> <center><a href="#/dashboard"><button type="button" class="btn btn-lg btn-primary btn-block btn-continue">Click to continue</button></a></center> </div> <div class="row" ng-if="!signedIn()"> <center><a href="#/login"><button type="button" class="btn btn-lg btn-primary btn-block btn-continue">Click to continue</button></a></center> </div> </div> </div> </div> </div> </div> <!--
+
+
+
+
+<img class="intro-bg" src="../images/intro-bg.jpg" />
+<div class="container success-page" ng-init = "go()">
+	<div class="row">
+		<div class="col-xs-12">
+			<center><h3 ng-if ="verStatus == 'already verified'"> Your email is <span style="font-size: 45px; color:#00FF00; letter-spacing: 1px; font-weight : bold; ">already verified</span> with us. </h3></center>
+			<center><h3 ng-if ="verStatus == 'verified'"> Your email is <span style="font-size: 45px; color:#00FF00; letter-spacing: 1px; font-weight : bold; ">successfully verified</span> with us. </h3></center>
+			<center><h3 ng-if ="verStatus == 'not verified'"> <span style="font-size: 45px; color:#FF0000; letter-spacing: 1px; font-weight : bold; ">Bad Request</span> </h3></center>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-xs-12">
+			<a style="color:white"href = "#/dashboard"><center><h5 ng-if ="verStatus == 'verified'"> Let's get started. </h5></center></a>
+			<a style="color:white"href = "#/login"><center><h5 ng-hide="signedIn()"> Click here to Login </h5></center></a>
+		</div>
+	</div>
+</div>
+
+-->

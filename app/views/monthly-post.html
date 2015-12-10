@@ -1,0 +1,132 @@
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  !function(d,s,id){
+      var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+      if(!d.getElementById(id)){
+          js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+          fjs.parentNode.insertBefore(js,fjs);
+      }
+  }(document, 'script', 'twitter-wjs');
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<style type="text/css"> #twitter-widget-0 {position: relative !important; margin-bottom: -6px;} #___plus_0 { margin-bottom: -5px; !important;}
+  .half{width: 49%; float: left;}
+  .noborder {border-radius:0px;}
+</style>
+
+
+<div ng-if="signedIn() && user.profile.profiletype==='student'" ng-include="'views/student-left-sidebar.html'"></div>
+<div class="col-lg-2 col-md-2 col-sm-2" ng-init="toTheTop(); getMonthlyPosts()"></div>
+
+                    <!--Middle Content Main Content Visible to Student -->
+          
+<div class="col-lg-7 col-md-7 col-sm-7" id="mma_student_middlecol">
+
+	<ol class="breadcrumb" ng-if="signedIn() && user.profile.profiletype==='student'">
+      <li><a href="#/main">Home</a></li>
+      <li><a href="#/dashboard">Dashboard</a></li>
+      <li class="active">Monthly-Yearly Posts</li>
+    </ol>
+    
+    <ol class="breadcrumb" ng-if="(signedIn() && user.profile.profiletype!=='student') || !signedIn()">
+      <li><a href="#/main">Home</a></li>
+      <li class="active">Monthly-Yearly Posts</li>
+    </ol>
+
+    <toaster-container toaster-options="{'time-out': 6000, 'position-class': 'toast-bottom-right'}"></toaster-container> 
+
+    <div class="row student-dashboard-dash-verify-row" ng-if="user.profile.emailverificationstatus === 'false'" style="height: 56px; width: 100%; float: right; margin-bottom: 17px; font-size:12px;">
+      <div class="col-sm-10">
+        <i class="fa fa-bell"></i> &nbsp;&nbsp; Your email address has not been verified.
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="resendemail()">Verify</button>
+      </div>
+    </div>
+
+
+    <h3 ng-show="selectedMonth!=='none' && selectedMonth!==''">Showing all posts of {{selectedMonth}} - {{selectedYear}}</h3>
+    <h3 ng-show="selectedMonth === 'none' || selectedMonth === ''">Showing all posts of {{selectedYear}}</h3>
+    <hr>
+    <!--Post Summary Structure-->
+
+
+
+    <select class="col-lg-6" style="margin-bottom:10px" ng-model="year"  ng-change="updateYear(year)">
+        <option value="">Year</option>
+        <option value="2015">2015</option>
+    </select>
+    <select class="col-lg-6" style="margin-bottom:10px" ng-model="month" ng-change="updateMonth(month)">
+		        <option value="">Month</option>
+		        <option value="01">January</option>
+		        <option value="02">February</option>
+		        <option value="03">March</option>
+		        <option value="04">April</option>
+		        <option value="05">May</option>
+		        <option value="06">June</option>
+		        <option value="07">July</option>
+		        <option value="08">August</option>
+		        <option value="09">September</option>
+		        <option value="10">October</option>
+		        <option value="11">November</option>
+		        <option value="12">December</option>
+	</select>
+
+    <div class="col-lg-12 col-md-12 col-sm-12" id="mma_post_summary" ng-repeat="(postId,postData) in post">
+      <div class="col-lg-12">
+        <header style="margin-bottom:20px;">
+          <h3><a href="{{postData.sharingUrl}}" style="cursor:pointer; color:black">{{postData.postTitle}}</a></h3>
+          <p class="row" id="post_meta">
+            <span ng-if="postData.postCatagory!=='collegePost'" style="float:left;">By <a href="#/author-profile/{{postData.mentoruid}}" style="cursor:pointer">{{postData.mentorname}}</a> | {{postData.timestamp | convert}}</span>
+
+            <span ng-if="postData.postCatagory ==='collegePost'" style="float:left;">By <a href="#/college-profile/{{postData.collegeuid}}" title="View College's Detail" style="cursor:pointer">{{postData.collegename}}</a> | {{postData.postDate | convert}}</span>
+
+            <span style="float:right;">{{postData.comments}} Comments</span>
+            <br clear="all">
+          </p>
+        </header>
+
+        <div class="entry_summary">
+            <!--Feature Image Div-->
+              <div class="featured_image">
+                  <a href="{{postData.sharingUrl}}" style="cursor:pointer">
+                  <img src="{{postData.featuredImage}}" class="img-responsive"/></a>
+                </div>
+            <!--Feature Image Div Ends here-->
+            <!--Summary Content -->
+                <div class="summary_content">
+                  <p>{{postData.shortDescription}}<a href="{{postData.sharingUrl}}" style="cursor:pointer">Read More »</a></p>
+                
+                </div>
+            <!--Summary Content Ends here-->    
+            <br clear="all"/> 
+    </div>
+    <br clear="all"/>
+                                <!--social sharer buttons-->
+        <div class="row" id="sharebar">
+          <div class="fb-share-button" data-href="{{postData.sharingUrl}}" data-layout="button_count"></div>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="My Mission Admission">Tweet</a>
+          <div style="width:95px; float:left;">
+              <div class="g-plus"  data-action="share" data-annotation="bubble" data-height="24"></div>
+          </div>
+        </div>
+                        <!--social sharer buttons ends here-->           
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12" id="mma_post_summary" ng-show="post.length==0">
+    	<center><h4 style="color:red">No posts available for the selected month & year</h4></center>
+    </div>
+	<!-- <div scroll-trigger="loadMoreMonthlyBlogs()" threshold="150" style="display:none">Trigger element</div> -->
+	</div>
+        <!--Middle Content Main Content Visible to Student -->
+<div ng-include="'views/student-right-sidebar.html'"></div>
+<br clear="all">

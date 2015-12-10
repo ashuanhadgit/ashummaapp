@@ -1,0 +1,82 @@
+<div class="col-sm-12 header-part" ng-controller="MainCtrl">
+
+    <div class="col-sm-2 logo" ng-init="isAnyWebinarLive();">
+      <a href="#/">
+          <h1><img lazy-src="images/logo_50x50.png"/></h1>
+        </a>
+    </div>
+  
+  <div class="col-sm-8 log-in">
+      <form  ng-submit="login()" id="nav-login-form">
+          <div class="login-mobile-view" ng-hide="signedIn()">
+            <div class="col-sm-5">
+              <div class="form-group">
+                  <input type="email"  required oninvalid="this.setCustomValidity('Please enter a valid Email Address')" oninput="this.setCustomValidity('')" title='Enter in format abcdef@email.com' ng-model="user.stuemail" class="form-control" id="usr" placeholder="Username">
+                  <p style="margin:1.5px; color:red; "ng-if="error === 'The specified user does not exist.'">Incorrect Email</p>
+               </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group">
+                  <input type="password" required oninvalid="this.setCustomValidity('Password cannot be blank')" oninput="this.setCustomValidity('')"  ng-model="user.stupassword" class="form-control" id="pass" placeholder="Enter Your Password">
+                  <p style="margin:1.5px; color:red;"ng-if="error === 'The specified password is incorrect.'" >Incorrect Password</p>
+                  <a href="#/forgotpassword" class="forget-pass">Forgotten your password?</a>
+              </div>
+            </div>
+           </div>
+           <div class="col-sm-2" ng-hide="signedIn()">
+             <button type="submit" class="btn btn-primary mobile-login" ng-disabled="modalShown">Log In</button>
+             <a href="#/login"><button class="btn btn-primary mobile-signup">Login</button></a>
+             <a href="#/register"><button class="btn btn-primary mobile-signup">Sign Up</button></a>
+           </div>
+      </form>  
+  </div>
+    <!--live-WEBINAR-->
+  <div ng-if="anyLiveWebinars.length!==0 && !signedIn();" class= "live_btn" id="live_bt1" style="position:absolute;right:225px;top:18px;">
+    <a href="#/live-webinar"><img lazy-src="../images/livestream_button.jpg"/></a>
+  </div>
+
+  <div ng-if="anyLiveWebinars.length!==0 && user.profile.profiletype == 'student' && signedIn()" class= "live_btn" id="live_bt2"style="position:absolute;right:50%;top:18px;">
+    <a href="#/live-webinar"><img lazy-src="../images/livestream_button.jpg"/></a>
+  </div>
+    <!--END-live-WEBINAR-->
+    
+    <div class="col-sm-2 ggggg">
+      <div class="hw-work" id="nav-how-it-works" ng-hide="signedIn()">
+        <a href="javascript:void(0);" onclick="showHowItWorks();" ng-click="trackEvent('NavBar How It Works', 'Viewed How It Works Video', 'How It Works Button')">How It Works</a>
+       </div> 
+      <div class="bs-example profile-drop" ng-if="signedIn()">
+      <div class="dropdown profile-drop-menu">
+          <a  ng-if="(user.profile.studentphoto == 'pic_not_uploaded') " data-toggle="dropdown" class="dropdown-toggle profile-name"><img lazy-src="http://www.gravatar.com/avatar/{{ user.profile.md5_hash }}" alt="" class="img-circle"/>{{ user.profile.studentname }}<b class="caret"></b></a>
+          <a  ng-if="(user.profile.studentphoto !== 'pic_not_uploaded') " data-toggle="dropdown" class="dropdown-toggle profile-name"><img lazy-src="{{user.profile.studentphoto}}" alt="" class="img-circle"/>{{ user.profile.studentname }}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#/dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+                <li><a href="#/student-profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                <li><a href="#/student-booked-history"><span class="glyphicon glyphicon-th-list"></span> Booked History</a></li>
+                <li><a href="#/account-settings"><span class="glyphicon glyphicon-cog"></span> Account Setting</a></li>
+                <li><a ng-click="logout()"><span class="glyphicon glyphicon-share"></span> Log Out</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+</div>
+<div ng-controller="MainCtrl" id="popup-overlay" class="popup-overlay" ng-click="custom.player.pauseVideo()" style="display:none;">
+  <div class="popup-content-video">
+    <div class="container-fluid">
+      <div class="embed-responsive embed-responsive-16by9">
+        <youtube-video video-id="custom.video" player="custom.player" player-vars="custom.vars"></youtube-video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+function showHowItWorks(){
+$('.popup-overlay').fadeIn();
+}
+$(document).on( "click", "#popup-overlay", function( event ) {
+$('.popup-overlay').fadeOut();
+});
+</script>
+
+

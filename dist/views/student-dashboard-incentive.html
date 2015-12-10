@@ -1,0 +1,216 @@
+<div ng-include="'views/student-left-sidebar.html'" ng-init="toTheTop()"></div> <div class="col-lg-2 col-md-2 col-sm-2"></div> <div> <toaster-container toaster-options="{'time-out': 6000, 'position-class': 'toast-bottom-right'}"></toaster-container> <div class="col-lg-10 col-md-10 col-sm-10 dash-student" id="mma_student_middlecol"> <h1>My Scholarship Fund</h1> <hr> <div ng-if="!signedIn()" ng-include="'views/earn-scholarship.html'" ng-init="toTheTop()"></div> <!--Post Summary Structure--> <div ng-if="signedIn()" class="row student-dashboard-incentive-detail-row" ng-if="user.profile.studentname" style="margin:0px; padding:0px"> <div class="col-sm-12" ng-init="checkaccept()" style="padding:0px"> <div class="panel panel-default"> <div class="panel-heading">Account Details</div> <div class="panel-body"> <!-- Student scholarship modal start  --> <div class="container-fluid dash-student" ng-controller="StudentDashCtrl"> <div class="row head-stu-dash-incen"> <center> <a id="showSchemePopup" style="cursor:pointer" ng-click="trackEvent('Student DashBoard MyScholarShipFund', 'MSF Tutorial', 'Student Dashboard MSF Tutorial')"> <span style="color:blue"><stron><i>Click here </i></stron> </span> </a> to start a 5-step tutorial to know more about our Scholarship Scheme. </center> </div><br> <div class="popup-overlay popup-overlay-Scheme col-lg-12 col-md-12 col-sm-12"> <div class="popup-content popup-content-scheme col-lg-12 col-md-12 col-sm-12" style="width: 100%; margin: 0px auto;border: solid;margin-top: 172px"> <div class="popup-title col-lg-12 col-md-12 col-sm-12"> <div class="s-scheme" style="color:white; font-size:22px; margin-left:20px; padding-top:5px; font-family: Montserrat,Helvetica,Arial,sans-serif"> <i class="fa fa-money"></i> &nbsp;&nbsp; Scholarship Scheme </div> <div class="popup-cross popup-cross-scheme" id="popup-cross-scheme"><i class="fa fa-times fa-lg fa-sm fa-md" style="float: right;margin-top: -25px;margin-right: -17px; color:red"></i></div> </div> <div class="container-fluid" style="margin-top:15px"> <div class="row popup-text"> <div class="container-fluid"> <div class="row schemeTutorialPrerequest"> <div class="col-sm-6"> <div class="container-fluid" style="margin:10px"> <!-- <div class="row">
+                        Details studentId.
+                      </div>
+                      <hr /> --> <div class="row" style="color:white; font-family: Montserrat,Helvetica,Arial,sans-serif"> <h4>MyMissionAdmission encourages students to make an informed choice about the college they choose to study in and self finance their education as well. To facilitate this process we allow the students to have video counseling sessions with college of their choice, in the sessions the students are free to ask any query from any college. This platform also gives the students the opportunity to build their scholarship fund, which can be redeemed to pay their college fees. Click the 5 step tutorial to know the details of the Scholarship Scheme. </h4> </div> <hr> <div id="startSchemeTutorial" class="row start-tut-btn" style="color:white; font-size:20px; font-family: Montserrat,Helvetica,Arial,sans-serif; cursor:pointer"> <center> Click here to start the 5-step tutorial. </center> </div> </div> </div> <div style="border-left:3px solid #2E2EFE; padding-left:10px; height:300px" class="col-sm-6"> <div class="container-fluid" style="margin:10px"> <div class="row prere" style="color:white"> Prerequisities for the scheme </div> <hr> <div class="row prere" style="color:white"> 1. Email should be verified. </div> <div class="row prere" style="color:white"> 2. Phone number should be verified. </div> <hr> <div class="row"> <div class="col-xs-6"> </div> <div class="col-xs-6"> <input type="button" style="background:green" class="btn btn-success btn-block change-img-btn" id="be-a-part-now" data-toggle="modal" data-target="#newInvitePopup" value="Be a part now"> </div> </div> </div> </div> </div> <div class="row schemeTutorial"> <div class="container-fluid"> <div class="row" style="color:white"> <center> <div onclick="changeSchemeFrame('1')" class="col-xs-2 arw-btn"> <i class="fa fa-chevron-circle-left fa-3x schemeTutorialleft"></i> </div> <div style="font-size:25px; color:white; font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif" class="col-xs-8 schemeTutorialCounter"> About the scheme </div> <div onclick="changeSchemeFrame('2')" class="col-xs-2 arw-btn"> <i class="fa fa-chevron-circle-right fa-3x schemeTutorialright"></i> </div> </center> </div> <hr> <div class="row"> <div class="col-xs-5 scheme-contain"> <div class="Schemetutorialsideoverlay"></div> <div class="container-fluid con-stu-dash" style="color:white; background:rgba(0,0,0,0.9) !important"> <div class="row" style="font-size:14px; color:#F2F2F2; margin-bottom:10px"> <center> Details of your account </center> </div> <div id="schemeFocusable1" class="row t-focus" style="font-size:18px; font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif"> <div class="col-xs-7"> Counselling Fund </div> <div class="col-xs-5" style="text-align:right"> <i class="fa fa-inr"></i> 200 </div> </div> <div id="schemeFocusable2" class="row t-focus" style="font-size:18px; font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif"> <div class="col-xs-7"> Referral Fund </div> <div class="col-xs-5" style="text-align:right"> <i class="fa fa-inr"></i> 200 </div> </div> <div class="row t-focus" style="font-size:21px; font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif; border-top:1px dashed grey"> <div class="col-xs-7"> Total Fund </div> <div class="col-xs-5" style="text-align:right"> <i class="fa fa-inr"></i> 400 </div> </div> <div id="schemeFocusable3" class="row" style="font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif; margin-top:20px; padding-bottom:10px"> <div class="col-xs-12"> <input type="button" style="background:rgba(0,0,0,0.9); -moz-box-shadow: 0 0 5px rgba(255,255,255,1); -webkit-box-shadow: 0 0 5px rgba(255,255,255,1); box-shadow: 0 0 5px rgba(255,255,255,1)" class="btn btn-success btn-block change-img-btn" value="Invite and Earn"> </div> </div> <div class="row" style="font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif; margin-top:10px"> <div id="schemeFocusable4" class="col-xs-6" style="padding-bottom:10px"> <input type="button" class="btn btn-success btn-block change-img-btn" value="Request Invite"> </div> <div id="schemeFocusable5" class="col-xs-6" style="padding-bottom:10px"> <input type="button" class="btn btn-success btn-block change-img-btn" value="Redeem Now"> </div> </div> </div> </div> <div class="col-xs-7 schemeRightDesText"> <div class="container-fluid"> <div class="row schemeRightDesTexthead"> <center> About the scheme </center> </div> <div class="row schemeRightDesTexttext" style="color:white"> MyMissionAdmission brings you the Scholarship scheme which lets you build your scholarship fund by taking video counselling sessions with colleges and by referring more students. We will guide you through the dashboard to tell you meaning of various feautres. </div> </div> </div> </div> </div> </div> </div> </div> </div> <div class="skip_tutorial_button dash-student"> Skip Tutorial </div> </div> </div> </div> <!-- Student scholarship modal end  --> <div class="row" style="padding: 0 2em"> <div class="col-xs-8"> Counselling Fund </div> <div class="col-xs-4"> <div data-toggle="tooltip" data-placement="bottom" title="Do more sessions to earn more Counselling Fund." style="text-align:right"> <div ng-show="user.profile.totalIncentiveForSessions==null"><i class="fa fa-inr"></i>&nbsp; XXX</div> <div ng-hide="user.profile.totalIncentiveForSessions == null"><i class="fa fa-inr"></i>&nbsp; {{user.profile.totalIncentiveForSessions}}</div> </div> </div> </div> <div class="row" style="padding: 0 2em"> <div class="col-xs-8"> Referral Fund </div> <div class="col-xs-4"> <div data-toggle="tooltip" data-placement="bottom" title="To earn more referral fund, Invite more students." style="text-align:right"> <div ng-show="user.profile.referralIncentive.totalIncentiveForReferral==null"><i class="fa fa-inr"></i>&nbsp; XXX</div> <div ng-hide="user.profile.referralIncentive.totalIncentiveForReferral == null"><i class="fa fa-inr"></i>&nbsp; {{ user.profile.referralIncentive.totalIncentiveForReferral }}</div> </div> </div> </div> <div class="seperator"></div> <div class="row" style="padding: 0 2em"> <div class="col-xs-8"> Total Fund </div> <div class="col-xs-4"> <div data-toggle="tooltip" data-placement="bottom" title="" style="text-align:right"> <div ng-show="user.profile.totalIncentiveForSessions == null && user.profile.referralIncentive.totalIncentiveForReferral == null"><i class="fa fa-inr"></i>&nbsp; XXX</div> <div ng-hide="user.profile.totalIncentiveForSessions == null && user.profile.referralIncentive.totalIncentiveForReferral == null"><i class="fa fa-inr"></i>&nbsp; {{user.profile.referralIncentive.totalIncentiveForReferral+user.profile.totalIncentiveForSessions}}</div> </div> </div> </div> <div class="seperator"></div> <div class="row" style="padding: 0 2em"> <div class="col-xs-offset-4 col-xs-4"> <button class="btn btn-primary main-page-feature-first-signup-btn" data-toggle="modal" data-target="#newInvitePopup" style="letter-spacing: 5px; padding: 6px 61px;font-size: 18px">Invite and Earn</button> </div> <div class="col-xs-4 ofset"> <button class="btn btn-primary main-page-feature-first-signup-btn" id="showNewInvite" ng-click="requestInvite();" style="letter-spacing: 5px; padding: 6px 61px;font-size: 18px" ng-disabled="reqSent">Request Invite</button> </div> </div> </div> </div> <div class="panel panel-default"> <div class="panel-heading">Redeem Now</div> <div class="panel-body"> <center><h5 ng-if="!user.profile.studentAdmissionProof">You can upload your admission related documents here.</h5></center> <div class="bord row" ng-show="user.profile.studentAdmissionProof == null"> <div class="col-md-12 form-button-long" style="padding: 0em 2.5em"> <fp-input ng-model="user.studentadmissionproof" data-fp-button-text="Upload Document" class="btn btn-default btn-lg main-search-btn sel-btn-file btn-form" data-fp-apikey="AlHT3QcNWSGCQpTZ3dLn3z" data-fp-mimetypes="image/*,application/msword,application/pdf,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" ng-init="user.studentadmissionproof.url='https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM'" data-fp-multiple="false" data-fp-maxsize="5242880"> </div> <div class="col-md-12" style="color:green; text-align:right" ng-if="user.studentadmissionproof.url !== 'https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM'" ng-init="enableSubmitButton()"> <center>Your document is successfully uploaded.</center> </div> <div class="col-md-12" style="color:green; text-align:right" ng-show="upload"> <center>Your document is successfully uploaded.</center> </div> </div> <div class="seperator"></div> <div class="col-md-12 enquiry-plz" style="color:green; text-align:right" ng-if="user.profile.studentAdmissionProof"> <center>You have uploaded Document. In case of any Enquiry please contact support@mymissionadmission.com</center> </div> <div class="col-xs-4"> <button class="btn btn-primary main-page-feature-first-signup-btn" ng-click="uploadFalse(); cancelUploadFile(user.studentadmissionproof)" style="letter-spacing: 5px; padding: 6px 61px;font-size: 18px" ng-show="!user.profile.studentAdmissionProof">Cancel</button> </div> <div class="col-xs-4"> <button class="btn btn-primary main-page-feature-first-signup-btn" style="letter-spacing: 5px; padding: 6px 61px;font-size: 18px" ng-hide="upload || user.profile.studentAdmissionProof" ng-disabled="submitdisabled" ng-click="uploadAdmissionProof(user.studentadmissionproof, user)">Save</button> </div> </div> </div> <div class="panel panel-default"> <div class="panel-heading">User Statistics</div> <div class="panel-body"> <center> <span style="color:red" ng-show="hidedetails == 'true'">No one has accepted your invitation yet.</span> </center> <center> <span ng-hide="hidedetails == 'true'" style="color:green">Students Accepted Your Invitation.</span> </center> <div class="seperator" ng-hide="hidedetails == 'true'"></div> <div class="container-fluid table-responsive"> <table class="table table-striped" ng-hide="hidedetails == 'true'"> <thead> <tr> <th>Image <th>Student Name <th>Student Session Status   <tbody ng-repeat="(key, value) in user.accept"> <tr> <td ng-init="photo = getStudentPhoto(key)"> <img class="img-circle" src="" lazy-src="{{ photo.$value }} " alt="" width="30" height="30">  <td ng-init="name =  getStudentName(key); email = getStudentEmail(key)"><strong style="color:black">{{ name.$value | titleCase }}<br>{{ email.$value }}</strong> <td ng-init="istatus =getStudentincentive(key)"> <div class="progress progress-striped active"> <div ng-if="(istatus.$value === null || istatus.$value < 100 ) " class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:100%"><strong style="color:black">Yet to complete Three Sessions <i class="fa fa-frown-o fa-lg"></i></strong></div> <div ng-if="istatus.$value == 100" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:100%"><strong style="color:black">Yet to complete Two Sessions.</strong></div> <div ng-if="istatus.$value == 200" class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:100%"><strong style="color:black">Only One Session to go!</strong></div> <div ng-if="(istatus.$value === 300 || istatus.$value > 300)" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:100%"><strong style="color:black">Referal Credited! Check Fund <i class="fa fa-thumbs-up fa-lg"></i></strong></div> </div>    </table> </div> </div> </div> </div> </div> <!--Post Summary Structure--> </div> </div> <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="newInvitePopup" ng-init="toTheTop();"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h4 class="modal-title" style="font-family: Montserrat,Helvetica Neue,Helvetica,Arial,sans-serif">Invite and Earn</h4> </div> <div class="modal-body"> <div class="container-fluid" ng-if="user.profile.studentname" ng-init="CurrentreferalStatus()"> <div class="row" ng-show="yourstatus == 'old'" style="text-align:center"> <p style="color:red; font-family: Montserrat,Helvetica,Arial,sans-serif">you are not a part of referal system to be a part of referal scheme Please contact to the below email</p> <br> <p>Support@mymissionadmissiom.com</p> </div> <div class="row" style="color:black; font-size:18px" ng-hide="yourstatus == 'old'"> <div class="col-xs-12" style="font-family: Montserrat,Helvetica,Arial,sans-serif"> <center> <p>Enter your friend's Name and Email address to send them invite.</p> </center> </div> <div class="col-xs-12"> <form ng-submit="refermail();  trackEvent('Student DashBoard MyScholarShipFund', 'InvitingFriend ', 'Student Dashboard Invite Friend')"> <input type="text" class="login-inputgroup_style form-control" required ng-model="user.refername" oninvalid="this.setCustomValidity('Please Enter Your Friend Name')" oninput="this.setCustomValidity('')" placeholder="Friend's Name"> <input type="email" class="login-inputgroup_style form-control" required ng-model="user.referemail" placeholder="Friend's E-mail" ng-keyup="doThisForStudent(user.referemail)" oninvalid="this.setCustomValidity('Please Enter Your Friend Email')" oninput="this.setCustomValidity('')"> <button type="submit" class="btn btn-lg btn-primary btn-block btn-login_style" ng-hide=" collegeIdFlag == 'Done' || referalstatus == 'Done' || referalstatus == 'else' || referalstatus == 'same' || referalstatus == 'old' ">Invite Friend</button> <!-- <button type="submit" class="btn btn-default btn-block bw-bt-2" ng-submit="refer()" ng-hide="student1IdFlag == 'Done' || $scope.referalb === 'Done' " ng-disabled="collegeIdFlag == 'Done' || referalstatus === 'same' ">Invite Friend</button>
+                <button type="submit" class="btn btn-default btn-block bw-bt-2" ng-click="refertologin()" ng-disabled="referalstatus == 'Done' || referalstatus == 'else' || referalstatus == 'same' || referalstatus == 'old' " ng-hide="student1IdFlag !== 'Done' ">Invite to login</button> --> </form> </div> <div class="col-xs-12" style="margin-bottom:20px; font-family: Montserrat,Helvetica,Arial,sans-serif"> <div class="container-fluid"> <div class="row" ng-if="collegeIdFlag == 'Done'"> <div class="col-xs-2" style="color:red; padding-top:15px"> <i class="fa fa-times fa-2x"></i> </div> <div class="col-xs-10" style="padding-left:10px"> <strong style="color:blue">{{collegeName.$value | titleCase }},</strong> is a registered college. You can't refer to a college. </div> </div> <div style="color:black" ng-if="referalstatus == 'Done'" class="row"> <strong style="color:blue">{{student1Name.$value | titleCase }},</strong> is already registered with the referal scheme. </div> <div style="color:black" ng-if="referalstatus == 'else'" class="row"> <strong style="color:blue">{{student1Name.$value | titleCase }}, has some problem in the referal scheme.Our Admin team will look into this. </strong></div> <div style="color:black" ng-if="referalstatus == 'same'" class="row"> <strong style="color:blue">{{student1Name.$value | titleCase }}, </strong> you can't refer yourself. </div> <div style="color:black" ng-if="referalstatus == 'old'" class="row"> <strong style="color:blue">{{student1Name.$value | titleCase }},</strong> is an old student and can't be refered. For Any Query Contact us at: <strong style="color:red">support@mymissionadmission.com</strong> </div> </div> </div> </div> </div> </div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> </div> </div> </div> </div> <script>var schemeCurrentframe = 0;
+totalFrame = 5;
+var schemeRightDesTexthead = $(".schemeRightDesTexthead center");
+var schemeRightDesTexttext = $(".schemeRightDesTexttext");
+var schemeTutorialCounter = $(".schemeTutorialCounter");
+$('.RedeemNowSubCol2').hide();
+function changeSchemeFrame( act ) {
+  if(act === '1') {
+
+    schemeCurrentframe--;
+    if(schemeCurrentframe < 0) {
+      schemeCurrentframe = totalFrame;
+    }
+    switch(schemeCurrentframe) {
+      case 0 :
+      $(".schemeRightDesTexthead").html('About the scheme');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('MyMissionAdmission brings you the Scholarship scheme which lets you build your scholarship fund by taking video counselling sessions with colleges and by referring more students. We will guide you through the dashboard to tell you meaning of various feautres.');
+      $(".schemeTutorialCounter").html('About the scheme');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 1 :
+      $(".schemeRightDesTexthead").html('Counselling Fund');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('To build your Scholarship Fund you can have video counselling sessions directly with college representatives. After you have had a succesful video counselling session with a college, your Counselling Fund will increase by Rs 100. There is a cap of 50 video counselling sessions for which you will be awarded in this fund. You may continue to have more sessions, however, the counselling fund will cease at 50 video counselling sessions.');
+      $(".schemeTutorialCounter").html('Step 1');
+      $('#schemeFocusable1').addClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 2 :
+      $(".schemeRightDesTexthead").html('Referral Fund');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('To build your referral fund, you can refer your friends for having video counselling sessions with colleges . After the referred student has had three sessions with three different colleges an amount of 100 rupees will be transferred in your Referral Fund. There is no limit to the amount of referrals, i.e your referral fund.');
+      $(".schemeTutorialCounter").html('Step 2');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').addClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 3 :
+      $(".schemeRightDesTexthead").html('Invite and Earn');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('Click on the ‘ Invite and Earn’  button to refer your friends to the platform, thereby increasing your scholarship fund.');
+      $(".schemeTutorialCounter").html('Step 3');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').addClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 4 :
+      $(".schemeRightDesTexthead").html('Request Invite');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('You can only build your scholarship fund if your are referred by someone. If not, then click on the button ‘Request Invite’ to notify our support team and they will help you become part of the scholarship scheme.');
+      $(".schemeTutorialCounter").html('Step 4');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').addClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 5 :
+      $(".schemeRightDesTexthead").html('Redeem');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('To pay your college fees with the amount you have acumulated in your scholarship fund, you can click on the option redeem now.<br /> <br /> <input type="button" style="background:green" class="btn btn-success btn-block change-img-btn" value="Be a part now" /> ');
+      $(".schemeTutorialCounter").html('Step 5');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').addClass('tutorialfocus');
+      break;
+    }
+  }
+  else if(act === '2') {
+
+    schemeCurrentframe++;
+    if(schemeCurrentframe > totalFrame) {
+      schemeCurrentframe = 0;
+    }
+    switch(schemeCurrentframe) {
+      case 0 :
+      $(".schemeRightDesTexthead").html('About the scheme');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('MyMissionAdmission brings you the Scholarship scheme which lets you build your scholarship fund by taking video counselling sessions with colleges and by referring more students. We will guide you through the dashboard to tell you meaning of vaious feautres.');
+      $(".schemeTutorialCounter").html('About the scheme');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 1 :
+      $(".schemeRightDesTexthead").html('Counselling Fund');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('To build your Scholarship Fund you can have video counselling sessions directly with college representatives. After you have had a succesful video counselling session with a college, your Counselling Fund will increase by Rs 100. There is a cap of 50 video counselling sessions for which you will be awarded in this fund. You may continue to have more sessions, however, the counselling fund will cease at 50 video counselling sessions.');
+      $(".schemeTutorialCounter").html('Step 1');
+      $('#schemeFocusable1').addClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 2 :
+      $(".schemeRightDesTexthead").html('Referral Fund');
+      $(".schemeRightDesTexthead").css("text-align","center");
+       $(".schemeRightDesTexttext").html('To build your referral fund, you can refer your friends for having video counselling sessions with colleges . After the referred student has had three sessions with three different colleges an amount of 100 rupees will be transferred in your Referral Fund. There is no limit to the amount of referrals, i.e your referral fund.');
+      $(".schemeTutorialCounter").html('Step 2');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').addClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 3 :
+      $(".schemeRightDesTexthead").html('Invite and Earn');
+      $(".schemeRightDesTexthead").css("text-align","center");
+       $(".schemeRightDesTexttext").html('Click on the ‘ Invite and Earn’  button to refer your friends to the platform, thereby increasing your scholarship fund.');
+      $(".schemeTutorialCounter").html('Step 3');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').addClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 4 :
+      $(".schemeRightDesTexthead").html('Request Invite');
+      $(".schemeRightDesTexthead").css("text-align","center");
+       $(".schemeRightDesTexttext").html('You can only build your scholarship fund if your are referred by someone. If not, then click on the button ‘Request Invite’ to notify our support team and they will help you become part of the scholarship scheme.');
+      $(".schemeTutorialCounter").html('Step 4');
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').addClass('tutorialfocus');
+      $('#schemeFocusable5').removeClass('tutorialfocus');
+      break;
+      case 5 :
+     $(".schemeRightDesTexthead").html('Redeem');
+      $(".schemeRightDesTexthead").css("text-align","center");
+      $(".schemeRightDesTexttext").html('To pay your college fees with the amount you have acumulated in your scholarship fund, you can click on the option redeem now.<br /> <br /> <input type="button" style="background:rgba(0,0,0,0.9); -moz-box-shadow: 0 0 5px rgba(255,255,255,1); -webkit-box-shadow: 0 0 5px rgba(255,255,255,1); box-shadow: 0 0 5px rgba(255,255,255,1);" class="btn btn-success btn-block change-img-btn" value="Invite and Earn" /> ');
+      $(".schemeTutorialCounter").html('Step 5');
+
+      $('#schemeFocusable1').removeClass('tutorialfocus');
+      $('#schemeFocusable2').removeClass('tutorialfocus');
+      $('#schemeFocusable3').removeClass('tutorialfocus');
+      $('#schemeFocusable4').removeClass('tutorialfocus');
+      $('#schemeFocusable5').addClass('tutorialfocus');
+      break;
+    } 
+  }
+}
+
+$('.popup-overlay').hide();
+$('.schemeTutorial').hide();
+$('.skip_tutorial_button').hide();
+$( ".dash-student" ).on( "click", "#showNewInvite", function( event ) {    
+  $('.popup-overlay-newInvite').fadeIn();
+});
+$( ".dash-student" ).on( "click", "#popup-cross-new-invite", function( event ) {    
+  $('.popup-overlay-newInvite').fadeOut();
+});
+$( ".dash-student" ).on( "click", "#showSchemePopup", function( event ) {    
+  $('.popup-overlay-Scheme').fadeIn();
+});
+$( ".dash-student" ).on( "click", "#popup-cross-scheme", function( event ) {    
+  $('.popup-overlay-Scheme').fadeOut();
+});
+$( ".dash-student" ).on( "click", "#be-a-part-now", function( event ) {    
+  $('.popup-overlay-Scheme').fadeOut();
+});
+$( ".dash-student" ).on( "click", "#startSchemeTutorial", function( event ) {    
+  $('.schemeTutorialPrerequest').hide();
+  $('.schemeTutorial').show();
+  $('.skip_tutorial_button').show();
+});
+$( ".dash-student" ).on( "click", ".skip_tutorial_button", function( event ) {    
+  $('.schemeTutorialPrerequest').show();
+  $('.schemeTutorial').hide();
+  $('.skip_tutorial_button').hide();
+});
+
+$( ".dash-student" ).on( "click", ".RedeemNowBtn", function( event ) {
+    $('.RedeemNowColtobehide').addClass('startani');
+    $('.RedeemNowCol1').removeClass('col-xs-5').addClass('col-xs-12');
+    window.setTimeout(function() {
+       $('.RedeemNowColtobehide').addClass('hidden');
+     }, 300 );
+    window.setTimeout(function() {
+       $('.RedeemNowSubCol1').addClass('col-xs-5');
+     }, 300 );
+    window.setTimeout(function() {
+       $('.RedeemNowSubCol2').fadeIn();
+     }, 300 );
+});
+$( ".dash-student" ).on( "click", ".RedeemCancelBtn", function( event ) {
+  $('.RedeemNowSubCol2').hide();
+  window.setTimeout(function() {
+    $('.RedeemNowSubCol1').removeClass('col-xs-5');
+  }, 100 );
+  $('.RedeemNowCol1').addClass('col-xs-5').removeClass('col-xs-12');
+  window.setTimeout(function() {
+    $('.RedeemNowColtobehide').removeClass('startani hidden');
+  }, 600 );
+});</script>

@@ -1,0 +1,53 @@
+<!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '967254593338441');
+    fbq('track', "PageView");
+    fbq('track', 'ViewContent');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=967254593338441&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+<div class="bg-msf" ng-init="toTheTop()">
+	<div class="container">
+		<div class="h2" style="text-align:center;">
+			Build your scholarship fund and self-finance your higher education. 
+		</div>
+		<div class="col-sm-4 ern-fund">
+		<img class="img-responsive" style="margin-top:9.5%" src="https://www.filepicker.io/api/file/QcPDHrXRiS0BYmzD0JF7">
+		
+		<div class="caption" style="margin-top:45px;"><h3>Engage and Earn</h3>
+		<p>Engage with our Mentors through webinars, attend counselling sessions with colleges, follow our career houses, solve the quizzes and puzzles and challenge your friends.</p>
+		</div>
+		</div>
+		<hr class="separate" style="display:none;">
+		<div class="col-sm-4 ern-fund">
+		<img class="img-responsive" style="margin-top:9%;" src="https://www.filepicker.io/api/file/3vXQbAXHTtCYXu1QYGbD">
+		<div class="caption"><h3>Refer and Earn</h3>
+		<p>Refer your friends and help them engage while adding to your own scholarship fund.</p>
+		</div>
+		</div>
+		<hr class="separate" style="display:none;">
+		<div class="col-sm-4 ern-fund">
+
+		<img class="img-responsive redeem" src="https://www.filepicker.io/api/file/uRb2yZ0KTjWU76TD7xwB">
+		<div class="caption" style="margin-top:35px;"><h3>Redeem</h3>
+		<p>Redeem your accumulated amount and pave your way<br/> to your dream career.</p>
+		</div>
+		<div ng-if="signedIn()">
+			<p ng-init="logoutUsersOtherThanStudent();"></p>
+		</div>
+		</div>
+		<hr class="separate" style="display:none;">
+	</div>
+	<div class="container-fluid btn-wid">
+		<a href="#/register"><button type="button" ng-click="userClickForScholarship();" class="btn btn-primary btn-wid">Start Now</button></a>
+	</div>
+</div>

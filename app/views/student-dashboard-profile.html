@@ -1,0 +1,566 @@
+ <div ng-include="'views/student-left-sidebar.html'" ng-init="toTheTop()"></div>
+      	<div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                              <!--left Sidebar Ends Here-->
+
+		<div class ="col-sm-7 col-lg-7 col-md-7" id="mma_student_middle_col">
+			<div class="row student-dashboard-dash-verify-row" ng-hide="profileIncomplete !== 'Done'">
+			    <div class="col-sm-7">
+			      <i class="fa fa-bell"></i> &nbsp;&nbsp; Your profile has not been completed.
+			    </div>
+			</div>
+
+
+			<div class="row student-dashboard-profile-row">
+				<!-- <div class="col-sm-12">
+				</div> -->
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+		        		<div class="panel-heading">
+		        			Personal Details
+		        			<span class="pull-right non-edit-field-1" id="edit-btn-1" style="cursor:pointer"> Edit </span>
+		        		</div>
+		        		<div class="panel-body">
+		        			<form name="Details" ng-submit="updateProfile()">
+								<div class="row">
+									<div class="col-sm-5">
+										<h4> Full Name :</h4>
+									</div>
+									<div class="col-sm-7">
+										<input type="text" required oninvalid="this.setCustomValidity('Name could not be blank')" oninput="this.setCustomValidity('')" placeholder="Full Name" class="login-inputgroup_style form-control edit-field-1" ng-model="user.profile.studentname">
+										<h4 class="non-edit-field-1"> {{ user.profile.studentname }} </h4>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-5">
+										<h4> Gender :</h4>
+									</div>
+									<div class="col-sm-7">
+										<div class="edit-field-1" ng-repeat="person in gender">
+		                  					<h4><input type="radio" value="{{person.name}}" ng-model="user.profile.gender" name="name" required title="Please Select your Gender" />&nbsp; {{person.name}}</h4>
+		                   				</div>
+		                   				<h4 class="non-edit-field-1"> {{ user.profile.gender }} </h4>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-5">
+										<h4> E- Mail :</h4>
+									</div>
+									<div class="col-sm-7">
+										<h4> {{ user.profile.email }} </h4>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-5">
+										<h4> Phone Number </h4>
+									</div>
+									<div class="col-sm-7">
+										<input type="text" required pattern="[0-9]{3}-?[0-9]{6,12}$" minlength=9 maxlength=15 title="Phone number must be atleast 9 digits long" oninput="this.setCustomValidity('')" placeholder="Phone Number" ng-model="user.profile.studentmobile" class="login-inputgroup_style form-control edit-field-1">
+										<h4 class="non-edit-field-1"> {{ user.profile.studentmobile }} </h4>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-5">
+										<h4> Father's Name :</h4>
+									</div>
+									<div class="col-sm-7">
+										<input type="text" required oninvalid="this.setCustomValidity('Fathers name cannot be blank')" oninput="this.setCustomValidity('')" placeholder="Father's Name" ng-model="user.profile.fathername" class="login-inputgroup_style form-control edit-field-1">
+										<h4 class="non-edit-field-1"> {{ user.profile.fathername }} </h4>
+										<h4 class="non-edit-field-1" ng-if="user.profile.fathername === undefined"> Not Submitted </h4>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-5">
+										<h4> Father's Occupation :</h4>
+									</div>
+									<div class="col-sm-7">
+										<input type="text" required oninvalid="this.setCustomValidity('Please enter your Fathers occupation')" oninput="this.setCustomValidity('')" placeholder="Father's Occupation" ng-model="user.profile.occupation" class="login-inputgroup_style form-control edit-field-1">
+										<h4 class="non-edit-field-1"> {{ user.profile.occupation }} </h4>
+										<h4 class="non-edit-field-1" ng-if="user.profile.occupation === undefined"> Not Submitted </h4>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-5">
+										<h4> Father's Number </h4>
+									</div>
+									<div class="col-sm-7">
+										<input type="text" required pattern="[0-9]{3}-?[0-9]{6,12}$" minlength=9 maxlength=15 title='Phone number must be atleast 9 digits long' oninput="this.setCustomValidity('')" placeholder="Father's Number" ng-model="user.profile.fathernumber" class="login-inputgroup_style form-control edit-field-1" >
+										<h4 class="non-edit-field-1"> {{ user.profile.fathernumber }} </h4>
+										<h4 class="non-edit-field-1" ng-if="user.profile.fathernumber === undefined"> Not Submitted</h4>
+									</div>
+								</div>
+
+								<div class="row edit-field-1">
+									<div class="col-sm-offset-5 col-sm-7">
+										<div class="row">
+											<div class="row" style="margin-top: 1em; padding: 0em 3em;">
+												<div class="col-xs-6">
+													<button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="cancel()" id="cancel-btn-1">Cancel</button>
+												</div>
+												<div class="col-xs-6">
+													<button type="submit" class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn">Save</button>
+												</div>
+												<center><div ng-if = "submitsuccesstext1 == true"> <h5 style="color:green"><strong> Congratulations! </strong> Your profile has been updated</h5></div></center>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+		        		</div>
+		        	</div>
+
+		        	<div class="panel panel-default">
+		        		<form name="Details2" ng-submit="updateProfile2()">
+		        		<div class="panel-heading">
+		        			Academic Records
+		        			<span class="pull-right non-edit-field-2" id="edit-btn-2" ng-click="show12Course='Done'" style="cursor:pointer"> Edit </span>
+		        		</div>
+		        		<div class="panel-body">
+		        			
+		        				<center><h4  style="color:red;">{{ message }}</h4></center>
+		        				<br />
+								<div class="row">
+									<div class="col-sm-5">
+										<h4> 10 th Marks :</h4>
+									</div>
+									<div class="col-sm-7">
+										<div class="row edit-field-2">
+											<div class="col-sm-10">
+												<input id="checkSlave12th" ng-model="user.profile.academicrecord12thMarks" type="number" ng-required="true" oninvalid="this.setCustomValidity('Please enter your 10th Class Marks')" oninput="this.setCustomValidity('')"  placeholder="Your 10th Class Marks" class="login-inputgroup_style form-control" min="0" max="100">
+											</div>
+										</div>
+										<h4 class="non-edit-field-2"> {{ user.profile.academicrecord12thMarks }} </h4>
+										<h4 class="non-edit-field-2" ng-if="user.profile.academicrecord12thMarks === undefined"> Not Submitted</h4>
+									</div>
+								</div>
+								<div class="row" ng-if="user.profile.academicrecordUGMarks || show12Course == 'Done'">
+									<div class="col-sm-5">
+										<h4> 12 th Marks :</h4>
+									</div>
+									<div class="col-sm-7">
+										<div class="row edit-field-2">
+											<div class="col-sm-10">
+												<input id="checkSlaveUG" ng-model="user.profile.academicrecordUGMarks" type="number" placeholder="12's Class Marks" class="login-inputgroup_style form-control" min="0" max="100" ng-disabled="(!user.profile.academicrecord12thMarks)" >
+											</div>
+										</div>
+										<h4 class="non-edit-field-2"> {{ user.profile.academicrecordUGMarks }} </h4>
+										<h4 class="non-edit-field-2" ng-if="user.profile.academicrecordUGMarks === undefined"> Not Submitted</h4>
+									</div>
+								</div>
+								<div class="row" ng-if="user.profile.academicrecordPGMarks || show12Course=='Done'">
+									<div class="col-sm-5">
+										<h4> UG Marks </h4>
+									</div>
+									<div class="col-sm-7">
+										<div class="row edit-field-2">
+											<div class="col-sm-10">
+												<input id="checkSlavePG" ng-model="user.profile.academicrecordPGMarks" type="number" placeholder="UG's CGPA / GPA/ Percentile" class="login-inputgroup_style form-control" min="0" max="100" ng-disabled="((!user.profile.academicrecord12thMarks) || (!user.profile.academicrecordUGMarks))">
+											</div>
+										</div>
+										<h4 class="non-edit-field-2"> {{ user.profile.academicrecordPGMarks }} </h4>
+										<h4 class="non-edit-field-2" ng-if="user.profile.academicrecordPGMarks === undefined"> Not Submitted</h4>
+									</div>
+								</div>
+
+								<!--Div added by Mukesh Singh For Saving Student Stream-->
+
+								<div class="row">
+									<div class="col-sm-5">
+										<h4>Your Stream :</h4>
+									</div>
+									<div class="col-sm-7">
+										<div class="row edit-field-2">
+											<div class="col-sm-10">
+												<select id="checkSlavestream" ng-model="user.profile.studentstream" class="login-inputgroup_style form-control" required>
+												<option value="">Select your Stream.</option>
+												<option value="Science">Science</option>
+												<option value="Art">Art</option>
+												<option value="Commerce">Commerce</option>
+												</select>
+											</div>
+										</div>
+										<h4 class="non-edit-field-2" ng-if="user.profile.studentstream !== null"> {{ user.profile.studentstream }} </h4>
+										<h4 class="non-edit-field-2" ng-if="user.profile.studentstream === undefined"> Not Submitted </h4>
+									</div>
+								</div>
+							</div>
+						
+					
+							<!--Div ends here Mukesh Singh-->
+							<div class="row edit-field-2">
+									<div class="col-sm-offset-5 col-sm-7">
+										<div class="row">
+											<div class="row" style="margin-top: 1em; padding: 0em 3em;">
+												<div class="col-xs-6">
+													<button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="cancel()" id="cancel-btn-2">Cancel</button>
+												</div>
+												<div class="col-xs-6">
+													<button type="submit" class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn">Save</button>
+												</div>
+												<center><div ng-if = "submitsuccesstext2 == true"> <h5 style="color:green"><strong> Congratulations! </strong> Your profile has been updated</h5></div></center>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+		        		</div>
+		        	</div>
+		        	<div class="col-sm-12">
+		        	<div class="panel panel-default">
+		        		<div class="panel-heading">
+		        			Your Bio
+		        			<span class="pull-right non-edit-field-3" id="edit-btn-3" style="cursor:pointer"> Edit </span>
+		        		</div>
+		        		<div class="panel-body">
+		        			<form name="Details3" ng-submit="updateProfile3()">
+		        				<div class="row">
+									<div class="col-sm-12">
+										<center>
+											<textarea style="resize:none" required minlength=50 maxlength=1024  placeholder="Please enter about yourself" ng-model="user.profile.studentabout" class="login-inputgroup_style form-control edit-field-3"></textarea>
+											<h4 class="non-edit-field-3"> {{ user.profile.studentabout }} </h4>
+											<h4 class="non-edit-field-3" ng-if="user.profile.studentabout === undefined"> Not Submitted</h4>
+										</center>
+									</div>
+								</div>
+								<div class="row edit-field-3">
+									<div class="col-sm-offset-5 col-sm-7">
+										<div class="row">
+											<div class="row" style="margin-top: 1em; padding: 0em 3em;">
+												<div class="col-xs-6">
+													<button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="cancel()" id="cancel-btn-3">Cancel</button>
+												</div>
+												<div class="col-xs-6">
+													<button type="submit" class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn">Save</button>
+												</div>
+												<center><div ng-if = "submitsuccesstext3 == true"> <h5 style="color:green"><strong> Congratulations! </strong> Your profile has been updated</h5></div></center>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+	        			</div>
+	        		</div>
+
+		        	<div class="panel panel-default">
+		        		<div class="panel-heading">
+		        			Your Courses
+		        			<span class="pull-right non-edit-field-4" id="edit-btn-4" ng-click="showPGCollege='Done'" style="cursor:pointer"> Edit </span>
+		        		</div>
+		        		<div class="panel-body">
+		        			<div class="row">
+								<div class="col-sm-5">
+									<h4> UG Courses :</h4>
+								</div>
+								<div class="col-sm-7 non-edit-field-4" id="UGCourseIntrested" style="font-size:18px;">
+									<span ng-repeat="ug in user.profile.coursesUG">
+										<span ng-if="ug == '0'">&nbsp;Engineering,&nbsp;</span>
+										<span ng-if="ug == '1'">&nbsp;Computer Applications / IT,&nbsp;</span>
+										<span ng-if="ug == '2'">&nbsp;Biotechnology,&nbsp;</span>
+										<span ng-if="ug == '3'">&nbsp;Microbiology,&nbsp;</span>
+										<span ng-if="ug == '4'">&nbsp;Agriculture,&nbsp;</span>
+										<span ng-if="ug == '5'">&nbsp;Food Technology,&nbsp;</span>
+										<span ng-if="ug == '6'">&nbsp;Nutrition and Dietetics,&nbsp;</span>
+										<span ng-if="ug == '7'">&nbsp;Arts (Humanities),&nbsp;</span>
+										<span ng-if="ug == '8'">&nbsp;Library Science,&nbsp;</span>
+										<span ng-if="ug == '9'">&nbsp;Management,&nbsp;</span>
+										<span ng-if="ug == '10'">&nbsp;Commerce,&nbsp;</span>
+										<span ng-if="ug == '11'">&nbsp;Economics,&nbsp;</span>
+										<span ng-if="ug == '12'">&nbsp;Hotel Management/Hospitality and Tourism,&nbsp;</span>
+										<span ng-if="ug == '13'">&nbsp;Architecture,&nbsp;</span>
+										<span ng-if="ug == '14'">&nbsp;Planning,&nbsp;</span>
+										<span ng-if="ug == '15'">&nbsp;Fine Arts,&nbsp;</span>
+										<span ng-if="ug == '16'">&nbsp;Performing Arts,&nbsp;</span>
+										<span ng-if="ug == '17'">&nbsp;Pharmaceutical Sciences,&nbsp;</span>
+										<span ng-if="ug == '18'">&nbsp;Ayurvedic Pharmaceutical Sciences,&nbsp;</span>
+										<span ng-if="ug == '19'">&nbsp;Physiotherapy,&nbsp;</span>
+										<span ng-if="ug == '20'">&nbsp;Paramedical Sciences,&nbsp;</span>
+										<span ng-if="ug == '21'">&nbsp;Education,&nbsp;</span>
+										<span ng-if="ug == '22'">&nbsp;Physical Education,&nbsp;</span>
+										<span ng-if="ug == '23'">&nbsp;Law,&nbsp;</span>
+										<span ng-if="ug == '24'">&nbsp;Design,&nbsp;</span>
+										<span ng-if="ug == '25'">&nbsp;Sciences,&nbsp;</span>
+									</span>
+								</div>
+								<h4 class="non-edit-field-4" ng-if="user.profile.coursesUG === undefined"> Not Submitted</h4>
+								<div class="col-sm-7 no-bord edit-field-4">
+									<button class="btn btn-default btn-lg main-search-btn btn-block sel-btn" ng-click="prepareUG()" data-toggle="modal" data-target=".bs-example-modal-1">Select UG Courses</button>
+		                		</div>
+							</div>
+							<div class="row" >
+								<div class="col-sm-5" ng-if="user.profile.coursesPG || showPGCollege == 'Done'">
+									<h4> PG Courses : </h4>
+								</div>
+								<div class="col-sm-7 non-edit-field-4" id="PGCourseIntrested" style="font-size:18px;"  ng-if="user.profile.coursesPG">
+									<span ng-repeat="pg in user.profile.coursesPG">
+										<span ng-if="pg == '0'">&nbsp;Engineering,&nbsp;</span>
+										<span ng-if="pg == '1'">&nbsp;Computer Applications / IT,&nbsp;</span>
+										<span ng-if="pg == '2'">&nbsp;Biotechnology,&nbsp;</span>
+										<span ng-if="pg == '3'">&nbsp;Microbiology,&nbsp;</span>
+										<span ng-if="pg == '4'">&nbsp;Biochemistry,&nbsp;</span>
+										<span ng-if="pg == '5'">&nbsp;Agriculture,&nbsp;</span>
+										<span ng-if="pg == '6'">&nbsp;Food Technology,&nbsp;</span>
+										<span ng-if="pg == '7'">&nbsp;Nutrition and Dietetics,&nbsp;</span>
+										<span ng-if="pg == '8'">&nbsp;English and Foreign Languages,&nbsp;</span>
+										<span ng-if="pg == '9'">&nbsp;Indian Languages,&nbsp;</span>
+										<span ng-if="pg == '10'">&nbsp;Library Science,&nbsp;</span>
+										<span ng-if="pg == '11'">&nbsp;Sociology,&nbsp;</span>
+										<span ng-if="pg == '12'">&nbsp;Geography,&nbsp;</span>
+										<span ng-if="pg == '13'">&nbsp;Management,&nbsp;</span>
+										<span ng-if="pg == '14'">&nbsp;Commerce,&nbsp;</span>
+										<span ng-if="pg == '15'">&nbsp;Economics,&nbsp;</span>
+										<span ng-if="pg == '16'">&nbsp;Hotel Management/Hospitality and Tourism,&nbsp;</span>
+										<span ng-if="pg == '17'">&nbsp;Architecture,&nbsp;</span>
+										<span ng-if="pg == '18'">&nbsp;Planning,&nbsp;</span>
+										<span ng-if="pg == '19'">&nbsp;Fine Arts,&nbsp;</span>
+										<span ng-if="pg == '20'">&nbsp;Performing Arts,&nbsp;</span>
+										<span ng-if="pg == '21'">&nbsp;Pharmaceutical Sciences,&nbsp;</span>
+										<span ng-if="pg == '22'">&nbsp;Ayurvedic Pharmaceutical Sciences,&nbsp;</span>
+										<span ng-if="pg == '23'">&nbsp;Physiotherapy,&nbsp;</span>
+										<span ng-if="pg == '24'">&nbsp;Paramedical Sciences,&nbsp;</span>
+										<span ng-if="pg == '25'">&nbsp;History,&nbsp;</span>
+										<span ng-if="pg == '26'">&nbsp;Political Science,&nbsp;</span>
+										<span ng-if="pg == '27'">&nbsp;Psychology,&nbsp;</span>
+										<span ng-if="pg == '28'">&nbsp;Education,&nbsp;</span>
+										<span ng-if="pg == '29'">&nbsp;Physical Education,&nbsp;</span>
+										<span ng-if="pg == '30'">&nbsp;Law,&nbsp;</span>
+										<span ng-if="pg == '31'">&nbsp;Design,&nbsp;</span>
+										<span ng-if="pg == '32'">&nbsp;Sciences,&nbsp;</span>
+									</span>
+								</div>
+								<div class="col-sm-7 no-bord edit-field-4">
+									<button class="btn btn-default btn-lg main-search-btn btn-block sel-btn" data-toggle="modal" ng-click="preparePG()" data-target=".bs-example-modal-2">Select PG Courses</button>
+		                		</div>
+							</div>
+		    				<div class="row edit-field-4">
+								<div class="col-sm-offset-5 col-sm-7">
+									<div class="row">
+										<div class="row" style="margin-top: 1em; padding: 0em 3em;">
+											<div class="col-xs-6">
+												<button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="cancel()" id="cancel-btn-4">Cancel</button>
+											</div>
+											<center><div ng-if = "submitsuccesstext4 == true"> <h5 style="color:green"><strong> Congratulations! </strong> Your profile has been updated</h5></div></center>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+		        	</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3" id="mma_student_right_sidebar">
+			<div ng-if="user.profile.studentname" ng-init="getdocumenttype()">
+				<div class="panel panel-default">
+			        <div class="panel-body student-dashboard-dash-detail-row-panel-body student-dashboard-dash-profile-row-panel-body-img" style="padding: 30px 25px;">
+			          <center>
+			          	<div class="med-user-img" style="height: 13em; width: 13em;"><img lazy-src="{{user.profile.studentphoto}}" alt="Photo of {{user.profile.studentphoto}}" /></div>
+
+			          	<div class="seperator"></div>
+
+			            <div class="bord row">
+                            <div class="col-md-12 form-button-long">
+                            	<fp-input ng-model="newphoto" data-fp-button-text="Change Image" class="btn btn-default btn-lg main-search-btn sel-btn-file btn-form" data-fp-apikey="AlHT3QcNWSGCQpTZ3dLn3z" data-fp-mimetypes="image/*" data-fp-multiple="false" data-fp-maxsize="5242880" ng-change=" user.profile.studentphoto = newphoto.url " id="fp-btn-id-1" />
+                            </div>
+                            <div class="col-md-12" style="color:green; text-align:right;" ng-if = "submitphotosuccesstext == true">
+                                <center>Your Photo has been updated</center>
+                            </div>
+                        </div>
+                        <div id="fp-btn-row-1" class="row">
+							<div class="col-xs-6">
+								<button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="cancel()" id="cancel-btn-10">Cancel</button>
+							</div>
+							<div class="col-xs-6">
+								<button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="updatePhoto(newphoto.url)" id="save-btn-10">Save</button>
+							</div>
+						</div>
+
+						<div class="seperator"></div>
+
+						<div class="row">
+							<center>
+								<strong ng-if="user.profile.studentdocument == 'https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM' || user.profile.studentdocument === undefined " style="color:red;">Upload your document to become eligible for My Scholarship Fund</strong>
+								<strong ng-if="newdocument.mimetype == 'application/msword' || newdocument.mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || extension == '.doc' || extension == '.docx' " style="color:red;" ng-hide="newdocument.mimetype == 'application/pdf'  || newdocument.mimetype == 'image/jpg' || newdocument.mimetype == 'image/jpeg' || newdocument.mimetype == 'image/png' || newdocument.mimetype == 'image/gif' || user.profile.studentdocument == 'https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM' "><a href="{{user.profile.studentdocument}}" target="_blank"><i class="fa fa-file-word-o fa-3x fa-border"></i></a></strong>
+								<strong ng-if="newdocument.mimetype == 'application/pdf' || extension == '.pdf' " ng-hide="newdocument.mimetype == 'application/msword' || newdocument.mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || newdocument.mimetype == 'image/jpg' || newdocument.mimetype == 'image/jpeg' || newdocument.mimetype == 'image/png' || newdocument.mimetype == 'image/gif'  || user.profile.studentdocument == 'https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM' " ><a href="{{user.profile.studentdocument}}" target="_blank" style="color:red;"><i class="fa fa-file-pdf-o fa-3x fa-border"></i></a></strong>
+								<strong ng-if="newdocument.mimetype == 'image/jpg' || newdocument.mimetype == 'image/jpeg' || newdocument.mimetype == 'image/png' || newdocument.mimetype == 'image/gif' || extension == '.jpg' || extension == '.jpeg' || extension == '.png' || extension == '.gif' " ng-hide="newdocument.mimetype == 'application/pdf'  || newdocument.mimetype == 'application/msword' || newdocument.mimetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'  || user.profile.studentdocument == 'https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM' "><img class="img-responsive" lazy-src="{{user.profile.studentdocument}}" alt="Document of {{user.profile.studentname}}"/></strong>
+							</center>
+						</div>
+
+						<div class="seperator"></div>
+
+						<div class="bord row">
+                            <div class="col-md-12 form-button-long">
+                            	<fp-input ng-model="newdocument" data-fp-button-text="Change Document" class="btn btn-default btn-lg main-search-btn sel-btn-file btn-form" data-fp-apikey="AlHT3QcNWSGCQpTZ3dLn3z" data-fp-mimetypes="image/*,application/msword,application/pdf,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" data-fp-multiple="false" data-fp-maxsize="5242880" ng-change=" user.profile.studentdocument = newdocument.url " id="fp-btn-id-2" />
+                            </div>
+                            <div class="col-md-12" style="color:green; text-align:right;" ng-if = "submitdocumentsuccesstext == true">
+                                <center>Your Documents has been updated</center>
+                            </div>
+                        </div>
+                        <div id="fp-btn-row-2" class="row">
+							<div class="col-xs-6">
+								<button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="cancel(); newdocument.mimetype = '';  " id="cancel-btn-11">Cancel</button>
+							</div>
+							<div class="col-xs-6">
+								<button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="updateDocument(newdocument.url)" id="save-btn-11">Save</button>
+							</div>
+						</div>
+					
+			          </center>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	
+
+
+							
+	<!-- MODALS CONTENT -->
+
+
+	<div class="modal fade bs-example-modal-1" ng-controller = "StudentDashCtrl" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                <h4 class="modal-title">Select Undergraduate Courses</h4>
+	                <div style="display:none">{{ uSer.roles=user.profile.coursesUG}}</div>
+	                
+	            </div>
+	            <div class="modal-body">
+	                <label class="checkbox" ng-repeat="role in roles">
+	                    <input type="checkbox" checklist-model="uSer.roles" checklist-value="role.id"> {{role.text}}
+	                </label>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class=" btn btn-primary" ng-click="updateUG()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Save Changes</span></button>
+	                <button type="button" class=" btn btn-primary" ng-click="cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Cancel</span></button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="modal fade bs-example-modal-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                <h4 class="modal-title">Select Postgraduate Courses</h4>
+	                <div style="display:none">{{ uSerA.rolesA=user.profile.coursesPG}}</div>
+	            </div>
+	            <div class="modal-body">
+	                <label class="checkbox" ng-repeat="roleA in rolesA">
+	                    <input type="checkbox" checklist-model="uSerA.rolesA" checklist-value="roleA.idA"> {{roleA.textA}}
+	                </label>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class=" btn btn-primary" ng-click="updatePG()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Save Changes</span></button>
+	                <button type="button" class=" btn btn-primary" ng-click="cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Cancel</span></button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+	
+
+<script>
+	
+$(".edit-field-1").hide();
+$(".non-edit-field-1").show();
+$(".edit-field-2").hide();
+$(".non-edit-field-2").show();
+$(".edit-field-3").hide();
+$(".non-edit-field-3").show();
+$(".edit-field-4").hide();
+$(".non-edit-field-4").show();
+$("#cancel-btn-10").hide();
+$("#save-btn-10").hide();
+$("#cancel-btn-11").hide();
+$("#save-btn-11").hide();
+$("#fp-btn-row").hide();
+$("#fp-btn-1-row").hide();
+
+
+$( document ).on( "click", "#cancel-btn-10", function( event ) {
+    $("#save-btn-10").hide();
+	$("#cancel-btn-10").hide();
+	$("#fp-btn-row-1").hide();
+	$("#fp-btn-id-1").show();
+});
+
+$( document ).on( "click", "#save-btn-10", function( event ) {
+    $("#cancel-btn-10").hide();
+	$("#save-btn-10").hide();
+	$("#fp-btn-row-1").hide();
+	$("#fp-btn-id-1").show();
+});
+
+$( document ).on( "click", "#cancel-btn-11", function( event ) {
+    $("#save-btn-11").hide();
+	$("#cancel-btn-11").hide();
+	$("#fp-btn-1-row").hide();
+	$("#fp-btn-id-2").show();
+});
+
+$( document ).on( "click", "#save-btn-11", function( event ) {
+    $("#cancel-btn-11").hide();
+	$("#save-btn-11").hide();
+	$("#fp-btn-1-row").hide();
+	$("#fp-btn-id-2").show();
+});
+
+$( document ).on( "click", "#fp-btn-id-2", function( event ) {
+    $("#fp-btn-1-row-2").show();
+    $("#cancel-btn-11").show();
+	$("#save-btn-11").show();
+	$("#fp-btn-id-2").hide();
+});
+
+$( document ).on( "click", "#fp-btn-id-1", function( event ) {
+    $("#fp-btn-row-1").show();
+    $("#cancel-btn-10").show();
+	$("#save-btn-10").show();
+	$("#fp-btn-id-1").hide();
+});
+
+
+$( document ).on( "click", "#edit-btn-1", function( event ) {
+        $(".edit-field-1").show();
+		$(".non-edit-field-1").hide();
+    });
+
+$( document ).on( "click", "#cancel-btn-1", function( event ) {    
+        $(".edit-field-1").hide();
+		$(".non-edit-field-1").show();
+    });
+
+$( document ).on( "click", "#edit-btn-2", function( event ) {
+        $(".edit-field-2").show();
+		$(".non-edit-field-2").hide();
+    });
+
+$( document ).on( "click", "#cancel-btn-2", function( event ) {    
+        $(".edit-field-2").hide();
+		$(".non-edit-field-2").show();
+    });
+
+$( document ).on( "click", "#edit-btn-3", function( event ) {
+        $(".edit-field-3").show();
+		$(".non-edit-field-3").hide();
+    });
+
+$( document ).on( "click", "#cancel-btn-3", function( event ) {    
+        $(".edit-field-3").hide();
+		$(".non-edit-field-3").show();
+    });
+
+$( document ).on( "click", "#edit-btn-4", function( event ) {
+        $(".edit-field-4").show();
+		$(".non-edit-field-4").hide();
+    });
+
+$( document ).on( "click", "#cancel-btn-4", function( event ) {    
+        $(".edit-field-4").hide();
+		$(".non-edit-field-4").show();
+});
+
+</script>

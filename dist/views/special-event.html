@@ -1,0 +1,29 @@
+<style type="text/css">.special_event_list {
+		height:30%;
+		width:60%;
+		margin: 5px auto;
+		background-color: #FFFFFF;
+		border-radius: 0.5em;
+		border-style: solid; 
+		border-width: 2px;
+		border-color: #237DAC;
+		padding: 10px;
+	}	
+	.img-block {
+		position: relative;
+	    float: left;
+	    width: 21%;
+	    height:145px;
+	    border-width:1px;
+	    border-style:solid;
+	    border-color:#237DAC;
+	    border-radius:15%;
+	    padding: 10px;
+	}
+	.content-block {
+		float: left;
+		width:70%;
+		margin-left: 15px;
+		margin-top: 10px;
+		text-align: left;
+	}</style> <div> <div class="row-fluid login-row_style" ng-init="toTheTop(); getAllSpecialEvents()"> <div id="" class="container-fluid text-center blue login-container login-container_style student-login bg col-md-12"> <div class="row" ng-if="specialEvents.length === 0"> <h1><strong><center style="color:green; background:white">There is currently no special events.</center></strong></h1> </div> <div ng-repeat="(eventId, event) in specialEvents"> <div class="special_event_list"> <img src="{{event.mentorPhoto}}" class="img-block"> <div class="content-block"> <strong>Webinar Topic : </strong> {{event.webinarTopic}}<br> <strong>Mentor Name : </strong> {{event.mentorName}}<br> <strong>Webinar Date : </strong> {{event.webinarDate}}<br> </div> <br clear="all"> <button class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#{{eventId}}">View</button> <br clear="all"> </div> <!-- authorize event start --> <div class="modal fade" role="dialog" ng-controller="WebinarCtrl" id="{{eventId}}"> <div class="modal-dialog modal-sm"> <!-- Modal content--> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal">&times;</button> <h4 class="modal-title">Enter Event Password</h4> </div> <div class="modal-body"> <h4> Enter Event Password </h4> <div class="input-group input-group-sm"> <span class="login-inputgroup_style input-group-addon _glyphicon glyphicon glyphicon-lock"></span> <input type="password" required ng-model="event_password" class="login-inputgroup_style form-control" placeholder="Event Password"> </div> <p style="margin-top:10px" ng-show="eventError" class="error-danger">{{eventError}}</p> </div> <div class="modal-footer"> <button class="btn btn-default" type="submit" ng-click="authorizeSpecialEvent(event.webinarId,event_password)">Submit</button> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> </div> </div> </div> </div> <!-- authorize event End --> </div> </div> </div> </div>

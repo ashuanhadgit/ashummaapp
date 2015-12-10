@@ -1,0 +1,161 @@
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  !function(d,s,id){
+      var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+      if(!d.getElementById(id)){
+          js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+          fjs.parentNode.insertBefore(js,fjs);
+      }
+  }(document, 'script', 'twitter-wjs');
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<style type="text/css"> #twitter-widget-0 {position: relative !important; margin-bottom: -6px;} #___plus_0 { margin-bottom: -5px; !important;}
+  .half{width: 49%; float: left;}
+  .noborder {border-radius:0px;}
+</style>
+      <div  ng-include="'views/student-left-sidebar.html'" ng-init="toTheTop(); getStudentDashBoardPosts(); seeCollegeFeed(); "></div>
+      <div class="col-lg-2 col-md-2 col-sm-2"></div>
+
+                        <!--Middle Content Main Content Visible to Student -->
+
+      <div  ng-if="!signedIn()" class="col-lg-10 col-md-10 col-sm-10 mid-align"  >
+        <!---LOGIN_SIGNUP -->
+        <div class="col-sm-10 warn-continer">
+        <div class="col-sm-4">
+          <div class="col-sm-12">
+            <img src="images/logo.png" style="width:100%;height:auto;">
+          </div>
+          <div class="col-sm-12" style="margin:15px 0;">
+           <a href="#/login"> <button type="button" class="btn btn-primary" style="width:100%;">Log In</button></a>
+          </div>
+          <div class="col-sm-12">
+            <a href="#/register"><button type="button" class="btn btn-primary" style="width:100%;">Sign Up</button></a>
+          </div>
+
+        
+        </div>
+        <div class="col-sm-8 sorry">
+          <span>Sign Up for free and experience <br> MY MISSION ADMISSION today!</span>
+              <h2>Scholarships</h2>
+              <p>Earn your scholarship to fund your higher studies. Signup for a brighter future! </p> 
+              <h2>Career Webinars</h2>
+              <p>Here from the industry experts. Discover new horizons of success!</p>
+              <h2>Video Counselling Sessions</h2>
+              <p>Talk to college counsellors and solve all your admission queries.</p>  
+        </div>
+        </div>
+      </div>        
+      <div ng-if="signedIn()" class="col-lg-7 col-md-7 col-sm-7" id="mma_student_middlecol">
+
+        <toaster-container toaster-options="{'time-out': 6000, 'position-class': 'toast-bottom-right'}"></toaster-container> 
+
+        <div class="row student-dashboard-dash-verify-row" ng-if="user.profile.emailverificationstatus === 'false'" style="height: 56px; width: 100%; float: right; margin-bottom: 17px; font-size:12px;">
+          <div class="col-sm-10">
+            <i class="fa fa-bell"></i> &nbsp;&nbsp; Your email address has not been verified.
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="resendemail()">Verify</button>
+          </div>
+        </div>
+        <h1>News Feeds</h1>
+        <hr>
+        <!--Post Summary Structure-->
+
+                                                <!-- mymissionadmission Video Post-->
+
+        <div class="col-lg-12 col-md-12 col-sm-12" id="mma_post_summary">
+          <div class="col-lg-12">
+            <header style="margin-bottom:20px;">
+              <a href="https://www.facebook.com/mymissionadmission" style="cursor:pointer; color:black"><h3>My Mission Admission</h3></a>
+              <p class="row" id="post_meta">
+                <span style="float:left;">By <a href="#/author-profile/58279310-90eb-4e2d-81b4-6da98a03007a" style="cursor:pointer"> My Mission Admission - Official </a> | <a href="#/view-monthly-post/20150919"> 19 Sep 2015</a></span>
+                <span style="float:right;">150 Comments</span>
+                <br clear="all">
+              </p>
+            </header>
+
+            <div class="entry_summary">
+                <!--Feature Image Div-->
+                  <div class="featured_image">
+                      <iframe style="width:217px; height:144px" src="https://www.youtube.com/embed/iSCIesIM8Ww?controls=0" frameborder="0" allowfullscreen></iframe>
+                  </div>
+                <!--Feature Image Div Ends here-->
+                <!--Summary Content -->
+                    <div class="summary_content">
+                      <p>MyMissionAdmission.com is a platform for prospective students/parents to have free online counselling and webinars directly with colleges and industry experts for admission and long term career related inquiries. It aims to facilitate the admission process for both the colleges and students and is a one stop solution to a hassle free admission.<!-- <a href="{{postData.sharingUrl}}" style="cursor:pointer">Read More »</a> --></p>
+                    
+                    </div>
+                <!--Summary Content Ends here-->    
+                <br clear="all"/> 
+            </div>
+            <br clear="all"/>
+                                    <!--social sharer buttons-->
+            <div class="row" id="sharebar">
+              <div class="fb-share-button" data-href="" data-layout="button_count"></div>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-via="My Mission Admission">Tweet</a>
+              <div style="width:95px; float:left;">
+                  <div class="g-plus"  data-action="share" data-annotation="bubble" data-height="24"></div>
+              </div>
+            </div>
+                            <!--social sharer buttons ends here-->            
+          </div>
+        </div>
+                                                <!-- mymissionadmission Video Post-->
+
+        <div class="col-lg-12 col-md-12 col-sm-12" id="mma_post_summary" ng-repeat="(postId,postData) in post | orderBy:'postNumber' : true" ng-if="postData.postStatus==='verified'">
+          <div class="col-lg-12" >
+            <header style="margin-bottom:20px;">
+              <h3><a href="{{postData.sharingUrl}}" ng-click="trackEvent('Dashboard Post Section', 'Viewed Post ' + postData.postTitle, 'Student Dashboard Post')" style="cursor:pointer; color:black">{{postData.postTitle}}</a></h3>
+              <p class="row" id="post_meta">
+                
+                <span ng-if="postData.postCatagory!=='collegePost'" style="float:left;">By <a href="#/author-profile/{{postData.mentoruid}}" title="View Mentor's Detail" style="cursor:pointer">{{postData.mentorname | titleCase}}</a> | <a href="#/view-monthly-post/{{postData.postDate}}" title="View posts of this month">{{postData.postDate | convert}}</a></span>
+
+                <span  ng-if="postData.postCatagory ==='collegePost'" style="float:left;">By <a href="#/college-profile/{{postData.collegeuid}}" title="View College's Detail" style="cursor:pointer">{{postData.collegename}}</a> | <a href="#/view-monthly-post/{{postData.postDate}}" title="View posts of this month">{{postData.postDate | convert}}</a></span>
+                <span style="float:right;">{{postData.comments}} Comments</span>
+                <br clear="all">
+              </p>
+            </header>
+
+            <div class="entry_summary">
+                <!--Feature Image Div-->
+                    <div class="featured_image">
+                      <a href="{{postData.sharingUrl}}" style="cursor:pointer" ng-click="trackEvent('Dashboard Post Section', 'Viewed Post ' + postData.postTitle, 'Student Dashboard Post')">
+                      <img src="{{postData.featuredImage}}" class="img-responsive"/></a>
+                    </div>
+                <!--Feature Image Div Ends here-->
+                <!--Summary Content -->
+                    <div class="summary_content">
+                      <p>{{postData.shortDescription}}<a ng-click="trackEvent('Dashboard Post Section', 'Viewed Post ' + postData.postTitle, 'Student Dashboard Post')" href="{{postData.sharingUrl}}" style="cursor:pointer">Read More »</a></p>
+                    
+                    </div>
+                <!--Summary Content Ends here-->    
+                <br clear="all"/> 
+            </div>
+            <br clear="all"/>
+                                    <!--social sharer buttons-->
+            <div class="row" id="sharebar">
+              <div class="fb-share-button" data-href="{{postData.sharingUrl}}" data-layout="button_count"></div>
+               <a href="https://twitter.com/share" class="twitter-share-button" data-via="My Mission Admission">Tweet</a>
+              <div style="width:95px; float:left;">
+                  <div class="g-plus"  data-action="share" data-annotation="bubble" data-height="24"></div>
+              </div>
+            </div>
+                            <!--social sharer buttons ends here-->           
+          </div>
+        </div>
+        <!-- <button ng-if="hideLoadMore === 'no'" type="button" class="btn btn-primary" ng-click="LoadMoreStudentDashBoardPosts()">Load More</button> -->
+        <button ng-if="hideLoadMore === 'no'" type="button" class="btn btn-primary"  ng-click="LoadMoreStudentDashBoardPosts()"  style=" width: 30%; margin-left: 35%; margin-bottom:5%;">Load More</button>
+  </div>
+            <!--Middle Content Main Content Visible to Student -->
+<div ng-if="signedIn()" ng-include="'views/student-right-sidebar.html'"></div>
+<br clear="all">
+
+

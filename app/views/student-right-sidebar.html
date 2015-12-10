@@ -1,0 +1,91 @@
+                                        <!-- right Sidebar Starts Here -->
+    <div class="col-lg-3 col-md-3 col-sm-3" id="mma_student_rightsidebar" >
+        <h3>&nbsp;</h3>
+        <hr>
+         <toaster-container toaster-options="{'time-out': 6000, 'position-class': 'toast-bottom-right'}"></toaster-container> 
+
+                                        <!-- student queries -->
+
+        <div class="row" id="most_visited"  ng-controller="StudentDashCtrl" ng-if="signedIn()">
+            <h4><b>Start building your career roadmap & earn scholarship!</b></h4>
+            <div class="single_post">
+                <form ng-submit="submitQueryForm(dream_college,course_intrested,stu_queries);getQueryNotification(dream_college,course_intrested,stu_queries);trackEvent('Student RightSideBar', 'StudentQuery', 'Query Form')" >
+                    <p style="margin-bottom:5px; margin-top:5px;">Your Dream College?</p>
+                    <input type="text" class="form-control" required ng-model="dream_college" name="dreamcollege" style="border-radius:0px;" placeholder="Your Dream College?"/>
+                    <p style="margin-bottom:5px; margin-top:5px;">Course Interested?</p>
+                    <input type="text" class="form-control" required ng-model="course_intrested" name="dreamcollege" style="border-radius:0px;" placeholder="Course Interested?"/>
+                    <p style="margin-bottom:5px; margin-top:5px;">Your Query?</p>
+                    <input type="text" class="form-control" required ng-model="stu_queries" name="dreamcollege" style="border-radius:0px;" placeholder="Your Query?"/>
+                    <button type="submit" class="btn btn-group btn-success" style="width:100%; margin-top:5px;">Submit</button>
+                </form>
+            </div>
+        </div>
+
+                                        <!-- student queries -->
+
+                                            <!--college feed column starts here-->
+        <div class="row" id="coll-feed" ng-controller="StudentDashCtrl" ng-if="currentLocation === 'dashboard' && collegePost.length>0">
+            <h3>College Feeds</h3>
+            <div class="single_post" ng-repeat="(postId,postData) in collegePost">
+                <a href="#/college-profile/{{postData.collegeuid}}"><p><strong>{{postData.collegename | titleCase}}</strong></p></a>
+                <div class="featured_image">
+                    <a href="{{postData.sharingUrl}}"><img src="{{postData.featuredImage}}" class="img-responsive" style="height:60px; width:70px;" /></a>
+                </div>
+                <div class="summary_content">
+                    <a href="{{postData.sharingUrl}}"><p><strong>{{postData.postTitle | titleCase}}</strong></p><p class="wrapCollegeFeed">{{postData.shortDescription}}</p></a>
+                    <span style="color:orange; float:right; font-size:12px;">{{postData.postDate | convert}}</span>  
+                </div>
+            <br clear="all"/>
+            </div>
+            <div class="col-sm-12" style="text-align:center" ng-if="totalCollegePosts>4 || totalCollegePosts"><a href="#/all-college-posts" style="color:white;">See All feeds</a></div>
+        </div>
+                                                <!--college feed column ends here-->
+                                                
+                                                
+                                                <!--mentor House Findable starts here-->
+        <!-- <div class="row" id="house_mentors" ng-controller="BlogCtrl" ng-if="currentLocation === 'house'">
+            <h3>Other Mentors</h3>
+            <div class="single_post" ng-repeat="(mentorId,mentorDetail) in mentorDetail" style="border-bottom:1px solid rgba(255, 255, 255, 0.2); padding-bottom:10px;">
+                <div class="featured_image">
+                    <img src="{{mentorDetail.image}}" class="img-responsive" style="height:50px; width:50px; border-radius:50%;" />
+                </div>
+                <div class="summary_content">
+                    <a href="#/author-profile/{{mentorDetail.mentorid}}"><p style="color:black">{{mentorDetail.mentorname}}</p></a>
+                </div>
+                <br clear="all"/>
+            </div>
+        </div> -->
+       
+                                                <!--mentor House Findable ends here-->
+                        
+                        
+        <div class="row" id="most_visited">
+            <h3>Most Viewed</h3>
+            <div class="single_post">
+                <div class="featured_image">
+                    <img src="https://www.filepicker.io/api/file/Flrszl3T9GLs7r3OpqIs" class="img-responsive" style="height:100px; width:100px;" />
+                </div>
+                <div class="summary_content">
+                    <a href="http://www.mymissionadmission.com/#/post/banking-Jz_bDK94MD4dfruLFjs"><p><strong>Banking</strong><br>Banking sector is considered as the backbone of any country’s economy.</p></a>
+                    
+                </div>
+            <br clear="all"/>
+            </div>
+            
+            <div class="single_post">
+                <div class="featured_image">
+                    <img src="https://www.filepicker.io/api/file/0gJXGATXR8Whz1AhFAB1" class="img-responsive" style="height:100px; width:100px;"/>
+                </div>
+                <div class="summary_content">
+                    <a href="http://www.mymissionadmission.com/#/post/3d-architecture-Jz_X6TtTcKmF-Iax49b">
+                     <p><strong>3D-Architecture</strong>
+                    With the world going digital, architectural industry has accepted the rise of technological advancement.</p>   
+                    </a>
+                </div>
+            <br clear="all"/>
+            </div>
+        </div>
+    </div>
+                                        <!-- right Sidebar ends Here -->
+</div>
+                                        <!-- Main content Div Ends Here -->

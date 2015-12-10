@@ -1,0 +1,134 @@
+<div class="row" ng-init="toTheTop()">
+
+    <nav class="about-top-nav_position about-top-nav_style  about-top-nav scrollFixed navbar navbar-default blue ">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#about-nav" class="pull-left about-collapse-button_style navbar-toggle collapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="_about-icon icon-bar"></span>
+                    <span class="_about-icon icon-bar"></span>
+                    <span class="_about-icon icon-bar"></span>
+                </button>
+            </div> <!-- END OF NAVBAR HEADER -->
+
+            <div class="collapse about-navbar-collapse navbar-collapse" id="about-nav">
+                <ul class="nav _navbar-nav navbar-nav navbar-right " style="padding-right:60px;">
+                    <li id="aboutBtn">
+                      <a ng-href='#/about?tab=about' class="current">About Us</a>
+                    </li>
+                    <li id="termBtn">
+                      <a ng-href='#/about?tab=terms' >Terms</a>
+                    </li>
+                    <li id="priBtn">
+                      <a ng-href='#/about?tab=privacy' >Privacy</a>
+                    </li>
+                    <!-- <li id="feedBtn">
+                      <a ng-href='#/about?tab=feedback' >Feedback</a>
+                    </li> -->
+                    <li id="contBtn">
+                      <a ng-href="#/contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>  <!-- END OF NAVBAR CONTENT -->
+
+
+        </div>
+    </nav>  <!-- END OF SECONDARY NAVBAR -->
+
+</div>
+
+<div ng-controller="mapController" class="map-cont" onmousedown="formGo(true)">
+ <map id="mapElem" zoom="16" 
+   center="[28.621398,77.081163]"
+   disable-default-u-i="false"
+   disable-double-click-zoom="false"
+   draggable="true"
+   draggable-cursor="pointer"
+   dragging-cursor="move"
+   keyboard-shortcuts="false"
+   max-zoom="19"
+   min-zoom="14"
+   tilt="45"
+   map-type-id="TERRAIN"
+   on-drag="onDrag();">
+   <marker
+   id="markerID"
+   position="[28.621398,77.076163]"
+   title="Anhad Edutrain"
+   animation="Animation.DROP"
+   draggable="false"
+   visible="true"
+   icon="images/logo_50x50.png"
+   on-click="showInfoWindow(event, 'infoWindowID')"></marker>
+   <info-window id="infoWindowID" visible-on-marker="markerID" ng-="">
+    <div ng-non-bindable>
+      <div id="mapAddressInfoBox"><b>MY MISSION ADMISSION</b><br>WZ-10C, A2 Janakpuri (Opp. Gurudwara),<br>Near Mata Chanan Devi Hospital,<br>New Delhi-110058</div>
+    </div>
+  </info-window>
+  <custom-control id="mma-button" position="LEFT" index="1" on-click="setMapCenterToMarker()">
+    <div id="mapPanButton"><img src="images/logo_50x50.png" width="25" height="25"></div>
+  </custom-control>
+ </map>
+</div>
+
+<!-- SCROLL DIRECTIVE -->
+<div scroll-directive></div><!--  data-elems=".contact-cont:p^m^t" data-target-scroll=".map-cont" data-target-class="" data-offset-elem=".contact-cont" data-extra-offset="100"></div> -->
+
+<div class="contact-cont sss">
+  <i id="arrowIconContactUs" class="fa fa-chevron-right fa-2x" onclick="formGo(false)"></i>
+  <div class="about-main-content-div">
+      <h1 class="text-center contact-title">Contact Us</h1>
+      <div class="title-seperator"></div>
+      <div class="row">
+         
+          <form ng-submit="sendContactMessage();"  class="contact-form">
+            <div class="field-container">
+              <input type="text" class="input" required ng-model="contact.name" name="name" placeholder="Name" />
+            </div>
+            <div class="field-container">
+              <input type="email" class="input" required ng-model="contact.email" name="email" placeholder="Email" />
+            </div>
+            <div class="field-container">
+             <input type="text" ng-model="contact.number" required pattern="[0-9]{3}-?[0-9]{6,12}$" maxlength=11 title="Phone number must be atleast 9 digits long" oninput="this.setCustomValidity('')"  placeholder="Mobile Number" class="input">
+            </div>
+            <div class="field-container">
+              <textarea class="input text-area" required ng-model="contact.message" name="message" placeholder="Your Message"></textarea>
+            </div>
+            
+            <div class="col-md-6  pull-right btn-contact-container">
+              <button class="btn btn-lg btn-primary btn-block btn-contact" ng-disabled="conatact.name == null && conatact.email == null && contact.message == null && contact.number == null" type="submit">Send Message</button>
+            </div>
+
+          </form>
+
+      </div>
+
+       <div style="color:green" ng-if="sendMessageSuccessfull == 'Done'">
+             <center>  <h4>Your message has been sent. We will get back to you with a reply soon.</h4> </center>
+            </div>
+            <div style="color:red" ng-if="sendMessageSuccessfull == 'Not Done'">
+             <center>  <h4>something went wrong. Your message was not sent.</h4> </center>
+            </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+     function formGo(mapClick){
+          var arrowIcon=$('#arrowIconContactUs');
+          var contactForm=$('.contact-cont');
+          if(arrowIcon.hasClass('fa-chevron-right')){
+               arrowIcon.addClass('fa-chevron-left');
+               arrowIcon.removeClass('fa-chevron-right');
+               contactForm.css('right','-38%');
+          }
+          else
+          if(arrowIcon.hasClass('fa-chevron-left')){
+               if(mapClick!==true){
+                    arrowIcon.addClass('fa-chevron-right');
+                    arrowIcon.removeClass('fa-chevron-left');
+                    contactForm.css('right','0');
+               }
+          }
+     }
+</script>

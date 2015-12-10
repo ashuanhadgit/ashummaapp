@@ -1,0 +1,425 @@
+<script>
+
+
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var div_top = $('#timelineNav').offset().top;
+    if (window_top > div_top) {
+        $('#sticky').addClass('stick');
+    } else {
+        $('#sticky').removeClass('stick');
+    }
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
+
+
+</script>
+<style>
+
+#sticky.stick {
+    position: fixed;
+   right:0;
+   top:80px;
+    z-index: 10000;
+   
+}
+@media (max-width:767px)
+{
+	#sticky.stick {
+    position: inherit;
+   
+   
+}
+}
+
+</style>
+<div id="container" class="diply-mobile">
+            <div id="timelineContainer">
+            
+               <!-- timeline background -->
+                    <div id="timelineBackground">
+                    <a href="#/student-college-search"><span class="glyphicon glyphicon-arrow-left back-dash" style="color:red"></span></a>
+                    <img lazy-src="{{college.collegephoto}}" style="margin-top: -275;width:100%">
+                    </div>
+                  <!-- timeline background -->
+                    <!--<div id="timelineShade">
+                    <form id="bgimageform" method="post" enctype="multipart/form-data" action="image_upload_ajax.php">
+                    <div class="uploadFile timelineUploadBG">
+                    <input type="file" name="photoimg" id="bgphotoimg" class=" custom-file-input" original-title="Change Cover Picture">
+                    </div>
+                    </form>
+                    </div>-->
+            
+                <!-- timeline profile picture -->
+                    <div id="timelineProfilePic">
+                        <img lazy-src="{{college.collegephoto}}" style="width:190px; border-radius:8px; height:200px;"/>
+                    </div>
+            
+            
+            
+            	<!-- timeline nav -->
+                    <div id="timelineNav">
+                                <div class="col-lg-3">
+                                </div>
+                                
+                                <div class="col-lg-9">
+                                    <!-- timeline title -->
+                                    <div id="timelineTitle">{{college.collegename}}</div>
+                                </div>
+                    </div>
+            
+            </div>
+            <br clear="all"/>
+            <toaster-container toaster-options="{'time-out': 6000, 'position-class': 'toast-bottom-right'}"></toaster-container> 
+            <!--Time Line Feed and Other Div-->
+            	
+                	<!--Div for Right Side Blank Space-->
+                    	<div class="col-lg-1">
+                        </div>
+            
+            		<!--Div for Right Side Blank Space Ends Here-->
+                    
+                    
+                    <!--Div for Right Side Info -->
+                    	<div class="col-lg-2" id="college-detail" ng-init="getfollowers(college.$id); toTheTop();  seeCollegeFeed(college.$id);">
+                        	<button style="width:100%;    margin: 10px 0px;" type="button" ng-if="following === 'no'" class="btn btn-group btn-primary btn-md" ng-click="followCollege(college.$id); trackEvent('College Profile Page', 'Followed '+college.collegename+' College', 'Following College')"><i class="fa fa-user-plus" ></i>&nbsp;Follow Us</button>
+                            
+                       		<button style="width:100%;    margin: 10px 0px;" type="button" ng-if="following === 'yes'" ng-mouseenter="changeText()" ng-mouseleave="resetText()" ng-click="unfollowCollege(college.$id); trackEvent('College Profile Page', 'Unfollowed '+college.collegename+' College', 'Unfollowing College')" ng-class="hover ? 'btn btn-group btn-danger btn-md' : 'btn btn-group btn-success btn-md'"><i ng-if="hover ===false" class="fa fa-check-square-o"></i><i ng-if="hover ===true"class="fa fa-times"></i>&nbsp;{{text}}</button>
+                            
+                            <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;<b>Affiliated To:</b>&nbsp;{{college.collegeaffiliation}}</p>
+                            
+                            <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp;&nbsp;{{college.collegecity}}, {{college.collegestate}}</p>
+                            
+                            <p><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;&nbsp;<a href="http://{{college.collegewebsite}}">{{college.collegewebsite}}</a></p>
+                            
+                            <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp;&nbsp;{{college.collegeaddress}}</p>
+                            
+                            <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;&nbsp;{{college.counselloremail}}</p>
+                            
+                            
+                        </div>
+            
+            		<!--Div for Right Side Info Ends Here-->
+                    
+                    
+                    
+                    <!--Div For Middle Column Containing College News and Other-->
+                    	
+                    	<div class="col-lg-6 col-sm-12 tweets shiva">
+                        
+							<!--Top Nav in Feed Column-->                        	
+                        	
+                                <div class="col-lg-12 top-nav-feed" >
+                                	
+                                    <ul class="nav nav-pills">
+                                          <li class="active" ng-click="trackEvent('College Profile Page', 'Clicked meet the counsellor button for '+college.collegename, 'Meet the counsellor Button')"><a data-toggle="pill" data-target="#meetcounsellor">Meet The Counsellor</a></li>
+                                          <li ng-click="trackEvent('College Profile Page', 'Clicked College News button for '+college.collegename, 'College News Button')"><a data-toggle="pill" data-target="#collegenews">College News</a></li>
+                                          <li ng-click="getCollegeUpcommingWebinars(college.$id); getCollegeCompletedWebinars(college.$id); trackEvent('College Profile Page', 'Clicked Webinar button for '+college.collegename, 'Webinar Button')"><a data-toggle="pill" data-target="#webinars">Webinars</a></li>
+                                    </ul>	
+                                                                
+                                
+                                </div>
+                    			<!--Top Nav in Feed Column Ends HEre-->
+                                
+                                <!--Div For Showing Feed Counsellor Video and Webinars-->
+                                	<div class="tab-content">
+                                    
+                                    	<!--Meet The Consellor Video Div-->
+                                        	<div class="col-lg-12 tab-pane fade in active" id="meetcounsellor">
+                                            	
+                                              <!-- timeline title -->
+                                    			<div id="timelineTitle">{{college.collegename}}</div>  
+                                            
+                                              <iframe ng-if="college.collegename && !college.MTC_Video_URL" style="width:100%; height:382px; padding: 10px 0px;" src="https://www.youtube.com/embed/FXh6tuXPXGU" frameborder="0" allowfullscreen></iframe>
+
+                                              <iframe ng-if="college.MTC_Video_URL" style="width:100%; height:382px; padding: 10px 0px;" ng-src="{{trustMTCSrc(college.MTC_Video_URL)}}" frameborder="0" allowfullscreen></iframe>
+                                                
+                                                <h3>Courses We Offer: </h3>
+                                                	
+                                                    <h5><b ng-if="college.coursesofferedUG"> Undergraduate Programs: </b></h5>
+                                                    <span ng-repeat="ug in college.coursesofferedUG | limitTo:college.coursesofferedUG.length-1" >
+                                                      <span>{{ugCourses[ug]+','}}</span>
+                                                    </span>
+                                                      <span>{{ugCourses[college.coursesofferedUG[college.coursesofferedUG.length-1]]}}</span>
+                                                    <h5>
+                                                      
+                                                        <b ng-if="college.coursesofferedPG"> Postgraduate programs: </b>
+                                                      
+                                                    </h5>
+                                                    <span ng-repeat="pg in college.coursesofferedPG | limitTo:college.coursesofferedPG.length-1" >
+                                                      <span>
+                                                        {{pgCourses[pg]+','}}
+                                                      </span>
+                                                    </span>
+                                                      <span>
+                                                        {{pgCourses[college.coursesofferedPG[college.coursesofferedPG.length-1]]}}
+                                                      </span>
+                                                	<br clear="all"/>
+                                                    <br/>
+                                        	</div>
+                                    	<!--Meet The Counsellor Video Div-->
+                                        
+                                        <!--College Feed Div-->
+                                       		<div class="col-lg-12 tab-pane fade" id="collegenews" style="padding:0px;"> 
+                                                <h4 style="color:green" ng-if="collegePost.length=== 0"><strong><center>College has not posted any news yet.</center></strong></h4>		
+                                                <div class="col-lg-12 col-md-12 col-sm-12 mma_post_summary"  ng-repeat="(postId,postData) in collegePost | orderBy:'postNumber' : true">
+                                                  <div class="col-lg-12">
+                                                    <header style="margin-bottom:20px;">
+                                                      <h3 ng-click="trackEvent('College Profile Page College News Section','User Viewed College News of '+college.collegename,'College Post')"><a href="#/post/{{postData.$id}}" style="cursor:pointer; color:black;">{{postData.postTitle}}</a></h3>
+                                                      <p class="row" id="post_meta">
+                                                        <span style="float:left;">By {{postData.collegename}} | <a href="#/view-monthly-post/{{postData.postDate}}" title="View posts of this month">{{postData.postDate | convert}}</a></span>
+                                                        <span style="float:right;">{{postData.comments}} Comments</span>
+                                                        <br clear="all">
+                                                      </p>
+                                                    </header>
+                                        
+                                                    <div class="entry_summary">
+                                                        <!--Feature Image Div-->
+                                                          <div class="featured_image">
+                                                              <a href="#/post/{{postData.$id}}" style="cursor:pointer">
+                                                              <img lazy-src="{{postData.featuredImage}}" class="img-responsive"/></a>
+                                                            </div>
+                                                        <!--Feature Image Div Ends here-->
+                                                        <!--Summary Content -->
+                                                            <div class="summary_content">
+                                                              <p>{{postData.shortDescription}}<a ng-click="trackEvent('College Profile Page College News Section','User Viewed College News of '+college.collegename,'College Post')" href="#/post/{{postData.$id}}" style="cursor:pointer">Read More »</a></p>
+                                                            
+                                                            </div>
+                                                        <!--Summary Content Ends here-->    
+                                                        <br clear="all"/> 
+                                                </div>
+                                                <br clear="all"/>
+                                                                            <!--social sharer buttons-->
+                                                    <div class="row" id="sharebar">
+                                                      <div class="fb-share-button" data-href="{{postData.sharingUrl}}" data-layout="button_count"></div>
+                                                      <a href="https://twitter.com/share" class="twitter-share-button" data-via="My Mission Admission">Tweet</a>
+                                                      <div style="width:95px; float:left;">
+                                                          <div class="g-plus"  data-action="share" data-annotation="bubble" data-height="24"></div>
+                                                      </div>
+                                                    </div>
+                                                                    <!--social sharer buttons ends here-->           
+                                                  </div>
+      									                        </div>
+                                      </div>  
+                                        <!--College Feed Div Ends Here-->
+                                        
+                                        <!---College Webinars Div-->
+                                        	<div class="col-lg-12 tab-pane fade" id="webinars" style="padding:0px;">
+                                            	<ul class="nav nav-pills" style="padding:10px;">
+                                                  <li ng-click="trackEvent('College Profile Page College Webinar Section','User Clicked Upcoming Webinar of '+college.collegename,'College Upcoming Webinar')" class="active"><a data-toggle="pill" data-target="#upcomingwebinars">Upcoming Webinars</a></li>
+                                                  <li ng-click="trackEvent('College Profile Page College Webinar Section','User Clicked Completed Webinar of '+college.collegename,'College Completed Webinar')"><a data-toggle="pill" data-target="#compeletedwebinars">Completed Webinars</a></li>
+                                                  <li ng-click="trackEvent('College Profile Page College Webinar Section','User Clicked Request A Webinar of '+college.collegename,'College Request A Webinar')"><a data-toggle="modal" data-target="#request_modal">Request A Webinar</a></li>
+                                                  
+                                   			 	</ul>
+                                              <div class="tab-content">  
+                                                <div class="col-lg-12 tab-pane fade in active" id="upcomingwebinars" style="margin-bottom:10px;">
+                                                  <h4 style="color:green" ng-if="collegeUpcommingWebinar.length=== 0"><strong><center>No currently upcomming webinars.</center></strong></h4> 
+                                                	<div class="col-lg-12 "  id="upcoming_webinars_block" ng-repeat="(webinarId, webinar) in collegeUpcommingWebinar | orderBy:'webinarId' : true">
+                                                          <h3>{{webinar.webinarTopic | titleCase}}</h3>
+                                                            <span class="tag">
+                                                              <img lazy-src="../images/upcoming-tag.png" alt="upcoming">
+                                                            </span>
+                                                            <p style="margin-bottom:0px; color:#444; font-size:12px; padding-left:10px;"><b>{{webinar.mentorName | titleCase}}</b></p>
+                                                            <div class="webinar-ur-pic" style="width:30%; padding:7px; float:left;" >
+                                                              <img class="img-circle" lazy-src="{{webinar.mentorPhoto}}" style="height:80px; width:80px;"/>
+                                                            </div>
+                                                            <div class="date-tym" style="width:70%; padding:7px; float:left;">
+                                                              <div style="text-align:center; width:100%; height:80px; border-radius:5px; color:white; background:#237dac;">
+                                                                <div style="width:40%; padding:5px; font-weight:bold; float:left; font-size:24px;"><p style=" font-size:20px;">{{webinar.webinarDate.split(" ")[2]}}</p><p class="ddsa"  style=" font-size:16px;">{{webinar.webinarDate.split(" ")[1]}} {{webinar.webinarDate.split(" ")[0]}}</p></div>
+                                                                <div style="width:55%; padding:5px; color:#fff; float:left;"><p style="font-size:20px;">{{webinar.webinarTime}}</p></div>
+                                                                <br clear="all"/>
+                                                              </div>
+                                                            </div>
+                                                            <br clear="all"/>
+                                                            <div style="width:100%; height:140px; overflow:auto;">
+                                                                      {{webinar.webinarDescription}}
+                                                            </div>
+                                                             <br clear="all"/>
+                                                             <a ng-click="trackEvent('College Profile Page College Upcoming Webinar Section','User Clicked Book Your Seat Button For Webinar Titled: '+webinar.webinarTopic,'College Book A Webinar Button')" ng-href="#/view-webinar/{{webinar.webinarTopic}}:{{webinar.webinarId}}"> <button type="button" class="btn btn-group btn-success btn-sm" style="width:100%;">Book your seat</button>  </a>
+                </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-12 tab-pane fade" id="compeletedwebinars">
+                                                  <h4 style="color:green" ng-if="collegeUpcommingWebinar.length=== 0"><strong><center>College has not completed any webinars yet.</center></strong></h4> 
+                                                	<div style="width:100%; height:auto;margin-bottom:10px;"  ng-repeat="(webinarId, webinar) in collegeCompletedWebinar">
+                                                        <div class="col-lg-12"  id="upcoming_webinars_block" ng-if="showCompletedVideo[webinarId]!=='yes'">
+                                                    <h3>{{webinar.webinarTopic | titleCase}}</h3>
+                                                    <span class="tag">
+                                                      <img lazy-src="../images/completed-tag.png" alt="upcoming">
+                                                    </span>
+                                                    <p style="margin-bottom:0px; color:#444; font-size:12px; padding-left:10px;"><b>{{webinar.mentorName | titleCase}}</b></p>
+                                                    <div style="width:30%; padding:7px; float:left;">
+                                                      <img class="img-circle" lazy-src="{{webinar.mentorPhoto}}" style="height:80px; width:80px;"/>
+                                                    </div>
+                                                    <div style="width:70%; padding:7px; float:left;">
+                                                      <div style="text-align:center; width:100%; height:80px; border-radius:5px; color:white; background:#237dac;">
+                                                          <div style="width:40%; padding:5px; font-weight:bold; float:left; font-size:24px;"><p style=" font-size:20px;">{{webinar.webinarDate.split(" ")[2]}}</p><p style=" font-size:16px;">{{webinar.webinarDate.split(" ")[1]}} {{webinar.webinarDate.split(" ")[0]}}</p></div>
+                                                          <div style="width:55%; padding:5px; color:#fff; float:left;"><p style="font-size:20px;">{{webinar.webinarTime}}</p></div>
+                                                          <br clear="all"/>
+                                                      </div>
+                                                    </div>
+                                                    <br clear="all"/>
+                                                    <div style="width:100%; height:140px; overflow:auto;">
+                                                              {{webinar.webinarDescription}} 
+                                                    </div>
+                                                    <br clear="all"/>
+                                                    <button  type="button" class="btn btn-group btn-warning btn-sm" style="width:100%; margin-right:2%; float:left; font-size:14px;" ng-click="watchVedio(webinarId, webinar.liveStreamURL); trackEvent('College Profile Page College Completed Webinar Section','User Clicked Watch Video Button For Webinar Titled: '+webinar.webinarTopic,'College Completed Webinar Watch Video Button')"><i class="fa fa-youtube-play fa-lg"></i> Watch Video</button>
+                                                    <br clear="all">
+              </div>
+              
+                                                <!-- Video div -->
+          <div class="col-lg-12" id="upcoming_webinars_block" ng-if="showCompletedVideo[webinarId]=='yes'">
+          <h3>{{webinar.webinarTopic | titleCase}}</h3>
+            <span class="tag">
+              <img lazy-src="../images/completed-tag.png" alt="upcoming">
+            </span>
+            <iframe style="width:100%; height:286px;" ng-src="{{trustSrc(videoURL[webinarId].src)}}" frameborder="0" allowfullscreen></iframe>
+            <h4>{{trustSrc(videoURL.src)}}</h4>
+            <button  type="button" class="btn btn-group btn-warning btn-sm" style="width:100%; margin-right:2%; float:left; font-size:14px;" ng-click="stopVedio(webinarId); trackEvent('College Profile Page College Completed Webinar Section','User Clicked Stop Video Button For Webinar Titled: '+webinar.webinarTopic,'College Completed Webinar Stop Video Button')"><i class="fa fa-youtube-play fa-lg"></i> Stop Video</button>
+            <br clear="all">
+          </div>
+          
+             <br clear="all">
+                                         </div>       
+                                                </div>
+                                             
+                                                
+                                                </div>
+                                            
+                                            </div> 	
+                                        
+                                         <!---College Webinars Div Ends Here-->
+                                        
+                                    </div>
+                                <!--Div For Showing Feed Mentor Video and Webinars Ends Here-->
+                                
+                                    
+                    	</div>
+                    <!--Div For Middle Column Containing College News and Other Ends-->
+                    
+                    
+                    <!--Div For Right Side Column Showing Counseling session Detail-->
+                    	
+                        <div class="col-lg-3 col-sm-12 bk-consel" id="sticky">
+                    		<div class="col-lg-12 tweets">
+                            	<div class="col-lg-12 top-nav-feed" style="background:#237dac; border-top-left-radius:5px;border-top-right-radius:5px;">
+                                	<p style="margin: 0px;font-size: 25px;padding-bottom: 5px; color:#fff;">Book a Counselling Session</p>
+                                </div>
+                                
+                                <div class="col-lg-12" style="padding:10px;">
+                                      <div ng-show="sessionExists == true">
+                                        <div class="container-fluid">
+                                          <table class="table" style="color:black">
+                                            <tbody>
+                                              <tr>
+                                                <td>Session Date :</td>
+                                                <td>{{queryy.sessiondate}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Session Time :</td>
+                                                <td>{{queryy.sessionhour}}:{{queryy.sessionminute}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Session Query :</td>
+                                                <td>{{queryy.studentquery}}</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                      <form name="sessionbooking" ng-submit="bookSession(dt,mytime,college.$id ,user.profile.studenturlid,college.collegeurlid, user.profile.emailverificationstatus , user.profile.sessions, user.profile.studentstatus); trackEvent('College Profile Page College Counselling Section','User Named ' +user.profile.studentname+ ' Booked A Counselling Session With: '+college.collegename,'College Book Counselling Session Button')" ng-hide = "userc.profile.profiletype=='college' || usera.profile.profiletype=='admin' || sessionExists == true">
+                                      <div class="col-lg-10" style="padding:0px;">
+                                            <input style="font-size:10px;" type="text" class="form-control" id="date-ip" datepicker-popup="dd-MM-yyyy" ng-model="dt" is-open="opened" format-month="MMMM" min-date="minDate" max-date="'2015-12-31'" show-button-bar="false" date-disabled="null" ng-required="true" close-text="Close" placeholder="" />
+                                       </div>
+                                        <div class="col-lg-2" style="padding:0px;">
+                                            <span show-weeks="false">
+                                              <button type="button" class="btn btn-default date-btn" id="date-btn" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>  
+                                          <center><timepicker id="timepicker" ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="1" show-meridian="false"></timepicker></center>
+                                        
+                                        <textarea style="margin-bottom : 10px; height: 100px !important;" name="query" ng-model="user.query" class=" form-control textarea-bookSession" rows="7" required value="Your Query" placeholder="Your Query" ></textarea>
+                                        <button  ng-if="user.profile.emailverificationstatus === 'true'"style="width:100%;" type="submit" class="btn btn-sm btn-primary ">Book Session</button>
+                                        <button style="width:100%;" ng-if="user.profile.emailverificationstatus === 'false'" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" type="button">Book Session</button>
+                                        <div class="row" ng-if = "submitsuccesstext">
+                                          <h5 style="color:green"><strong> Congratulations! </strong> You have successfuly booked the session with {{college.collegename}}. </h5>
+                                        </div>
+                                      </form>
+       
+                                </div>
+                                	
+                            </div>
+                    	</div>
+                    <!--Div For Right Side Column Showing Counseling session Detail-->
+                    
+                    <!--Email Verification Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h4> Please verify your email to book session from college. </h4>
+                          <button type="buttom" ng-click="resendemail()" class="btn btn-sm btn-primary ">Send Verification Link</button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+            <!--Time Line Feed and Other Div Ends Here-->
+</div>
+
+<!-- Reusting Webinar Modal -->
+
+<div class="modal fade" id="request_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title " id="myModalLabel">Request A Webinar </h4>
+      </div>
+      <div class="modal-body choose-web">
+        <div class="row">
+          <h2><b>Choose a webinar topic</b></h2>
+          <div class="row" style="padding-left: 1.1em;">
+                    <!-- <table class="table"> -->
+                    <h4 ng-if="college.coursesofferedUG"><i><b>Webinar For Undergraduate Programs: </b></i></h4>
+                    <span  ng-repeat="ug in college.coursesofferedUG | limitTo:college.coursesofferedUG.length" >
+                      <span><input type="radio" value="{{ugCourses[ug]}}" ng-change="user.pgselect = null" ng-model="user.ugselect" name="name"  title="Please Select your Topic" /> &nbsp; {{ugCourses[ug]}}<br></span> 
+                    </span>
+                    <h4>
+                      <i>
+                        <b ng-if="college.coursesofferedPG">Webinar For Postgraduate Programs: </b>
+                      </i>
+                    </h4>
+                    <span ng-repeat="pg in college.coursesofferedPG | limitTo:college.coursesofferedPG.length" >
+                      <span>
+                        <input type="radio" value="{{pgCourses[pg]}}" ng-change="user.ugselect = null" ng-model="user.pgselect" name="name"  title="Please Select your Topic" /> &nbsp;{{pgCourses[pg]}}<br>
+                      </span>
+                    </span>
+                    <br/>
+                    <h4><strong>Describe your topic of interest:</strong></h4>
+                    <input class="form-control" type="text" ng-model="user.webinarrelated" placeholder="Detailed description of your chosen topic" >
+                    <br/>
+                    <span><h5><strong style="color:red">{{empty}}</strong></h5></span>
+              </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="checkWebinarRequest(user.ugselect,user.pgselect,user.webinarrelated); trackEvent('College Profile Page Request A Webinar Section','User Named ' +user.profile.studentname+ ' Requested A Webinar On: ' +user.ugselect+ '/' +user.pgselect+ '/' +user.webinarrelated+ ' With: '+college.collegename,'College Request A Webinar Button')">Request Webinar</button>
+      </div>
+    </div>
+  </div>
+</div>

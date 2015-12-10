@@ -1,0 +1,52 @@
+		<div ng-include="'views/student-left-sidebar.html'" ng-init="toTheTop(); getAllPosts()"></div>
+      	<div class="col-lg-2 col-md-2 col-sm-2"></div>
+        
+ <toaster-container toaster-options="{'time-out': 6000, 'position-class': 'toast-bottom-right'}"></toaster-container>         
+        <!--Middle Column-->
+        
+        	<div class="col-lg-7 col-md-7 col-sm-7" id="mma_student_middlecol" style="float:none; margin:0 auto;">
+
+       <br clear="all"/>
+
+        <div class="row student-dashboard-dash-verify-row" ng-if="user.profile.emailverificationstatus === 'false'" style="height: 56px; width: 100%; float: right; margin-bottom: 17px; font-size:12px;">
+          <div class="col-sm-10">
+            <i class="fa fa-bell"></i> &nbsp;&nbsp; Your email address has not been verified.
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-primary main-page-feature-first-signup-btn_border main-page-feature-first-signup-btn" ng-click="resendemail()">Verify</button>
+          </div>
+        </div>
+        
+       
+
+
+        <h3>Account Settings</h3>
+        <hr>
+        <!--Post Summary Structure-->
+
+        <div class="col-lg-12 col-md-12 col-sm-12" id="mma_post_summary" ng-controller="StudentDashCtrl">
+          <div class="col-lg-12">
+          <form name="forma" ng-submit="changeStudentPassword()">
+            <h4>Change Your Password Here!</h4>
+            <hr />
+            <p style="color:green; font-size:16px;padding:7px 0px;">{{message}}</p>
+            <h5>Old Password:</h5>
+            <input name="password" type="password" required oninvalid="this.setCustomValidity('Password cannot be blank')" oninput="this.setCustomValidity('')" ng-model="user.oldpassword" placeholder="Old Password" class="form-control noborder">
+            <h5>New Password:</h5>
+             <input name="password" type="password" required oninvalid="this.setCustomValidity('Password cannot be blank')" oninput="this.setCustomValidity('')" ng-model="user.resetpassword" placeholder="New Password" class="form-control noborder">
+            <h5>Confirm New Password:</h5>
+            <input name="confirm_password" type="password" required ng-model="user.confirm_password" placeholder="Confirm New Password" class="form-control noborder" ui-validate=" '$value==user.resetpassword' " ui-validate-watch=" 'user.confirm_password' ">
+            <br class="all"/>
+            <p ng-show="forma.user.confirm_password.$dirty && forma.user.confirm_password.$error.validator" style="color:#F30">Password do not match!</p>
+            <button type="submit" ng-click="toTheTop()" ng-disabled="(forma.user.confirm_password.$dirty && forma.user.confirm_password.$error.validator)" class="btn btn-grp btn-primary noborder">Submit</button>
+             <br class="all"/>
+             <br/>
+             <p ng-show="error" class="error-danger">{{error}}</p>
+             
+            </form>      
+          </div>
+        </div>
+
+  </div>
+  
+ <!--Middle Column ends here--->

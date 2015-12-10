@@ -1,0 +1,299 @@
+<div class="row-fluid blue refer-reg" ng-init="toTheTop();">
+  <div class="container-fluid text-center register-maincontainer" ng-init="user.referredBy='';">
+       
+    <div class="col-md-7" >
+       <div class="row-fluid container-fluid content-container" ng-init="checkurl();" >
+            <div class="col-md-12 pull-left text-center register-title">
+                    <h1 class="refer-reg-heding" style="font-family: 'Roboto Condensed', sans-serif;">Sign Up for free and experience <br> MY MISSION ADMISSION today!</h1>
+                    <div class="seperator"></div>
+            </div>          
+        </div>
+        <div class="row-fluid container-fluid container-register" id="reg-student-left-block">
+            <div class="col-md-10 pull-right text-left register-content">
+          
+              <h4>Scholarships</h4>
+              <p >Curabitur nec rhoncus sem. Vestibulum eget elit laoreet, aliquet nunc sed, lacinia enim. Integer quis. </p>
+              <br>  
+              <h4>Career Webinars</h4>
+              <p >Curabitur nec rhoncus sem. Vestibulum eget elit laoreet, aliquet nunc sed, lacinia enim. Integer quis.</p>
+              <br>  
+              <h4>Video Counselling Sessions</h4>
+              <p >Curabitur nec rhoncus sem. Vestibulum eget elit laoreet, aliquet nunc sed, lacinia enim.</p>            
+
+            </div>           
+        </div>
+    </div>  <!-- END OF LEFT CONTENT -->
+  
+
+
+
+    <div class="signup refer-mob-reg col-md-5 col-xs-12 pull-right">
+      <div class="container-fluid">
+        <form name="student_reg" class="form-signin signup-regi" style="min-height: 12em;" ng-submit="register(); toTheTop()">
+
+          <div class="form-signin-div-tobeload" ng-show="modalShown">
+            <i class="fa fa-spinner fa-3x fa-spin"></i>
+          </div>
+           <div class="" ng-if="yourstatus !== 'old'">
+                    <div class="col-md-12" ng-hide=" checkuid == 'user doesnot exists' ">
+                        <h4>Welcome, You are invited by {{ oldstudentname.$value | titleCase }}</h4>
+                        <h4>{{message}}</h4>
+                        <div class="seperator"></div>
+                        <p class="text-center">Register Here to be a part of Mymission Admission</p>
+                    </div>
+            </div>
+            <div class="" ng-if="yourstatus == 'old'">
+                    <div class="col-md-12">
+                        <h4>The invitation Link is not valid please contact to the below mail for any Enquiry</h4>
+                        <h4>{{message}}</h4>
+                        <div class="seperator"></div>
+                        <p class="text-center">Support@mymissionadmissiom.com</p>
+                    </div>
+            </div>
+          <div class="form-signin-div-tobehaze" ng-class="{'form-signin-div-tobehaze show_M': modalShown, 'form-signin-div-tobehaze': !modalShown}" ng-hide="yourstatus == 'old'">
+
+            <h2>SIGN UP</h2>
+             <p ng-show="error" class="text-danger"><strong style="color:red"> Error: {{ error }}</strong></p>
+            <div class="input-group-container">
+          <div class="input-group input-group-lg">
+            <span class="login-inputgroup_style input-group-addon _glyphicon glyphicon glyphicon-user"></span>
+            <input type="text" ng-model="user.studentname"required oninvalid="this.setCustomValidity('Name could not be blank')" oninput="this.setCustomValidity('')" class="login-inputgroup_style form-control" placeholder="Student Name">
+          </div>
+        </div>
+        <div class="input-group-container">
+          <div class="input-group input-group-lg">
+           <span class="login-inputgroup_style input-group-addon _glyphicon glyphicon glyphicon-envelope"></span>
+           <input name="email" type="email" ng-model="user.email" required oninvalid="this.setCustomValidity('Please enter a valid Email Address')" oninput="this.setCustomValidity('')" ng-keydown="clearall()" title='Enter in format abcdef@email.com' class="login-inputgroup_style form-control" id="signupemail" placeholder="Email Address">
+           <p style="margin:1.5px; color:red; font-size: 14px" ng-if="error === 'The specified email address is already in use.'">Someone's already using that email. If that’s you please sign in to proceed.</p>
+          </div>
+        </div>
+        <div class="input-group-container">
+          <div class="input-group input-group-lg">
+           <span class="login-inputgroup_style input-group-addon _glyphicon glyphicon glyphicon-lock"></span>
+           <input name="password" type="password" required oninvalid="this.setCustomValidity('Password cannot be blank')" oninput="this.setCustomValidity('')" ng-model="user.password" class="login-inputgroup_style form-control" placeholder="Create Password">
+          </div>
+        </div>
+        <div class="input-group-container">
+          <div class="input-group input-group-lg">
+           <span class="login-inputgroup_style input-group-addon _glyphicon glyphicon glyphicon-phone"></span>
+           <input type="tel" ng-model="user.studentmobile" required pattern="[0-9]{3}-?[0-9]{6,12}$" maxlength=15 title="Phone number must be atleast 9 digits long"oninput="this.setCustomValidity('')" class="login-inputgroup_style form-control" placeholder="Mobile Number">
+          </div>
+        </div>
+        <div class="col-sm-12 gendr" ng-init="user.gender='Male'">
+          <div class="col-sm-6"> <h4 style="text-align:left; margin-left:1em"> <input type="radio" value= "Male" ng-model="user.gender" name="name" required title="Please Select your Gender"> &nbsp; Male </h4> </div>
+        
+          <div class="col-sm-6"> <h4 style="text-align:left; margin-left:1em" > <input type="radio" value="Female" name="name" ng-model="user.gender" required title="Please Select your Gender" > &nbsp; Female </h4>        </div>
+        </div>
+        <div class="input-group-container term-pri">
+          <p style="font-size: 14px;">By Clicking Register,you agree to the My Mission Admission <a href="#/about?tab=terms" target="_blank"> Terms of Services </a> and <a href='#/about?tab=privacy' target="_blank"> Privacy Policy </a></p> 
+        </div>
+        <button class="btn btn-lg btn-primary btn-block btn-login_style reg-btn" type="submit" ng-disabled="submitbuttondisabled">Register</button>
+
+            <br>
+            <p>Already have an account? <a href="#/login"><strong>Log In</strong></a></p>
+
+             <h5 class="login">
+            </h5>
+          </div>
+        </form>
+      </div>   
+    </div>
+  </div>
+</div>
+
+        <!-- <form action="/account" class="gtm_signup_register_form" id="signup" method="post"><input name="slug" type="hidden" value="www-header" />
+            <div class="form-group"
+>s              <input autocapitalize="off" class="text required form-control input-lg" id="first_name" name="first_name" placeholder="First name" tabindex="1" type="text" value="" />
+            </div>
+            <div class="form-group">
+              <input autocapitalize="off" class="text required form-control input-lg" id="last_name" name="last_name" placeholder="Last name" tabindex="2" type="text" value="" />
+            </div>
+            <div class="form-group">
+              <input autocapitalize="off" class="text required form-control input-lg" id="invitation_email" name="email" placeholder="Email" tabindex="3" type="text" value="" />
+            </div>
+            <div class="form-group">
+              <input autocapitalize="off" class="text form-control input-lg" id="company" name="company" placeholder="Password" tabindex="4" type="text" value="" />
+            </div>
+            <div class="form-group last">
+              <input class="btn btn-primary form-control input-lg" tabindex="5" type="submit" value="Create Free Account" />
+            </div>
+            <p class="tos">Signing up signifies that you have read and agree to the <a href="https://www.heroku.com/policy/tos">Terms of Service</a> and <a href="https://www.heroku.com/policy/privacy">Privacy Policy</a>.</p>
+          </form> -->
+
+
+       
+<!-- <img class="intro-bg" src="../images/intro-bg.jpg" />
+<div class="container auth-forms-dark" ng-init="toTheTop()">
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+            <h2>Register Yourself</h2>
+            <h3>{{ message }}</h3>
+                
+            </center>
+        </div>
+    </div>
+    <hr />
+    <form name="student_reg" ng-submit="register(); toTheTop()">
+    <p ng-show="error" class="text-danger">{{ error }}</p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" ng-model="user.studentname"required oninvalid="this.setCustomValidity('Name could not be blank')" oninput="this.setCustomValidity('')"  placeholder="Name" class="form-control input-lg">
+                
+                <input name="email" type="email" ng-model="user.email" placeholder="Email Address"  required oninvalid="this.setCustomValidity('Please enter a valid Email Address')" oninput="this.setCustomValidity('')" title='Enter in format abcdef@email.com' class="form-control input-lg" ui-validate="{blacklist : 'notBlackListed($value)' }">
+
+                <input name="confirm_email" type="email" ng-model="confirm_email" placeholder="Re-type Email Address"  required class="form-control input-lg" ui-validate=" '$value==user.email' " ui-validate-watch=" 'user.email' ">
+                <div ng-show="student_reg.confirm_email.$dirty && student_reg.confirm_email.$error.validator"><strong style="color:red">Emails do not match!</strong> </div>
+
+                <input name="password" type="password" required oninvalid="this.setCustomValidity('Password cannot be blank')" oninput="this.setCustomValidity('')" ng-model="user.password" placeholder="Create Password" class="form-control input-lg">
+                
+                <input name="confirm_password" type="password" required ng-model="confirm_password" placeholder="Confirm Password" class="form-control input-lg" ui-validate=" '$value==user.password' " ui-validate-watch=" 'user.password' ">
+                <div ng-show="student_reg.confirm_password.$dirty && student_reg.confirm_password.$error.validator"><strong style="color:red">Passwords do not match! </strong></div>
+                
+                <input type="text" ng-model="user.studentmobile" required pattern="[0-9]{3}-?[0-9]{6,12}$" maxlength=15 title="Phone number must be atleast 9 digits long"oninput="this.setCustomValidity('')"  placeholder="Mobile Number" class="form-control input-lg">
+                
+                <input type="text" ng-model="user.fathername" required oninvalid="this.setCustomValidity('Fathers name cannot be blank')" oninput="this.setCustomValidity('')"  placeholder="Father's Name" class="form-control input-lg">
+                
+                <input type="text" ng-model="user.occupation" required oninvalid="this.setCustomValidity('Please enter your Fathers occupation')" oninput="this.setCustomValidity('')"  placeholder="Occupation" class="form-control input-lg">
+                
+                <input type="text" ng-model="user.fathernumber" required pattern="[0-9]{3}-?[0-9]{6,12}$" maxlength=15 title='Phone number must be atleast 9 digits long' oninput="this.setCustomValidity('')" placeholder="Father's Mobile Number" class="form-control input-lg">
+
+                <div class="bord">    
+                  <h4> Please select your gender</h4>
+                  <div ng-repeat="person in gender">
+                  <h4><input type="radio" value="{{person.name}}" ng-model="user.gender" name="name" required title="Please Select your Gender" />&nbsp; {{person.name}}</h4>
+                   </div>  
+                </div>
+                
+                <h3>Academic Records:</h3> 
+                <div class="bord" id="aced_bord">
+                  
+                  <label class="checkbox">
+                    <input type="checkbox" ng-model="user.master12th" ng-required="true" ng-change="user.master12thText=''; message = '' ; uSerA.rolesA = null; uSer.roles = null; user.masterUGText=''; user.masterPGText=''; user.masterUG =''; user.masterPG= ''; user.masterPGText = '' "> 10th
+                   </label>
+                  <input id="checkSlave12th" ng-model="user.master12thText" type="number" ng-required="true" ng-hide="!user.master12th" ng-disabled="!user.master12th" placeholder="Your 10th standard's aggregate marks/ percentage" class="form-control slaveInput" min="0" max="100" ng-keyup=" uSerA.rolesA = null; message = '' ; user.masterPGText = '' ">
+                  
+                  <label class="checkbox">
+                    <input type="checkbox" ng-change="user.masterUGText=''; message = '' ; user.masterPGText= ''; user.masterPG= ''; uSerA.rolesA = null; user.masterPGText = '' " ng-model="user.masterUG" ng-disabled="((!user.master12thText) || (!user.master12th))"> 12th
+                  </label>
+                  <input id="checkSlaveUG" ng-model="user.masterUGText" type="number" ng-hide="((!user.masterUG) || (!user.master12th) || (!user.master12thText))" ng-disabled="((!user.masterUG) || (!user.master12th) || (!user.master12thText))" placeholder="Your 12th standard's aggregate marks/ percentage" ng-keyup=" uSerA.rolesA = null; message = ''; user.masterPGText = '' " class="form-control slaveInput" min="0" max="100">
+                  
+                  <label class="checkbox">
+                    <input type="checkbox" ng-change="uSerA.rolesA = null; message = ''; user.masterPGText = '' " ng-model="user.masterPG" ng-disabled="((!user.masterUGText) || (!user.masterUG) || (!user.master12th) || (!user.master12thText))"> UG
+                  </label>
+                  <input id="checkSlavePG" ng-model="user.masterPGText" type="number" ng-hide="((!user.masterPG) || (!user.masterUGText) || (!user.masterUG) || (!user.master12th) || (!user.master12thText))" ng-disabled="((!user.masterPG) || (!user.masterUGText) || (!user.masterUG) || (!user.master12th) || (!user.master12thText))" placeholder="UG's CGPA / GPA/ Percentile" class="form-control slaveInput" min="0" max="100" ng-keyup=" message = '' ">
+
+
+                
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                <div class="bord container-fluid">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <fp-input ng-model="user.studentphoto" data-fp-button-text="Upload Image" class="btn btn-default btn-lg main-search-btn sel-btn-file" data-fp-apikey="AlHT3QcNWSGCQpTZ3dLn3z" data-fp-mimetypes="image/*" data-fp-multiple="false" data-fp-maxsize="5242880" ng-init="user.studentphoto.url='https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM'" />
+                        </div>
+                        <div class="col-sm-9" style="color:white; text-align:right;" ng-if="user.studentphoto.url!=='https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM'">
+                            File Uploaded Successfully
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bord container-fluid">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <fp-input ng-model="user.studentdocument" data-fp-button-text="Upload Document" class="btn btn-default btn-lg main-search-btn sel-btn-file" data-fp-apikey="AlHT3QcNWSGCQpTZ3dLn3z" data-fp-mimetypes="image/*,application/msword,application/pdf,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" ng-init="user.studentdocument.url='https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM'" data-fp-multiple="false" data-fp-maxsize="5242880"/>
+                        </div>
+                        <div class="col-sm-9" style="color:white; text-align:right;" ng-if="user.studentdocument.url!=='https://www.filepicker.io/api/file/zEAoaiVbRRW0HrtJApxM'">
+                            File Uploaded Successfully
+                        </div>
+                    </div>
+                </div>    
+                <div class="no-bord">
+                    <button type="button" class="btn btn-default btn-lg main-search-btn btn-block sel-btn" data-toggle="modal" data-target=".bs-example-modal-1" ng-hide="!user.master12th" ng-show="((!user.masterPG) || (!user.masterPGText))" ng-click =" message = ''; uSerA.rolesA = []" >Select UG Courses</button>
+                </div>
+                <div class="no-bord">   
+                    <button type="button" class="btn btn-default btn-lg main-search-btn btn-block sel-btn" data-toggle="modal" data-target=".bs-example-modal-2" ng-hide="((!user.masterPG) || (!user.masterPGText)  || (!user.masterUGText) || (!user.masterUG) || (!user.master12th) || (!user.master12thText))" ng-click= " message = '' " >Select PG Courses</button>
+                </div>
+                </div>
+                <textarea ng-model="user.studentabout" placeholder="About Myself" class="form-control" rows="7"></textarea>
+                
+                <input type="text" ng-model="user.studentfacebook" placeholder="Facebook Profile Link" class="form-control input-lg">
+                <input type="hidden" ng-model="user.profiletype" ng-init="user.profiletype='student'" class="form-control" >
+                <input type="hidden" ng-model="user.studentAvailability" ng-init="user.studentAvailability='offline'" class="form-control"><br>
+                <input type="hidden" ng-model="user.studentstatus" ng-init="user.studentstatus='notverified'" class="form-control"><br>
+                <input type="hidden" ng-model="user.emailverificationstatus" ng-init="user.emailverificationstatus='false'" class="form-control"><br>
+                <input type="hidden" ng-model="user.referredBy" ng-init="user.referredBy='nobody'"  class="form-control"><br>
+
+
+                <div re-captcha ng-model="user.captcha"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                
+            </div>
+            <div class="col-md-4">
+                <input type="submit" value="Register" class="btn btn-success btn-lg pull-right btn-block" ng-disabled="submitbuttondisabled"/>
+            </div>
+        </div>
+        <hr />
+    </form>
+</div>
+
+<modal-dialog show='modalShown'>
+    <div class="container-fluid">
+        <div class="row">
+            <center>
+                <i class="fa fa-spinner fa-5x fa-spin"></i>
+            </center>
+        </div>
+        <div class="row">
+            <center>
+                <h4> Registering.. </h4>
+            </center>
+        </div>
+    </div>
+</modal-dialog>
+
+<- MODALS CONTENT -->
+
+<!-- <div class="modal fade bs-example-modal-1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Select Undergraduate Courses</h4>
+            </div>
+            <div class="modal-body">
+                <label class="checkbox" ng-repeat="role in roles">
+                    <input type="checkbox" checklist-model="uSer.roles" checklist-value="role.id"> {{role.text}}
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-primary" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Done</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Select Postgraduate Courses</h4>
+            </div>
+            <div class="modal-body">
+                <label class="checkbox" ng-repeat="roleA in rolesA">
+                    <input type="checkbox" checklist-model="uSerA.rolesA" checklist-value="roleA.idA"> {{roleA.textA}}
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-primary" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Done</span></button>
+            </div>
+        </div>
+    </div>
+</div> -->

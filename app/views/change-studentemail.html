@@ -1,0 +1,66 @@
+<div class="container-fluid search-page ex-pad" ng-init="toTheTop()">
+<div class="theme-container">
+   
+    <div class="row">
+
+      <div class="container-fluid">
+        <div class="col-xs-6 pull-left">
+          <h3 class="pull-left"> <a href="#/dashboard-admin#top"><i data-toggle="tooltip" data-placement="bottom" title="Back" class="fa fa-arrow-circle-o-left fa-lg back-ico"></i></a> &nbsp; Change Students's Email<h3>
+        </div>
+        <div class="col-xs-6 pull-right">
+          <h5 class="pull-right">You can change the student's Email here.<h5>
+        </div>
+      </div>
+
+    </div>
+
+
+      <hr/>
+
+    <div class="row">
+      <form ng-submit="changestudentmail()">
+        <div class="container-fluid" ng-show="signedIn() && usera.profile.profiletype=='admin'"> 
+          <div class="row">
+            <div class="col-md-6 ">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-11">
+                    <input type="email" ng-model="user.stuemail" placeholder="Current E-mail" ng-keyup="doThisForStdPassChange(user.stuemail)" required class="form-control">
+                  </div>
+                  <div ng-if="studentIdFlag == 'Done'" class="col-xs-1" style="color:#64FE2E">
+                    <i class="fa fa-check fa-2x"></i>
+                  </div>
+                  <div ng-if="studentIdFlag == 'Done'">
+                    <h5 style="color:red">{{studentName.$value}}</h5>
+                  </div>
+                  <div ng-if="studentIdFlag == 'Not Done'" class="col-xs-1" style="color:#FF4000">
+                    <i class="fa fa-times fa-2x"></i>
+                  </div>
+                  <div class="col-xs-11">
+                    <input type="password" ng-model="user.stupassword"  placeholder="Current E-mail's Password" required class="form-control">
+                  </div>
+                  <div class="col-xs-1" style="color:#64FE2E">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <input type="email" ng-model="user.stunewemail"  placeholder="Enter new E-mail here" required class="form-control">
+                  </div>
+                </div>
+              </div>
+              <input type="submit" value="Change Student's Email" ng-disabled = "submitdisabled" style="color : white; :hover{color:white;}; letter-spacing:1px;" class="btn btn-success btn-block bw-bt"/>
+            </div>
+          </div>
+        </div>
+        <center><div ng-if = "submitsuccesstext == true"> <h5 style="color:green"><strong> Congratulations! </strong> You have successfuly changed the student Email Address.</h5></div></center>
+        <center><div ng-show="errorA"> <h5 style="color:red">{{errorA}}</h5></div></center>
+      </form>
+    </div>
+</div>
+
+</div>

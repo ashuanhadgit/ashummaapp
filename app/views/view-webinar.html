@@ -1,0 +1,218 @@
+<!--Left Sidebar Include Starts HEre-->
+  <div ng-include="'views/student-left-sidebar.html'"></div>
+  <div class="col-lg-2 col-md-2 col-sm-2" ng-init="toTheTop();"></div>
+<!--Left Sidebar Include Starts HEre-->
+   <toaster-container toaster-options="{'time-out': 6000, 'position-class': 'toast-bottom-right'}"></toaster-container> 
+
+            <!--Webinar Detail Starts Here-->
+              
+                <div class="col-lg-7 col-md-7 col-sm-7" id="mma_student_middlecol" ng-init="toTheTop(); getWebinarDetailForView()">
+                    <ol class="breadcrumb" ng-if="!signedIn() || (signedIn() && user.profile.profiletype!=='student')">
+                      <li><a href="#/">Home</a></li>
+                      <li class="active">{{webinarDetail.webinarTopic | titleCase}}</li>
+                    </ol>
+                    <ol class="breadcrumb"ng-if="(signedIn() && user.profile.profiletype==='student')">
+                      <li><a href="#/">Home</a></li>
+                      <li><a href="#/student-webinar-detail">Student Upcoming Webinars</a></li>
+                      <li class="active">{{webinarDetail.webinarTopic | titleCase}}</li>
+                    </ol>
+                      
+                      <!--Webinar Details Column-->  
+                      <center id="booking_success{{webinarDetail.$id}}" ng-if="webinar_booking_success[webinarDetail.webinarId]=='done'" style="color:green"><h4>You have successfuly booked this webinar</h4></center>
+
+                      <center id="booking_success{{webinarDetail.$id}}" ng-if="webinarAlreadyBooked[webinarDetail.webinarId]=='yes'" style="color:green"><h4>You have already booked this webinar</h4></center>
+                        
+                        <div class="col-lg-12 col-md-12 col-sm-12" id="webinar_full_detail">
+                            <h3>{{webinarDetail.webinarTopic}}</h3>
+                            
+                            <div class="col-sm-5 col-xs-12" style="padding-left:0px;">
+               <div class="webinar-stats">
+                  <p class="clearfix"><span ng-if="webinarDetail.studentsAttending"><i class="fa fa-eye"></i><strong>{{webinarDetail.studentsAttending * 5}}</strong>Viewers</span>
+                    <span ng-if="webinarDetail.studentsAttending"><i class="fa fa-users"></i><strong>{{webinarDetail.studentsAttending}}</strong>Attendees</span>
+                  </p>
+                </div>
+
+
+                          <!-- static data -->
+                <!-- <div class="webinar-stats">
+                  <p class="clearfix"><span ><i class="fa fa-eye"></i><strong>100 </strong>Viewers</span>
+                    <span ><i class="fa fa-users"></i><strong>100 </strong>Attendees</span></p>
+                </div> -->
+              </div>
+                            
+                            
+                             
+                             <div style="display:none" class="col-sm-4 col-xs-12" ng-if="signedIn();">
+                             <p>Refer this webinar to a friend</p>
+                               <button type="button" id="invite_btn" onclick="showInviteBox();" class="btn btn-grp btn-primary">Invite Friends</button>
+                             </div>
+                             <br clear="all"/>
+                             <div class="col-lg-12" id="invite_friend" style="display:none">
+                                <input type="email" required ng-model="invite.friendemail" class="form-control noborder" style="width:60%;float:left; margin-right:8px;" placeholder="Enter friend's email" oninvalid="this.setCustomValidity('Please enter a valid Email Address')" oninput="this.setCustomValidity('')" title='Enter in format abcdef@email.com'>
+                                <button id="invite_send_btn" type="button" ng-click="sendWebinarInvitation(user.profile.studentname,webinarDetail,invite.friendemail);" class="btn btn-grp btn-success" >Send Invitiation</button>
+                                <button type="button" onclick="hideInviteBox();" class="btn btn-grp btn-primary" >Cancel</button>
+                                <br clear="all">
+                               <center> <p style="color:red" ng-if="invitationMsg"> {{invitationMsg}}</p>
+                                        <p style="color:green" ng-if="invitationSuccessMsg"> {{invitationSuccessMsg}}</p>
+                                        <p style="color:red" ng-if="invitationErrorMsg"> {{invitationErrorMsg}}</p>
+                                </center>
+                             </div>
+                             <br clear="all">
+                             <br/>
+                             <!-- <div class="col-lg-12" id="sharer">
+                              Share This Webinar On -
+                             </div> -->
+                             <br clear="all"/>
+                             <span class="metadata">{{webinarDetail.webinarDate}} {{webinarDetail.webinarTime}}</span>
+                            
+                            <p>{{webinarDetail.webinarDescription}}</p>
+                           
+                            
+                            <h5><b>Key Takeaways</b></h5>
+                            <!-- <ul>
+                            <li>Cloud deployments and Security Challenges</li>
+                            <li>Network and Content Protection </li>
+                            <li>Advanced Threat Protection</li>
+                            </ul> -->
+                            <p>{{webinarDetail.keyTakeAways}} </p>
+                            <h5><b>Who Should Attend</b></h5>
+                            <p>{{webinarDetail.whoShouldAttend}}</p>
+                           <!--  <p>Tags: <span style="color:orange">cloud, cloud security, network security, network admin, network administration, system admin, developers, testers, project managers</span></p> -->
+                            <p>&nbsp;</p>
+                            <hr />
+                            <div class="col-lg-12" ng-if="!signedIn()" style="text-align:center;"><button type="button" class="btn btn-md btn-warning" data-toggle="modal" data-target="#myloginModal" >Book Seat</button></div>
+                            
+                            <div class="col-lg-12" ng-if="user.profile.emailverificationstatus === 'true'" style="text-align:center;"><button type="button" class="btn btn-md btn-warning" ng-click="bookThisWebinar(webinarDetail)">Book Seat</button></div>
+
+                            <div class="col-lg-12" ng-if="user.profile.emailverificationstatus === 'false'" style="text-align:center;" ng-click="resendemail()"><button type="button" class="btn btn-md btn-warning" data-toggle="modal" data-target="#myModal" >Book Seat</button></div>
+                            <!-- <div class="col-lg-12" style="text-align:center;"><p style="color:red">All seats are full</p></div> -->
+                        <br clear="all">
+                        <br/>
+                        </div>
+                     <!--Webinar Details Column Ends Here-->    
+                </div>
+            
+            
+            
+            <!--Webinar Detail Ends Here-->
+            
+            
+            <!--Side Bar Mentor Profile Starts Here-->
+              
+                <div class="col-lg-3 col-sm-3 col-md-3" id="side_mentor_profile">
+                <h4>About the Speaker</h4>
+                    <hr />
+                
+                    <div class="profile-sidebar">
+          <!-- SIDEBAR USERPIC -->
+            <div class="profile-userpic">
+              <img src="{{webinarDetail.mentorPhoto}}" class="img-responsive" alt="">
+             
+          </div>
+          <!-- END SIDEBAR USERPIC -->
+          <!-- SIDEBAR USER TITLE -->
+          <div class="profile-usertitle">
+              <div class="profile-usertitle-name" style="color:#444">
+                 <!-- <a href="#" > --><p>{{webinarDetail.mentorName}}</p><!-- </a> -->
+              </div>
+              <div class="profile-usertitle-job" style="text-transform:lowercase; color:#333;" ng-if="webinarDetail.mentorEmail">
+                  <p>{{webinarDetail.mentorEmail | cut_email}}</p>
+              </div>
+          </div>
+            
+            <div class="mentor_desc">
+              <p id="short_desc">{{webinarDetail.mentorBio | limitTo: 50 }}...<span><a href="javascript:void(0);" onclick="show_full_description();"> &nbsp;&nbsp;Show More</a></span></p>
+                
+                <p id="full_desc" style="display:none;">{{webinarDetail.mentorBio}}<span><a href="javascript:void(0);" onclick="show_short_description();"> &nbsp;&nbsp;Show Less</a></span></p>
+            <hr />
+            <!-- <p><a href="#">Follow&nbsp;<span style="background:#237dac;border-radius:50%; border:1px solid #237dac; color:#fff; text-align:center;padding: 0px 3px;"><b>+</b></span></a></p> -->
+            </div>
+          
+          </div>
+                      
+              </div>
+            <!--Side Bar Mentor Profile Ends Here-->
+
+    
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog" ng-controller="StudentDashCtrl">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Verification Needed</h4>
+              </div>
+              <div class="modal-body">
+                <center>You have not verified your account yet. Please verify to continue.
+                  <br /><br />
+                  <a href="" ng-click="resendemail()">Click Here</a> to resend verification link.
+                </center>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- End Modal -->
+
+        <!-- Login popup Modal -->
+        <div class="modal fade" id="myloginModal" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Sign In or Sign UP</h4>
+              </div>
+              <div class="modal-body">
+                <center><strong><h4>You are not logged into your account yet. Please Sign In or Sign UP to proceed.</h4></strong>
+                  <br /><br />
+                  <a  ng-href="#/login"><button type="button" class="btn btn-md btn-danger" >Sign In</button></a>
+                  <br><h4>OR</h4>
+                  <a  ng-href="#/register"><button type="button" class="btn btn-md btn-danger" >Sign UP</button></a>
+                </center>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End Modal -->
+  
+        
+
+
+
+
+<script>
+
+function show_short_description()
+{
+  $("#short_desc").fadeIn(300);
+  $("#full_desc").fadeOut(300);
+}
+
+function show_full_description()
+{
+  $("#short_desc").fadeOut(300);
+  $("#full_desc").fadeIn(300);
+}
+function showInviteBox() {
+  $("#invite_friend").fadeIn(300);
+  $("#invite_btn").hide();
+}
+function hideInviteBox() {
+  $("#invite_friend").fadeOut(300);
+  $("#invite_btn").show();
+}
+</script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560a6212e59d7f9d" async="async"></script>

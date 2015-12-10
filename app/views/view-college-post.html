@@ -1,0 +1,70 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<style type="text/css"> #twitter-widget-0 {position: relative !important; margin-bottom: -6px;} #___plus_0 { margin-bottom: -5px; !important;}
+.half{width: 49%; float: left;}
+.noborder {border-radius:0px;}
+</style>
+
+ <div ng-if="userd.profile.profiletype === 'student'" ng-include="'views/student-left-sidebar.html'" ng-init="toTheTop()"></div>
+	<!--including mentor dashboard-->
+ <div ng-if="userd.profile.profiletype === 'Mentor'" ng-include="'views/mentor-menu.html'" ng-controller="MentorCtrl"></div>
+
+
+	<!--including mentor dashboard ends here-->
+
+<div class="col-lg-2 col-md-2 col-sm-2"></div>
+	<div class="col-lg-10 col-md-10" style="background:#fff; height:auto; padding:25px;" ng-init="posts=getCollegePostDetail()">
+		<div style="border:1px solid #e9e9e9; width:100%; height:auto;">
+	       		<div class="col-lg-8" style="border-right:1px solid #e9e9e9;">
+				<header style="margin-bottom:20px;">
+					<h3>{{posts.postTitle | titleCase}}</h3>
+					<p style="background:#f7f7f7; color:#a2a2a2;padding: 3px 15px;margin: 0px -15px;">
+    					<span style="float:left;">By <a href="#/college-profile/{{posts.collegeuid}}" title="View College's Detail" style="cursor:pointer">{{posts.collegename | titleCase}}</a> | <a> {{posts.postDate | convert}}</a></span>
+    					<span style="float:right;">{{posts.comments}} Comments</span>
+    					<br clear="all">
+					</p>
+                                            <!--social sharer buttons-->
+        			<div style="background:#f7f7f7; color:#a2a2a2;padding: 8px 15px;margin: 0px -15px; width:104.5%;">
+          				<div class="fb-share-button" data-href="" data-layout="button_count"></div>
+          				<a href="https://twitter.com/share" class="twitter-share-button" data-via="My Mission Admission">Tweet</a>
+          				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                      <!-- Place this tag where you want the share button to render. -->
+          				<div style="width:95px; float:left;">
+          					<div class="g-plus"  data-action="share" data-annotation="bubble" data-height="24"></div>
+          				</div>
+       				</div>
+                                       <!--social sharer buttons ends here-->
+				</header>
+
+				<div style="width:100%;height:auto; word-wrap:break-word" ta-bind ng-model="posts.postData" id="img-res">
+				</div>
+
+		<!--social sharer buttons-->
+
+				<div style="background:#f7f7f7; color:#a2a2a2;padding: 8px 15px;margin: 0px -15px; width:104.5%;">
+        			<div class="fb-share-button" data-href="" data-layout="button_count"></div>
+        			<a href="https://twitter.com/share" class="twitter-share-button" data-via="My Mission Admission">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+						<!-- Place this tag where you want the share button to render. -->
+						<div style="width:95px; float:left;">
+							<div class="g-plus"  data-action="share" data-annotation="bubble" data-height="24"></div>
+						</div>
+        			</div>
+					<br clear="all">
+				</div>
+			<div class="col-lg-4">
+		</div>
+		<br clear="all">
+	</div>
+	<br clear="all">
+</div>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+

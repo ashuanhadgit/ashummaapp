@@ -1,0 +1,351 @@
+<div class="row" ng-init="toTheTop()"><!-- about-Dir -->
+
+
+
+<!-- SCROLL DIRECTIVE -->
+<div scroll-directive ></div><!-- data-elems="#about-nav:z,#sidebar-about:c^m" data-target-scroll="#sales-content" data-target-class="scrollFixed" data-offset-elem="#sidebar-about" data-extra-offset="50" id="about-top-nav"></div> -->
+
+
+
+    <nav class="about-top-nav_position about-top-nav_style  about-top-nav scrollFixed navbar navbar-default blue " id="about-top-nav"> 
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#about-nav" class="pull-left about-collapse-button_style navbar-toggle collapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="_about-icon icon-bar"></span>
+                    <span class="_about-icon icon-bar"></span>
+                    <span class="_about-icon icon-bar"></span>
+                </button>
+            </div> <!-- END OF NAVBAR HEADER -->
+
+            <div class="collapse about-navbar-collapse navbar-collapse" id="about-nav">
+                <ul class="nav _navbar-nav navbar-nav navbar-right " style="padding-right:60px;">
+                    <li id="aboutBtn" ng-click="setTab('about')"><a class="current" >About Us</a></li>
+                    <li class="termBtn" ng-click="setTab('terms')" id="termBtn"><a >Terms</a></li>
+                    <li class="priBtn" ng-click="setTab('privacy')" id="priBtn"><a >Privacy</a></li>
+                    <!-- <li class="feedBtn" ng-click="setTab('feedback')" id="feedBtn"><a >Feedback</a></li> -->
+                    <li class="contBtn"><a ng-href="#/contact">Contact Us</a></li>
+                </ul>
+            </div>  <!-- END OF NAVBAR CONTENT -->
+
+
+        </div>
+    </nav>  <!-- END OF SECONDARY NAVBAR -->
+
+</div>
+
+<div class="about-blue-strip scrollFixed blue"></div>
+
+<div class="row about-content-row " >
+
+    <div class="col-sm-4 about-side-bar scrollFixed" id="sidebar-about" ng-show="tab === 'about'">
+        <ul class="about-side-bar-ul ">
+            <li id="missionSec" ng-click="click_missionSec();" class="current">Mission</li>
+            <!-- <li id="foundersSec" ng-click="click_foundersSec();">Founders</li>
+            <li id="techSec" ng-click="click_techSec();">Our TechTeam</li>
+            <li id="opsSec" ng-click="click_opsSec();">Our Sales/OperationsTeam</li> -->
+        </ul>
+    </div>
+
+    <div class="col-sm-4 about-side-bar scrollFixed" id="sidebar-terms"  ng-show="tab === 'terms'">
+        <ul class="about-side-bar-ul">
+            <li class="current">Terms Of Service</li>
+        </ul>
+    </div>
+
+    <div class="col-sm-4 about-side-bar scrollFixed"id="sidebar-privacy"  ng-show="tab === 'privacy'">
+        <ul class="about-side-bar-ul">
+            <li class="current">Privacy Policy</li>
+        </ul>
+    </div>
+
+    <!-- <div class="col-sm-4 about-side-bar scrollFixed" id="sidebar-feedback"  ng-show="tab === 'feedback'">
+        <ul class="about-side-bar-ul">
+            <li class="current">Feedback</li>
+        </ul>
+    </div> -->
+
+
+
+    <div class="col-sm-8 col-sm-offset-4 about-main-content" id="about-content" ng-show="tab === 'about'">
+        <div class="about-main-content-div" id="missionContent">
+            <h1>Mission</h1>
+            <p style="font-size:16px;"> Our mission is to ensure that every student gets admission into their dream careers, courses and colleges. </p>
+        </div>
+        <!-- <div class="seperator"></div> -->
+        <div class="about-main-content-div" id="founderContent">
+            <h1>How We Do It </h1> <br/>
+               <h4>Helping students <strong style="color:#237DAC">discover</strong> their dream careers, courses and colleges</h4> 
+               <p style="font-size:16px;"> We are creating a student-community based platform where you can learn about new-age career options through personalized counseling sessions , knowledge webinars and mentorship from experts and then by connecting you to universities and colleges so that you can make an informed choice about your career.</p>
+            <br/>     
+               <h4> Creating amazing <strong style="color:#237DAC">experience</strong>s around learning</h4>
+               <p style="font-size:16px;"> Connect with admission officers through video chats , have personalized mentoring from experts , connect with peers , create your very own ‘My Scholarship Fund’ and self finance your education. Importantly these experiences enable you to decide and build your future.</p>
+            <br/>   
+                <h4>Helping education institutions <strong style="color:#237DAC">deliver</strong> affordable and quality education</h4> 
+                <p style="font-size:16px;">With dedicated efforts and management tools , we help education  institutions connect with industry and focus on improving employability thus improving the quality of education they deliver.</p>
+        </div>
+        <div class="seperator"></div>
+        <!-- <div class="about-main-content-div" id="founderContent">
+            <h1>Founders</h1>
+            <p> Mauris rutrum ex lacus, a ornare sapien volutpat et. Nam turpis elit, blandit sit amet nulla sit amet, hendrerit feugiat massa.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.</p><p> Mauris rutrum ex lacus, a ornare sapien volutpat et. Nam turpis elit, blandit sit amet nulla sit amet, hendrerit feugiat massa.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.</p>
+        </div>
+        <div class="seperator"></div>
+        <div class="about-main-content-div" id="techContent">
+            <h1>Our TechTeam</h1>
+            <p> Mauris rutrum ex lacus, a ornare sapien volutpat et. Nam turpis elit, blandit sit amet nulla sit amet, hendrerit feugiat massa.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.</p><p> Mauris rutrum ex lacus, a ornare sapien volutpat et. Nam turpis elit, blandit sit amet nulla sit amet, hendrerit feugiat massa.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.</p>
+        </div>
+        <div class="seperator"></div>
+        <div class="about-main-content-div" id="sales-content">
+            <h1>Our Sales/Operations Team</h1>
+            <p> Mauris rutrum ex lacus, a ornare sapien volutpat et. Nam turpis elit, blandit sit amet nulla sit amet, hendrerit feugiat massa.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.</p><p> Mauris rutrum ex lacus, a ornare sapien volutpat et. Nam turpis elit, blandit sit amet nulla sit amet, hendrerit feugiat massa.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.</p>
+        </div>
+        <div class="seperator"></div> -->
+    </div>
+
+    <div class="col-sm-8 col-sm-offset-4 about-main-content" id="terms-content" ng-show="tab === 'terms'">
+        <div class="about-main-content-div">
+            <h1>Terms Of Service</h1>
+            <p> 
+
+<b>PLEASE READ THIS TERMS OF SERVICE AGREEMENT CAREFULLY. BY USING THIS WEBSITE OR AVAILING SERVICES FROM THIS WEBSITE YOU AGREE TO BE BOUND BY ALL OF THE TERMS AND CONDITIONS OF THIS AGREEMENT.</b>
+
+<br/><br/> This Terms of Service Agreement (the "Agreement") governs your use of this website, [www.mymissionadmission.com] (the "Website"), Anhad Edutrain Solutions Pvt. Ltd. ("Business Name") offer of services for usage on this Website, or your use of services available on this Website. This Agreement includes, and incorporates by this reference, the policies and guidelines referenced below. Anhad Edutrain Solutions Pvt. Ltd. reserves the right to change or revise the terms and conditions of this Agreement at any time by posting any changes or a revised Agreement on this Website. Anhad Edutrain Solutions Pvt. Ltd. will alert you that changes or revisions have been made by indicating on the top of this Agreement the date it was last revised. The changed or revised Agreement will be effective immediately after it is posted on this Website. Your use of the Website following the posting any such changes or of a revised Agreement will constitute your acceptance of any such changes or revisions. Anhad Edutrain Solutions Pvt. Ltd. encourages you to review this Agreement whenever you visit the Website to make sure that you understand the terms and conditions governing use of the Website. This Agreement does not alter in any way the terms or conditions of any other written agreement you may have with Anhad Edutrain Solutions Pvt. Ltd. for other products or services. If you do not agree to this Agreement (including any referenced policies or guidelines), please immediately terminate your use of the Website. If you would like to print this Agreement, please click the print button on your browser toolbar. 
+<br/><br/>
+<b>I. SERVICES </b>
+<br/>
+Terms of Offer. This Website offers for sale certain services (the "Services"). By placing an order for Services through this Website or other modes, you agree to the terms set forth in this Agreement.
+
+Customer Solicitation: Unless you notify our third party call center reps or direct Anhad Edutrain Solutions Pvt. Ltd. sales reps, while they are calling you, of your desire to opt out from further direct company communications and solicitations, you are agreeing to continue to receive further emails and call solicitations Anhad Edutrain Solutions Pvt. Ltd and its designated in house or third party call team(s). 
+
+Opt Out Procedure: We provide 3 easy ways to opt out of from future solicitations. 
+1. You may use the opt out link found in any email solicitation that you may receive. 
+2. You may also choose to opt out, via sending your email address to: support@mymissionadmission.com. 
+3. You may send a written remove request to Wz 10c, A2 Janakpuri (Opp. Gurudwara), Near Mata Chanan Devi Hospital, New Delhi 110058. 
+
+Proprietary Rights. Anhad Edutrain Solutions Pvt. Ltd has proprietary rights and trade secrets in the Products. You may not copy, reproduce, resell or redistribute any Product manufactured and/or distributed by Anhad Edutrain Solutions Pvt. Ltd. Anhad Edutrain Solutions Pvt. Ltd also has rights to all trademarks and trade dress and specific layouts of this webpage, including calls to action, text placement, images and other information. 
+
+Sales Tax. If you purchase any Products, you will be responsible for paying any applicable sales tax. 
+<br/><br/>
+<b>II. WEBSITE </b>
+<br/>
+Content; Intellectual Property; Third Party Links. In addition to making Services available, this Website also offers information and marketing materials. This Website also offers information, both directly and through indirect links to third-party websites, about education institutions. Anhad Edutrain Solutions Pvt. Ltd does not always create the information offered on this Website; instead the information is often gathered from other sources. To the extent that Anhad Edutrain Solutions Pvt. Ltd does create the content on this Website, such content is protected by intellectual property laws of the India, foreign nations, and international bodies. Unauthorized use of the material may violate copyright, trademark, and/or other laws. You acknowledge that your use of the content on this Website is for personal, noncommercial use. Any links to thirdparty websites are provided solely as a convenience to you. Anhad Edutrain Solutions Pvt. Ltd does not endorse the contents on any such third-party websites. Anhad Edutrain Solutions Pvt. Ltd is not responsible for the content of or any damage that may result from your access to or reliance on these third-party websites. If you link to third-party websites, you do so at your own risk. 
+
+Use of Website; Anhad Edutrain Solutions Pvt. Ltd is not responsible for any damages resulting from use of this website by anyone. You will not use the Website for illegal purposes. You will (1) abide by all applicable local, state, national, and international laws and regulations in your use of the Website (including laws regarding intellectual property), (2) not interfere with or disrupt the use and enjoyment of the Website by other users, (3) not replicate information on the Website, (4) not engage, directly or indirectly, in transmission of "spam", chain letters, junk mail or any other type of unsolicited communication, and (5) not defame, harass, abuse, or disrupt other users of the Website 
+
+License. By using this Website, you are granted a limited, non-exclusive, nontransferable right to use the content and materials on the Website in connection with your normal, noncommercial, use of the Website. You may not copy, reproduce, transmit, distribute, or create derivative works of such content or information without express written authorization from Anhad Edutrain Solutions Pvt. Ltd or the applicable third party (if third party content is at issue). 
+
+Posting. By posting, storing, or transmitting any content on the Website, you hereby grant Anhad Edutrain Solutions Pvt. Ltd a perpetual, worldwide, non-exclusive, royalty-free, assignable, right and license to use, copy, display, perform, create derivative works from, distribute, have distributed, transmit and assign such content in any form, in all media now known or hereinafter created, anywhere in the world. Anhad Edutrain Solutions Pvt. Ltd does not have the ability to control the nature of the user-generated content offered through the Website. You are solely responsible for your interactions with other users of the Website and any content you post. Anhad Edutrain Solutions Pvt. Ltd is not liable for any damage or harm resulting from any posts by or interactions between users. Anhad Edutrain Solutions Pvt. Ltd reserves the right, but has no obligation, to monitor interactions between and among users of the Website and to remove any content Anhad Edutrain Solutions Pvt. Ltd deems objectionable, in MyMissionAdmission.com 's sole discretion. 
+<br/><br/> 
+<b>III. DISCLAIMER OF WARRANTIES</b>
+<br/>
+YOUR USE OF THIS WEBSITE AND/OR SERVICES ARE AT YOUR SOLE RISK. THE WEBSITE AND SERVICES ARE OFFERED ON AN "AS IS" AND "AS AVAILABLE" BASIS. ANHAD EDUTRAIN SOLUTIONS PVT. LTD EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF A THIRD PARTY, PRODUCTS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT WITH RESPECT TO THE SERVICES OR WEBSITE CONTENT, OR ANY RELIANCE UPON OR USE OF THE WEBSITE CONTENT OR SERVICES. ("SERVICES" INCLUDE TRIAL SERVICES.) 
+
+WITHOUT LIMITING THE GENERALITY OF THE FOREGOING, ANHAD EDUTRAIN SOLUTIONS PVT. LTD. MAKES NO WARRANTY: 
+
+THAT THE INFORMATION PROVIDED ON THIS WEBSITE IS ACCURATE, RELIABLE, COMPLETE, OR TIMELY. 
+
+THAT THE LINKS TO THIRD-PARTY WEBSITES ARE TO INFORMATION THAT IS ACCURATE, RELIABLE, COMPLETE, OR TIMELY. 
+
+NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU FROM THIS WEBSITE WILL CREATE ANY WARRANTY NOT EXPRESSLY STATED HEREIN. 
+
+AS TO THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICES OR THAT ISSUES IN SERVICES WILL BE CORRECTED. 
+
+REGARDING ANY SERVICES AVAILED OR USED THROUGH THE WEBSITE.
+
+SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES, SO SOME OF THE ABOVE EXCLUSIONS MAY NOT APPLY TO YOU. 
+
+<br/><br/>
+<b>IV. LIMITATION OF LIABILITY </b>
+<br/>
+ANHAD EDUTRAIN SOLUTIONS PVT. LTD. ENTIRE LIABILITY, AND YOUR EXCLUSIVE REMEDY, IN LAW, IN EQUITY, OR OTHWERWISE, WITH RESPECT TO THE WEBSITE CONTENT AND PRODUCTS AND/OR FOR ANY BREACH OF THIS AGREEMENT IS SOLELY LIMITED TO THE AMOUNT YOU PAID, LESS SHIPPING AND HANDLING, FOR SERVICES AVAILED VIA THE WEBSITE. 
+
+ANHAD EDUTRAIN SOLUTIONS PVT. LTD. WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES IN CONNECTION WITH THIS AGREEMENT OR THE SERVICES IN ANY MANNER, INCLUDING LIABILITIES RESULTING FROM (1) THE USE OR THE INABILITY TO USE THE WEBSITE CONTENT OR SERVICES; (2) THE COST OF PROCURING OTHER SERVICES OR CONTENT; (3) ANY SERVICE PURCHASED OR OBTAINED OR TRANSACTIONS ENTERED INTO THROUGH THE WEBSITE; OR (4) ANY LOST PROFITS YOU ALLEGE. 
+
+SOME JURISDICTIONS DO NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES SO SOME OF THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU. 
+
+<br/><br/>
+<b>V. INDEMNIFICATION </b>
+<br/>
+You will release, indemnify, defend and hold harmless Anhad Edutrain Solutions Pvt. Ltd, and any of its contractors, agents, employees, officers, directors, shareholders, affiliates and assigns from all liabilities, claims, damages, costs and expenses, including reasonable attorneys' fees and expenses, of third parties relating to or arising out of (1) this Agreement or the breach of your warranties, representations and obligations under this Agreement; (2) the Website content or your use of the Website content; (3) the Services or your use of the Services (including Trial Services); (4) any intellectual property or other proprietary right of any person or entity; (5) your violation of any provision of this Agreement; or (6) any information or data you supplied to Anhad Edutrain Solutions Pvt. Ltd. When Anhad Edutrain Solutions Pvt. Ltd is threatened with suit or sued by a third party, Anhad Edutrain Solutions Pvt. Ltd may seek written assurances from you concerning your promise to indemnify Anhad Edutrain Solutions Pvt. Ltd; your failure to provide such assurances may be considered by Anhad Edutrain Solutions Pvt. Ltd to be a material breach of this Agreement. Anhad Edutrain Solutions Pvt. Ltd will have the right to participate in any defense by you of a thirdparty claim related to your use of any of the Website content or Products, with counsel of Anhad Edutrain Solutions Pvt. Ltd choice at its expense. Anhad Edutrain Solutions Pvt. Ltd will reasonably cooperate in any defense by you of a third-party claim at your request and expense. You will have sole responsibility to defend Anhad Edutrain Solutions Pvt. Ltd against any claim, but you must receive Anhad Edutrain Solutions Pvt. Ltd prior written consent regarding any related settlement. The terms of this provision will survive any termination or cancellation of this Agreement or your use of the Website or Services. 
+<br/><br/> 
+<b>VI. PRIVACY </b>
+<br/>
+Anhad Edutrain Solutions Pvt. Ltd believes strongly in protecting user privacy and providing you with notice of MyMissionAdmission.com 's use of data. Please refer to Anhad Edutrain Solutions Pvt. Ltd privacy policy, incorporated by reference herein, that is posted on the Website. 
+
+<br/><br/>
+<b>VI. AGREEMENT TO BE BOUND </b>
+<br/>
+By using this Website or AVAILING SERVICES, you acknowledge that you have read and agree to be bound by this Agreement and all terms and conditions on this Website. 
+<br/><br/>
+<b>VIII. GENERAL</b> 
+<br/>
+Force Majeure. Anhad Edutrain Solutions Pvt. Ltd will not be deemed in default hereunder or held responsible for any cessation, interruption or delay in the performance of its obligations hereunder due to earthquake, flood, fire, storm, natural disaster, act of God, war, terrorism, armed conflict, labor strike, lockout, or boycott. 
+
+Cessation of Operation. Anhad Edutrain Solutions Pvt. Ltd may at any time, in its sole discretion and without advance notice to you, cease operation of the Website and distribution of the Services. 
+
+Entire Agreement. This Agreement comprises the entire agreement between you and Anhad Edutrain Solutions Pvt. Ltd and supersedes any prior agreements pertaining to the subject matter contained herein. 
+
+Effect of Waiver. The failure of Anhad Edutrain Solutions Pvt. Ltd to exercise or enforce any right or provision of this Agreement will not constitute a waiver of such right or provision. If any provision of this Agreement is found by a court of competent jurisdiction to be invalid, the parties nevertheless agree that the court should endeavor to give effect to the parties' intentions as reflected in the provision, and the other provisions of this Agreement remain in full force and effect. 
+
+Governing Law; Jurisdiction. This Website originates from the New Delhi, Delhi. This Agreement will be governed by the laws of the State of Delhi without regard to its conflict of law principles to the contrary. Neither you nor Anhad Edutrain Solutions Pvt. Ltd will commence or prosecute any suit, proceeding or claim to enforce the provisions of this Agreement, to recover damages for breach of or default of this Agreement, or otherwise arising under or by reason of this Agreement, other than in courts located in State of Delhi. By using this Website or AVAILING SERVICES, you consent to the jurisdiction and venue of such courts in connection with any action, suit, proceeding or claim arising under or by reason of this Agreement. You hereby waive any right to trial by jury arising out of this Agreement and any related documents. 
+
+Statute of Limitation. You agree that regardless of any statute or law to the contrary, any claim or cause of action arising out of or related to use of the Website or Services or this Agreement must be filed within one (1) year after such claim or cause of action arose or be forever barred. 
+
+Waiver of Class Action Rights. BY ENTERING INTO THIS AGREEMENT, YOU HEREBY IRREVOCABLY WAIVE ANY RIGHT YOU MAY HAVE TO JOIN CLAIMS WITH THOSE OF OTHER IN THE FORM OF A CLASS ACTION OR SIMILAR PROCEDURAL DEVICE. ANY CLAIMS ARISING OUT OF, RELATING TO, OR CONNECTION WITH THIS AGREEMENT MUST BE ASSERTED INDIVIDUALLY. 
+
+Termination. Anhad Edutrain Solutions Pvt. Ltd reserves the right to terminate your access to the Website if it reasonably believes, in its sole discretion, that you have breached any of the terms and conditions of this Agreement. Following termination, you will not be permitted to use the Website and Anhad Edutrain Solutions Pvt. Ltd may, in its sole discretion and without advance notice to you, cancel any outstanding orders for Services. If your access to the Website is terminated, Anhad Edutrain Solutions Pvt. Ltd reserves the right to exercise whatever means it deems necessary to prevent unauthorized access of the Website. This Agreement will survive indefinitely unless and until Anhad Edutrain Solutions Pvt. Ltd chooses, in its sole discretion and without advance to you, to terminate it. 
+
+Domestic Use. Anhad Edutrain Solutions Pvt. Ltd makes no representation that the Website or Products are appropriate or available for use in locations outside India. Users who access the Website from outside India do so at their own risk and initiative and must bear all responsibility for compliance with any applicable local laws. Assignment. You may not assign your rights and obligations under this Agreement to anyone. Anhad Edutrain Solutions Pvt. Ltd may assign its rights and obligations under this Agreement in its sole discretion and without advance notice to you. 
+<br/>
+Any school registering with us and/or any student registering through his school on our platform agrees to the following terms:
+<br/>
+My Mission Admission will help in facilitating the sign up and registration process for the students not limited to helping in creation of email ids of students. MyMissionAdmission.com does not hold any liability over the security of the accounts they help in creating other than on this website and students are requested to change their passwords for their respective email accounts immediately after registering on mymissionadmission.com
+<br/>
+<b><br/>BY USING THIS WEBSITE OR AVAILING SERVICES FROM THIS WEBSITE YOU AGREE TO BE BOUND BY ALL OF THE TERMS AND CONDITIONS OF THIS AGREEMENT.</b>
+
+            </p>
+        </div>
+        <div class="seperator"></div>
+    </div>
+
+    <div class="col-sm-8 col-sm-offset-4 about-main-content" id="privacy-content" ng-show="tab === 'privacy'">
+        <div class="about-main-content-div">
+            <h1>Privacy Policy</h1>
+            <p> 
+<br/>
+            <b style="color:#237DAC; margin-top:.5em;">This Privacy Policy applies to the MyMissionAdmission.com</b>
+<br/>
+MyMissionAdmission.com recognises the importance of maintaining your privacy. We value your privacy and appreciate your trust in us. This Policy describes how we treat user information we collect on http://www.mymissionadmission.com and other offline sources. This Privacy Policy applies to current and former visitors to our website and to our online customers. By visiting and/or using our website, you agree to this Privacy Policy. 
+<br/>
+MyMissionAdmission.com is a property of Anhad Edutrain Solutions Pvt. Ltd., an Indian Company registered under the Companies Act, 2013 having its registered office at: <br/><b> 79, 2nd FLOOR, J-Block, LSC, DDA MKT, VIKASPURI, New Delhi, Delhi 110018. </b>
+
+<br/><br/>
+<b style="color:#305891; font-size: 1.3em;"> Information we collect </b>
+<br/>
+Contact information. ​We might collect your name, email, gender, mobile number, phone number, street, city, state, pincode, country, father’s name, father’s occupation, father’s mobile number, academic records, ip address and other related information. 
+<br/><br/>
+<b style="color:#237DAC;"> Payment and billing information. ​</b>
+<br/>
+We might collect your billing name, billing address and payment method when you buy our services. We NEVER collect your credit card number or credit card expiry date or other details pertaining to your credit card on our website. Credit card information will be obtained and processed by our online payment partner. 
+<br/><br/>
+<b style="color:#237DAC;"> Information you post.​</b>
+<br/>We collect information you post in a public space on our website or on a third­party social media site belonging to MyMissionAdmission.com. 
+<br/><br/>
+<b style="color:#237DAC;">Demographic information.</b>
+<br/> ​We may collect demographic information about you, webinars you like, counselling sessions you intend to participate in, plans you buy, or any other information provided by your during the use of our website. We might collect this as a part of a survey also. 
+
+<br/><br/><b style="color:#237DAC;">
+Other information.</b><br/> ​If you use our website, we may collect information about your IP address and the browser you're using. We might look at what site you came from, duration of time spent on our website, pages accessed or what site you visit when you leave us. We might also collect the type of mobile device you are using, or the version of the operating system your computer or device is running. 
+<br/><br/><b style="color:#305891;  font-size: 1.3em;">
+We collect information in different ways. </b>
+<br/><br/><b style="color:#237DAC;">
+We collect information directly from you.​</b>
+<br/> We collect information directly from you when you register for a webinar, counselling session or buy plans. We also collect information if you post a comment on our websites or ask us a question through phone or email. 
+<br/><br/><b style="color:#237DAC;">
+We collect information from you passively. ​</b>
+<br/>We use tracking tools like Google Analytics, Google Webmaster, browser cookies and web beacons for collecting information about your usage of our website. 
+
+
+<br/><br/><b style="color:#237DAC;">
+We get information about you from third parties. ​</b>
+<br/>For example, if you use an integrated social media feature on our websites. The third­party social media site will give us certain information about you. This could include your name and email address. 
+
+<br/><br/><b style="color:#305891; font-size: 1.3em;">
+Use of your personal information </b>
+<br/><br/><b style="color:#237DAC;">
+We use information to contact you.</b>
+<br/> ​We might use the information you provide to contact you for confirmation of a purchase on our website or for other promotional purposes. 
+<br/><br/><b style="color:#237DAC;">
+We use information to respond to your requests or questions. ​</b>
+<br/>We might use your information to confirm your registration for a webinar, counselling session or contest. 
+<br/><br/><b style="color:#237DAC;">
+We use information to improve our products and services. ​</b>
+<br/>We might use your information to customize your experience with us. This could include displaying content based upon your preferences. 
+<br/><br/><b style="color:#237DAC;">
+We use information to look at site trends and customer interests.​ </b>
+<br/>We may use your information to make our website and products better. We may combine information we get from you with information about you we get from third parties. 
+<br/><br/><b style="color:#237DAC;">
+We use information for security purposes.​ </b>
+<br/>We may use information to protect our company, our customers, or our websites. 
+<br/><br/><b style="color:#237DAC;">
+We use information for marketing purposes.​</b> <br/>We might send you information about special promotions or offers. We might also tell you about new features or products. These might be our own offers or products, or third­party offers or products we think you might find interesting. Or, for example, if you buy plans from us we'll enroll you in our newsletter. 
+
+<br/><br/><b style="color:#237DAC;">We use information to send you transactional communications. ​</b>
+<br/>We might send you emails or SMS about your account, webinar or counselling session or a plan purchase. 
+<br/><br/><b style="color:#237DAC;">
+We use information as otherwise permitted by law. </b>
+
+<br/><br/><b style="color:#305891; font-size: 1.3em;">
+Sharing of information with third­parties </b>
+<br/><br/><b style="color:#237DAC;">
+We will share information with third parties who perform services on our behalf. ​</b>
+<br/>We share information with institutions who help us manage our online service or counselling or transactional message processors. Some institutions may be located outside of India. 
+<br/><br/><b style="color:#237DAC;">
+We will share information with the event organizers. ​</b>
+<br/>We share your information with institutions and other parties responsible for fulfilling the service obligation. The institutions and other parties may use the information we give them as described in their privacy policies. 
+<br/><br/><b style="color:#237DAC;">
+We will share information with our business partners. ​</b>
+<br/>This includes a third party who provide or sponsor a counselling session, or who operates a venue where we hold webinars. Our partners use the information we give them as described in their privacy policies. 
+<br/><br/><b style="color:#237DAC;">
+We may share information if we think we have to in order to comply with the law or to protect ourselves. ​</b>
+<br/>We will share information to respond to a court order or subpoena. We may also share it if a government agency or investigatory body requests. Or, we might also share information when we are investigating potential fraud. 
+<br/><br/><b style="color:#237DAC;">
+We may share information with any successor to all or part of our business. ​</b>
+<br/>For example, if part of our business is sold we may give our customer list as part of that transaction. 
+<br/><br/><b style="color:#237DAC;">
+We may share your information for reasons not described in this policy. ​We will tell you before we do this. </b>
+<br/><br/><b style="color:#305891; font-size: 1.3em;">
+Email Opt­Out </b>
+<br/><br/><b style="color:#237DAC;">
+You can opt out of receiving our marketing emails. ​</b>
+<br/>To stop receiving our promotional emails, please email support@mymissionadmission.com. It may take about ten days to process your request. Even if you opt out of getting marketing messages, we will still be sending you transactional messages through email and SMS about your purchases. 
+<br/><br/><b style="color:#305891; font-size: 1.3em;">
+Third party sites </b>
+<br/>
+If you click on one of the links to third party websites, you may be taken to websites we do not control. This policy does not apply to the privacy practices of those websites. Read the privacy policy of other websites carefully. We are not responsible for these third party sites. 
+
+<br/><br/><b style="color:#305891; font-size: 1.3em;">Grievance Officer </b>
+
+<br/> In accordance with Information Technology Act 2000 and rules made there under, the name and contact details of the Grievance Officer are provided below: 
+
+<br/><br/>
+<b>Mr. Nikhil Uttam 
+<br/>
+Wz 10c, A2 Janakpuri (Opp. Gurudwara),
+<br/>
+Near Mata Chanan Devi Hospital,
+<br/>
+New Delhi 110058
+<br/>
+Phone: +91­ 9811234223 
+<br/>
+Email: nikhil@anhadedutrain.com 
+</b><br/><br/>
+If you have any questions about this Policy or other privacy concerns, you can also email us at support@mymissionadmission.com 
+
+
+<br/><br/>
+<b style="color:#237DAC;">Updates to this policy </b>
+<br/>
+This Privacy Policy was last updated on 11.08.2015. From time to time we may change our privacy practices. We will notify you of any material changes to this policy as required by law. We will also post an updated copy on our website. Please check our site periodically for updates. 
+<br/><br/>
+<b style="color:#237DAC;">Jurisdiction </b>
+<br/>
+If you choose to visit the website, your visit and any dispute over privacy is subject to this Policy and the website's terms of use. In addition to the foregoing, any disputes arising under this Policy shall be governed by the laws of India.
+
+
+            </p>
+        </div>
+        <div class="seperator"></div>
+    </div>
+
+    <!-- <div class="col-sm-8 col-sm-offset-4 about-main-content" id="feedback-content" ng-show="tab === 'feedback'">
+        <div class="about-main-content-div">
+            <h1>Give us your Feedback</h1>
+            <p> Mauris rutrum ex lacus, a ornare sapien volutpat et. Nam turpis elit, blandit sit amet nulla sit amet, hendrerit feugiat massa.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.</p><p> Mauris rutrum ex lacus, a ornare sapien volutpat et. Nam turpis elit, blandit sit amet nulla sit amet, hendrerit feugiat massa.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.Phasellus augue nisl, dignissim pharetra tortor sed, sagittis posuere nisi. Aliquam non velit ut felis rhoncus vehicula vel non velit. Integer auctor non tellus eget interdum. Proin vel nunc mi. In consequat placerat elit sed lacinia. Donec feugiat lorem lacus.</p>
+        </div>
+        <div class="seperator"></div>
+    </div> -->
+
+</div>
